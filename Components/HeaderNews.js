@@ -10,7 +10,7 @@ const HeaderNews = (props) => {
     //     state <0 ? setState(0) : null
     // }, [state > 9, state < 0])
     return (
-        <div className="rounded-xl bg-white shadow-lg w-full h-10 overflow-hidden flex relative">
+        <div className="rounded-lg bg-white shadow-lg w-full h-10 overflow-hidden flex relative">
             <div className="h-full w-1/6 bg-blue-500 flex items-center justify-center"> 
                 <RayoIcon className="text-white w-5 h-5"/>
                 <h3 className="text-white font-display font-semibold">Ultima hora</h3>
@@ -49,7 +49,6 @@ const Switch = (props) => {
             setTimeout(() => {
                 set(state + 1)
             }, 4000);
-            console.log(state)
          } else set(0)
          
      }, [state])
