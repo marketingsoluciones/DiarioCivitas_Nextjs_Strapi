@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-let wpInstance = axios.create({ baseURL: 'https://diariocivitas.com/wp-json/' });
+let wpInstance = axios.create({ baseURL: 'http://localhost:1337' });
 
 const api = {
-  wpPosts: async () => {
-    return await wpInstance.get('/wp/v2/posts');
+  FetchNews: async () => {
+    return await wpInstance.get('/noticias?_limit=10');
   }
 }
 
