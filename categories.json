@@ -1,0 +1,1084 @@
+[
+    {
+        "id": 4,
+        "count": 783,
+        "description": "",
+        "link": "https://diariocivitas.com/category/actualidad/",
+        "name": "Actualidad",
+        "slug": "actualidad",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/4"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=4"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 17,
+        "count": 17,
+        "description": "",
+        "link": "https://diariocivitas.com/category/aguilas/",
+        "name": "Águilas",
+        "slug": "aguilas",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/17"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=17"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 18,
+        "count": 8,
+        "description": "",
+        "link": "https://diariocivitas.com/category/noticias-locales/aguilas-noticias-locales/",
+        "name": "Águilas",
+        "slug": "aguilas-noticias-locales",
+        "taxonomy": "category",
+        "parent": 7,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/18"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "up": [
+                {
+                    "embeddable": true,
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/7"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=18"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 10,
+        "count": 16,
+        "description": "",
+        "link": "https://diariocivitas.com/category/noticias-locales/alicante/",
+        "name": "Alicante",
+        "slug": "alicante",
+        "taxonomy": "category",
+        "parent": 7,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/10"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "up": [
+                {
+                    "embeddable": true,
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/7"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=10"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 28,
+        "count": 45,
+        "description": "",
+        "link": "https://diariocivitas.com/category/alicante-2/",
+        "name": "Alicante",
+        "slug": "alicante-2",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/28"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=28"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 11,
+        "count": 16,
+        "description": "",
+        "link": "https://diariocivitas.com/category/noticias-locales/almeria/",
+        "name": "Almeria",
+        "slug": "almeria",
+        "taxonomy": "category",
+        "parent": 7,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/11"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "up": [
+                {
+                    "embeddable": true,
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/7"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=11"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 27,
+        "count": 61,
+        "description": "",
+        "link": "https://diariocivitas.com/category/cartagena/",
+        "name": "Cartagena",
+        "slug": "cartagena",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/27"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=27"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2872,
+        "count": 8,
+        "description": "",
+        "link": "https://diariocivitas.com/category/colaboradores/",
+        "name": "Colaboradores",
+        "slug": "colaboradores",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/2872"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=2872"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 5,
+        "count": 27,
+        "description": "",
+        "link": "https://diariocivitas.com/category/cultura/",
+        "name": "Cultura",
+        "slug": "cultura",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/5"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=5"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 9,
+        "count": 76,
+        "description": "",
+        "link": "https://diariocivitas.com/category/deportes/",
+        "name": "Deportes",
+        "slug": "deportes",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/9"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=9"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "count": 39,
+        "description": "",
+        "link": "https://diariocivitas.com/category/economia/",
+        "name": "Economía",
+        "slug": "economia",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/3"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=3"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 3501,
+        "count": 3,
+        "description": "Ofertas de Empleo por ciudad en la región de Murcia, (Lorca, Puerto lumbreras, Totana, Águilas )",
+        "link": "https://diariocivitas.com/category/empleo/",
+        "name": "Empleo",
+        "slug": "empleo",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/3501"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=3501"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 26,
+        "count": 3,
+        "description": "",
+        "link": "https://diariocivitas.com/category/emprendedores/",
+        "name": "Emprendedores",
+        "slug": "emprendedores",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/26"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=26"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2874,
+        "count": 9,
+        "description": "Gastronomía de la Región de Murcia",
+        "link": "https://diariocivitas.com/category/gastronomia/",
+        "name": "Gastronomía",
+        "slug": "gastronomia",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/2874"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=2874"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 7,
+        "count": 108,
+        "description": "Los más recientes acontecimientos y noticias relevantes de hoy en Águilas, Alicante, Almería, Lorca, Murcia y Puerto Lumbreras",
+        "link": "https://diariocivitas.com/category/noticias-locales/",
+        "name": "Locales",
+        "slug": "noticias-locales",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/7"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=7"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 15,
+        "count": 652,
+        "description": "",
+        "link": "https://diariocivitas.com/category/noticias-locales/lorca/",
+        "name": "Lorca",
+        "slug": "lorca",
+        "taxonomy": "category",
+        "parent": 7,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/15"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "up": [
+                {
+                    "embeddable": true,
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/7"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=15"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 8,
+        "count": 808,
+        "description": "",
+        "link": "https://diariocivitas.com/category/noticias-locales/murcia/",
+        "name": "Murcia",
+        "slug": "murcia",
+        "taxonomy": "category",
+        "parent": 7,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/8"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "up": [
+                {
+                    "embeddable": true,
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/7"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=8"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "count": 14,
+        "description": "",
+        "link": "https://diariocivitas.com/category/opinion/",
+        "name": "Opinión",
+        "slug": "opinion",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/2"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=2"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 6,
+        "count": 125,
+        "description": "",
+        "link": "https://diariocivitas.com/category/politica/",
+        "name": "Política",
+        "slug": "politica",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/6"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=6"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 1,
+        "count": 714,
+        "description": "",
+        "link": "https://diariocivitas.com/category/portada/",
+        "name": "Portada",
+        "slug": "portada",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/1"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=1"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 14,
+        "count": 221,
+        "description": "",
+        "link": "https://diariocivitas.com/category/noticias-locales/puerto-lumbreras/",
+        "name": "Puerto Lumbreras",
+        "slug": "puerto-lumbreras",
+        "taxonomy": "category",
+        "parent": 7,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/14"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "up": [
+                {
+                    "embeddable": true,
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/7"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=14"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 29,
+        "count": 102,
+        "description": "",
+        "link": "https://diariocivitas.com/category/pulpi/",
+        "name": "Pulpí",
+        "slug": "pulpi",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/29"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=29"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2873,
+        "count": 72,
+        "description": "",
+        "link": "https://diariocivitas.com/category/salud/",
+        "name": "Salud",
+        "slug": "salud",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/2873"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=2873"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2049,
+        "count": 142,
+        "description": "Sucesos relevantes de hoy en Águilas, Alicante, Almería, Lorca, Murcia y Puerto Lumbreras",
+        "link": "https://diariocivitas.com/category/sucesos/",
+        "name": "Sucesos",
+        "slug": "sucesos",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/2049"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=2049"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 1049,
+        "count": 12,
+        "description": "",
+        "link": "https://diariocivitas.com/category/noticias-locales/totana/",
+        "name": "totana",
+        "slug": "totana",
+        "taxonomy": "category",
+        "parent": 7,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/1049"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "up": [
+                {
+                    "embeddable": true,
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/7"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=1049"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2267,
+        "count": 207,
+        "description": "Ultimas Noticias de Actualidad",
+        "link": "https://diariocivitas.com/category/ultimas-noticias/",
+        "name": "Últimas Noticias",
+        "slug": "ultimas-noticias",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories/2267"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/taxonomies/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/posts?categories=2267"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https://api.w.org/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    }
+]

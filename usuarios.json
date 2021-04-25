@@ -1,0 +1,488 @@
+[
+    {
+        "id": 1,
+        "name": "admin",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/admin/",
+        "slug": "admin",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/fa86a66317de493b56653879db45e6d3?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/fa86a66317de493b56653879db45e6d3?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/fa86a66317de493b56653879db45e6d3?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/1"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 9,
+        "name": "Alberto Fernández",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/jose-parra/",
+        "slug": "jose-parra",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/2c8bcc91882104013d944543d57d0c79?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/2c8bcc91882104013d944543d57d0c79?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/2c8bcc91882104013d944543d57d0c79?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/9"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 11,
+        "name": "Alfredo Cardozo",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/alfreso-cardozo/",
+        "slug": "alfreso-cardozo",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/5e1d5b8778850ae0f1349def5381dfe6?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/5e1d5b8778850ae0f1349def5381dfe6?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/5e1d5b8778850ae0f1349def5381dfe6?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/11"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 16,
+        "name": "Ana Moreno",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/ana-moreno/",
+        "slug": "ana-moreno",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/53e48f5a3c009c3ea6ea4aadd373b8f9?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/53e48f5a3c009c3ea6ea4aadd373b8f9?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/53e48f5a3c009c3ea6ea4aadd373b8f9?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/16"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 21,
+        "name": "andrealorca",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/andrealorca/",
+        "slug": "andrealorca",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/f7d93daeb8029cc8b14400e186ed5d7b?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/f7d93daeb8029cc8b14400e186ed5d7b?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/f7d93daeb8029cc8b14400e186ed5d7b?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/21"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 20,
+        "name": "Antonio Fuentes G.",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/antonio-f/",
+        "slug": "antonio-f",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/4a151d1899c904cef4cec1f9a030ef66?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/4a151d1899c904cef4cec1f9a030ef66?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/4a151d1899c904cef4cec1f9a030ef66?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/20"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 17,
+        "name": "Eduardo Pérez de Lara",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/eduardo-p/",
+        "slug": "eduardo-p",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/863526dabc8a72b9101bfa65a8f50daf?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/863526dabc8a72b9101bfa65a8f50daf?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/863526dabc8a72b9101bfa65a8f50daf?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/17"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "Emilia Pernia",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/neybeth-pernia/",
+        "slug": "neybeth-pernia",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/b1ab6810dfd766aad899b5e2dc01f138?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/b1ab6810dfd766aad899b5e2dc01f138?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/b1ab6810dfd766aad899b5e2dc01f138?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/2"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 4,
+        "name": "Enrique R.",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/henry-rof/",
+        "slug": "henry-rof",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/7e274c38858f43ca81db5498cdf81e82?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/7e274c38858f43ca81db5498cdf81e82?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/7e274c38858f43ca81db5498cdf81e82?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/4"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 6,
+        "name": "Fernanado Panalés Gambín",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/fernando/",
+        "slug": "fernando",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/fa133262fd4ec2bad7fab1cd57e2b3a3?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/fa133262fd4ec2bad7fab1cd57e2b3a3?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/fa133262fd4ec2bad7fab1cd57e2b3a3?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/6"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 10,
+        "name": "Fernando Garrido",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/fernando-g/",
+        "slug": "fernando-g",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/2a2f5bf35c6dc5f568bbaa9ec6e13b89?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/2a2f5bf35c6dc5f568bbaa9ec6e13b89?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/2a2f5bf35c6dc5f568bbaa9ec6e13b89?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/10"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 18,
+        "name": "Javier Mavarez",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/javier-m/",
+        "slug": "javier-m",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/2ae20e1412e38f2aff17b5e4d6707ebf?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/2ae20e1412e38f2aff17b5e4d6707ebf?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/2ae20e1412e38f2aff17b5e4d6707ebf?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/18"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 14,
+        "name": "Luis Vargas",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/luis-vargas/",
+        "slug": "luis-vargas",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/3b46a5d192d22a88e1f6490b1a9329c7?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/3b46a5d192d22a88e1f6490b1a9329c7?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/3b46a5d192d22a88e1f6490b1a9329c7?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/14"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 12,
+        "name": "María Montiel",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/maria-montiel/",
+        "slug": "maria-montiel",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/2f754b914b9ec4ccfc84e90886e927b6?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/2f754b914b9ec4ccfc84e90886e927b6?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/2f754b914b9ec4ccfc84e90886e927b6?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/12"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "name": "Maria R.",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/maria_escalante/",
+        "slug": "maria_escalante",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/76499297952a0f66da2caca2dcd9a4b0?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/76499297952a0f66da2caca2dcd9a4b0?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/76499297952a0f66da2caca2dcd9a4b0?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/3"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 13,
+        "name": "Raquel Molina",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/raquel-molina/",
+        "slug": "raquel-molina",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/504d2836bf066f6fa48581cef6afed7f?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/504d2836bf066f6fa48581cef6afed7f?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/504d2836bf066f6fa48581cef6afed7f?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/13"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 7,
+        "name": "Rocio Sánchez",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/rocio-sanchez/",
+        "slug": "rocio-sanchez",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/4da8f5eb07d89633fd49f58de72b5c18?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/4da8f5eb07d89633fd49f58de72b5c18?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/4da8f5eb07d89633fd49f58de72b5c18?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/7"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    },
+    {
+        "id": 15,
+        "name": "Valeria Soler",
+        "url": "",
+        "description": "",
+        "link": "https://diariocivitas.com/author/valeria-soler/",
+        "slug": "valeria-soler",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/89ec469b3608679cf4c8d9e49c842b94?s=24&d=blank&r=g",
+            "48": "https://secure.gravatar.com/avatar/89ec469b3608679cf4c8d9e49c842b94?s=48&d=blank&r=g",
+            "96": "https://secure.gravatar.com/avatar/89ec469b3608679cf4c8d9e49c842b94?s=96&d=blank&r=g"
+        },
+        "meta": [],
+        "amp_dev_tools_enabled": false,
+        "_links": {
+            "self": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users/15"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://diariocivitas.com/wp-json/wp/v2/users"
+                }
+            ]
+        }
+    }
+]
