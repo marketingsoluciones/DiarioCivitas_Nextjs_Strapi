@@ -10,7 +10,12 @@ const index = () => {
   const Ultimasnoticias = noticias.slice(0, 4);
 
   useEffect(() => {
-    api.FetchNews().then(({ data }) => setNoticias(data));
+    try {
+      api.FetchNews().then(({ data }) => setNoticias(data));
+      
+    } catch (error) {
+      console.log(error)
+    }
   }, []);
 
   return (
