@@ -19,7 +19,7 @@ const index = () => {
   }, []);
 
   return (
-    <div className="py-8 w-full max-w-screen-xl flex flex-col items-center justify-center">
+    <div className="py-8 px-3 md:px-0 w-full md:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex flex-col items-center justify-center w-full">
       <HeaderNews titulos={noticias.map((noticia) => noticia.titulo)} />
       <PanelPrimary noticias={Ultimasnoticias} />
       <div className="w-full flex gap-12">
@@ -34,13 +34,13 @@ export default index;
 export const PanelPrimary = (props) => {
   const { noticias } = props;
   return (
-    <div className="w-full h-full my-6 flex gap-4">
+    <div className="w-full h-full my-6 flex flex-col md:flex-row gap-4">
       {noticias.map((noticia, index) => {
         if (index == 0) {
           return <ViewBig key={index} noticia={noticia} />;
         }
       })}
-      <div className="w-1/2 float-right h-full flex-col flex gap-4">
+      <div className="w-full md:w-1/2 float-right h-full flex-col flex gap-4">
         {noticias.map((n, i) =>
           i >= 1 ? <ViewHorizontalMedium key={i} noticia={n} /> : null
         )}
@@ -53,7 +53,7 @@ export const ViewBig = (props) => {
   const { noticia } = props;
 
   return (
-    <div className="w-1/2 relative bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="w-full md:w-1/2 relative bg-white shadow-md rounded-lg overflow-hidden">
       <div className="w-full h-full">
         <div className="bg-gray-900 h-60 relative overflow-hidden">
           <img src={noticia.imagen} alt="aied" />
@@ -61,7 +61,7 @@ export const ViewBig = (props) => {
         </div>
         <div className="content px-5 py-5">
           <Link href={noticia.rutaURL}>
-            <h2 className="hover:text-blue-500 transition cursor-pointer text-2xl font-body font-semibold tracking-tighter text-primary">
+            <h2 className="hover:text-blue-500 transition cursor-pointer text-3xl font-body font-bold tracking-tighter text-primary">
               {noticia.titulo}
             </h2>
           </Link>
@@ -87,9 +87,11 @@ export const ViewHorizontalMedium = (props) => {
         <img src={noticia.imagen} alt={noticia.titulo} />
       </div>
       <div className="w-1/2 py-2 px-2">
+      <Link href={noticia.rutaURL}>
         <h2 className="hover:text-blue-500 transition cursor-pointer text-md font-body font-semibold tracking-tighter text-primary">
           {noticia.titulo}
         </h2>
+        </Link>
         <p className="text-xs font-display py-2">
           {noticia.autor} | {noticia.createdAt}
         </p>
@@ -114,22 +116,22 @@ export const PanelSecondary = (props) => {
   };
 
   return (
-    <>
-      <div className="border-t-2 border-gray-400 w-2/3 h-full my-10">
-        <div className="w-full py-4 flex items-center justify-between ">
+    <div className="flex flex-col gap-6 md:flex-row">
+      <div className="border-t-2 border-gray-400 w-full md:w-2/3 h-full my-10">
+        <div className="w-full py-4 flex flex-col md:flex-row items-center justify-between ">
           <h3 className="font-display font-semibold text-xl uppercase py-2 text-primary">
             Ultimas Noticias
           </h3>
           <ul className="flex gap-4">
-            {categorias.map((categoria, i) => (
+            {categorias.map((categoria, idx) => (
               <li
-                onClick={(e) => handleClickTab(e, i)}
+                onClick={(e) => handleClickTab(e, idx)}
                 className={`${
-                  state == i
+                  state == idx
                     ? "text-blue-500"
                     : "text-primary hover:text-blue-500"
                 } cursor-pointer uppercase font-body text-sm font-bold `}
-                key={i}
+                key={idx}
               >
                 {categoria}
               </li>
@@ -137,14 +139,14 @@ export const PanelSecondary = (props) => {
           </ul>
         </div>
         <div className="grid grid-cols-2 gap-10 w-full">
-          {noticias.map((noticia, i) => (
-            <CardView noticia={noticia} />
+          {noticias.map((noticia, idx) => (
+            <CardView key={idx} noticia={noticia} />
           ))}
         </div>
       </div>
       <PanelSidebar noticias={noticias} />
 
-    </>
+    </div>
   );
 };
 
@@ -176,7 +178,7 @@ export const CardView = (props) => {
 export const PanelSidebar = (props) => {
   const { noticias } = props;
   return (
-    <div className="w-1/3 h-full flex flex-col gap-4 my-10">
+    <div className="w-full md:w-1/3 h-full flex flex-col gap-4 my-10">
       <Suscribe />
       <SocialLinks/>
 
@@ -213,8 +215,8 @@ export const SocialLinks = () => {
     return (
         <div className="bg-white shadow-md py-5 px-8 grid grid-cols-2 gap-4">
 
-            {arrRedes.map(red => (
-                <button className={`${red.color} focus:outline-none hover:opacity-80 rounded px-8 py-2 flex gap-2 items-center`}>
+            {arrRedes.map((red, idx )=> (
+                <button key={idx} className={`${red.color} focus:outline-none hover:opacity-80 rounded px-8 py-2 flex gap-2 items-center`}>
                     {red.icono} <p className="text-white font-display text-sm">{red.titulo}</p>
                 </button>
             ))}

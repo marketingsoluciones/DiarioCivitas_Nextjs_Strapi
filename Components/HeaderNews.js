@@ -11,13 +11,13 @@ const HeaderNews = (props) => {
     // }, [state > 9, state < 0])
     return (
         <div className="rounded-lg bg-white shadow-lg w-full h-10 overflow-hidden flex relative">
-            <div className="h-full w-1/6 bg-blue-500 flex items-center justify-center"> 
+            <div className="h-full px-4 sm:px-8 bg-blue-500 flex items-center justify-center"> 
                 <RayoIcon className="text-white w-5 h-5"/>
                 <h3 className="text-white font-display font-semibold">Ultima hora</h3>
             </div>
             {titulos.map((titulo, index) => (
-            <div key={index} className={`${state == index ? "opacity-100" : "opacity-0"} transition duration-500 flex absolute top-0 bottom-0 mx-auto left-56 items-center px-4`}>
-                <p className="font-display text-sm">{titulo}</p>
+            <div key={index} className={`${state == index ? "opacity-100" : "opacity-0"} transition duration-500 flex absolute top-0 bottom-0 mx-auto left-36 right-10 sm:left-56 items-center px-4`}>
+                <p className="font-display text-xs sm:text-sm">{titulo}</p>
             </div>
             ))}
             <Switch state={state} set={accion => setState(accion)}/>
