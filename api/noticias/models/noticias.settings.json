@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "noticias",
+  "info": {
+    "name": "noticias",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true,
+      "maxLength": 90
+    },
+    "contenido": {
+      "type": "richtext"
+    },
+    "imagen2": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "idWordpress": {
+      "type": "integer"
+    },
+    "rutaURL": {
+      "type": "string"
+    },
+    "estado": {
+      "type": "string"
+    },
+    "autor": {
+      "type": "string"
+    },
+    "categorias": {
+      "type": "json"
+    }
+  }
+}
