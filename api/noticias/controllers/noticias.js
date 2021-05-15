@@ -7,12 +7,10 @@
 
 module.exports = {
      // GET /hello
-  async findPost(ctx) {
-      const slug = ctx.request.url.slice(10)
-      const post = await strapi.query("noticias").find({limit: 1}, ctx)
-      console.log(ctx)
-      console.log(post.length)
-    return 'Hello World!';
+  async findPost(params) {
+      const slug = params.request.url.slice(10)
+      return strapi.query('noticias').findOne({rutaURL: slug});
+
   },
 };
 
