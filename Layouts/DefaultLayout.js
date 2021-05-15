@@ -150,7 +150,7 @@ const DefaultLayout = ({ children }) => {
           </ul>
         </div>
       </header>
-      <main className="bg-gray-100 w-full grid grid-cols-1 place-items-center">
+      <main className="bg-white w-full grid grid-cols-1 place-items-center">
         {children}
       </main>
 

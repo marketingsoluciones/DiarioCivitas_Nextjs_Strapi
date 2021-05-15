@@ -4,23 +4,14 @@ import { api } from "../api";
 import HeaderNews from "../Components/HeaderNews";
 import { EmailIcon, FacebookIcon, InstagramIcon, TwitterIcon } from "../Components/icons";
 
-const index = () => {
-  const [noticias, setNoticias] = useState([]);
-
+const index = (props) => {
+  const [noticias, setNoticias] = useState(props.data);
   const Ultimasnoticias = noticias.slice(0, 4);
-
-  useEffect(() => {
-    try {
-      api.FetchNews().then(({ data }) => setNoticias(data));
-      
-    } catch (error) {
-      console.log(error)
-    }
-  }, []);
+ 
 
   return (
     <div className="py-8 px-3 md:px-0 w-full md:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex flex-col items-center justify-center w-full">
-      <HeaderNews titulos={noticias.map((noticia) => noticia.titulo)} />
+      <HeaderNews titulos={noticias?.map((noticia) => noticia.titulo)} />
       <PanelPrimary noticias={Ultimasnoticias} />
       <div className="w-full flex gap-12">
         <PanelSecondary noticias={Ultimasnoticias} />
@@ -35,7 +26,7 @@ export const PanelPrimary = (props) => {
   const { noticias } = props;
   return (
     <div className="w-full h-full my-6 flex flex-col md:flex-row gap-4">
-      {noticias.map((noticia, index) => {
+      {noticias?.map((noticia, index) => {
         if (index == 0) {
           return <ViewBig key={index} noticia={noticia} />;
         }
@@ -52,6 +43,9 @@ export const PanelPrimary = (props) => {
 export const ViewBig = (props) => {
   const { noticia } = props;
 
+  const fecha = new Date()
+  console.log(noticia.createdAt)
+
   return (
     <div className="w-full md:w-1/2 relative bg-white shadow-md rounded-lg overflow-hidden">
       <div className="w-full h-full">
@@ -66,11 +60,10 @@ export const ViewBig = (props) => {
             </h2>
           </Link>
           <p className="text-xs font-display pt-2">
-            {noticia.autor} | {noticia.createdAt}
+            {noticia.autor} | {}
           </p>
           <div className="rounded bg-red-500 grid place-items-center w-1/4 h-6">
           <p className="text-white font-display text-xs">
-            {noticia.categorias[1]}
           </p>
         </div>
         </div>
@@ -97,7 +90,6 @@ export const ViewHorizontalMedium = (props) => {
         </p>
         <div className="rounded bg-red-500 grid place-items-center w-1/4 h-6">
           <p className="text-white font-display text-xs">
-            {noticia.categorias[1]}
           </p>
         </div>
       </div>
@@ -167,7 +159,6 @@ export const CardView = (props) => {
         </p>
         <div className="rounded bg-red-500 grid px-4 place-items-center h-6 bottom-4 left-4">
           <p className="text-white font-display text-xs">
-            {noticia.categorias[1]}
           </p>
         </div>
       </div>
@@ -225,3 +216,9 @@ export const SocialLinks = () => {
     )
 }
 
+export async function getServerSideProps(context) {
+  const {data} = await api.FetchNews()
+  return {
+    props: {data},
+  }
+}
