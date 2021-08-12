@@ -3,6 +3,7 @@ import { api } from '../api';
 import BreadCumbs from '../Components/BreadCumbs';
 import { useRouter } from 'next/router'
 import  { Markup } from 'interweave';
+import DisqusComments from '../Components/DisqusComments';
 
 
 const Post = ({PostData}) => {
@@ -45,6 +46,7 @@ const Post = ({PostData}) => {
           }
           `}
         </style>
+        <DisqusComments post={PostData} />
         </div>
     )
 }

@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'
-import { api } from '../api'
+import { useEffect } from "react"
+import { api } from "../api"
 
 const prueba = () => {
     useEffect(() => {
-        (async () => {
-           const {data} = await api.FetchNews()
-           
-           data.map(post => console.log(post.rutaURL))
-        })()
+        console.log(api.Forecast())
     }, [])
     return (
         <div>
