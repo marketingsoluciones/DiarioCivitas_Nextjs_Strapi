@@ -1,14 +1,21 @@
 import Link from "next/link"
+import dayjs from 'dayjs'
 
 const PanelPrimary = ({ noticias }) => {
     return (
-        <div className="w-full grid grid-cols-2 h-max gap-8">
-            <div className="w-full grid grid-rows-3 gap-8">
-                <SmallBlock noticia={noticias[1]} />
-                <SmallBlock reverse={false} noticia={noticias[2]} />
-                <SmallBlock noticia={noticias[3]} />
+        <div className="flex flex-col items-center ">
+            <PrincipalNew noticia={noticias[0]} />
+            <div className="w-full h-max grid grid-cols-1 md:grid-cols-3 gap-8">
+                <BigBlock noticia={noticias[1]} />
+                <div className="flex flex-col gap-6">
+                    <SecondaryBlock noticia={noticias[3]} />
+                    <div className="flex flex-col w-full gap-6">
+                        <News noticia={noticias[4]} />
+                        <News noticia={noticias[5]} />
+                        <News noticia={noticias[6]} />
+                    </div>
+                </div>
             </div>
-            <BigBlock noticia={noticias[0]} />
         </div>
     )
 }
@@ -16,71 +23,64 @@ const PanelPrimary = ({ noticias }) => {
 export default PanelPrimary
 
 const BigBlock = ({ noticia }) => {
-    const { titulo, imagen, contenido, categorias, rutaURL } = noticia
+    const { title, mediaFile, slug, dateCreated, createdAt } = noticia
     return (
-        <div className="rounded overflow-hidden bg-white shadow-md">
-            <div className="w-full h-96 overflow-hidden relative">
-                <img className="object-cover object-norepeat w-full h-full object-top hover:scale-105 transition transform duration-1000" src={imagen} alt={titulo} />
-                <TagCategories categorias={categorias} />
-            </div>
-            <div className="p-10 flex flex-col gap-3">
-                <Title size={"3xl"} titulo={titulo} slug={rutaURL}/>
-                <AutorLine />
-                <p className="text-sm text-gray-700 flex truncate">{contenido}</p>
-            </div>
+        <div className="w-full col-span-2 p-2 flex flex-col gap-3">
+            <img className="w-full h-96 object-cover rounded" src={`${process.env.NEXT_PUBLIC_API_URL}${mediaFile.url}`} />
+            <Title size="2xl" titulo={title} slug={slug} />
+            <AutorLine date={dateCreated <= createdAt ? dateCreated : createdAt} />
         </div>
     )
 }
 
-const SmallBlock = ({reverse = true, noticia}) => {
-    const { titulo, imagen, categorias, rutaURL } = noticia
+const SecondaryBlock = ({ noticia }) => {
+    const { title, slug, dateCreated, createdAt } = noticia
     return (
-        <div className={`w-full h-full flex items-center ${reverse ? "flex-row-reverse" : ""} rounded overflow-hidden font-display shadow-md border border-gray-100`}>
-            <div className="w-1/2 h-full overflow-hidden relative">
-                <img className="absolute top-0 left-0 w-full h-full object-cover hover:scale-105 transform transition duration-1000" src={imagen} alt={titulo} />
-                <TagCategories categorias={categorias} />
-            </div>
-            <div className="w-1/2 h-full bg-red p-6 flex flex-col gap-3 ">
-                
-                <Title size={"lg"} titulo={titulo} slug={rutaURL}/>
-                <AutorLine />
-            </div>
+        <div className="flex flex-col gap-2 border-b-2 border-gray-300 border-dotted pb-4 w-full">
+            <Title size="xl" titulo={title} slug={slug} justify={true} />
+            <AutorLine date={dateCreated <= createdAt ? dateCreated : createdAt} />
         </div>
     )
 }
 
 
-export const AutorLine = (props) => {
+export const AutorLine = ({ date, author }) => {
     return (
-        <p className="uppercase text-xs font-display h-max">por <span className="text-blue-500 font-semibold">Francisco Montilla</span> - 27 Ene 2022</p>
+        <p className="capitalize text-xs font-body h-max">Por <span className="text-blue-500 font-semibold capitalize hover:text-gray-800 transition cursor-pointer">Francisco Montilla{author}</span> - {date ? dayjs(date).format('DD MMM YYYY') : "00 Ene 2021"}</p>
     )
 }
 
-export const Title = ({size, titulo, slug, ...rest}) => {
+export const Title = ({ size, titulo, slug, justify = false, font = "display", ...rest }) => {
     const sizes = {
         sm: "text-sm",
         md: "text-md",
-        lg: "text-lg",
-        xl : "text-xl",
+        lg: "text-md md:text-lg",
+        xl: "text-xl",
         "2xl": "text-2xl",
-        "3xl" : "text-3xl"
+        "3xl": "text-3xl",
+        "4xl": "text-4xl",
+        "5xl": "text-5xl"
+    }
+
+    const fonts = {
+        body : "font-body",
+        display: "font-display"
     }
     return (
-        <Link href={slug ?`/${slug}` : "/"}>
-        <h2 className={`font-display ${sizes[size]} font-semibold cursor-pointer hover:text-blue-500 transition`} {...rest}>{titulo}</h2>
+        <Link href={slug ? `/${slug}` : "/"}>
+            <h2 className={`${fonts[font]} ${sizes[size]} ${justify && "text-justify"} font-semibold cursor-pointer hover:text-blue-500 transition`} {...rest}>{titulo}</h2>
         </Link>
     )
 }
 
-const TagCategories = (props) => {
-    const { categorias } = props
+const TagCategories = ({ postcategorias }) => {
 
     const colors = {
-        actualidad : "bg-red-500",
-        salud : "bg-green-500"
+        actualidad: "bg-red-500",
+        salud: "bg-green-500"
     }
 
-    const Tag = ({categoria}) => {
+    const Tag = ({ categoria }) => {
         return (
             <div className={`${colors[categoria.toLowerCase()]} rounded px-2 py-1 cursor-pointer hover:opacity-90 transition`}>
                 <p className="font-display text-white text-xs uppercase">{categoria}</p>
@@ -90,9 +90,35 @@ const TagCategories = (props) => {
 
     return (
         <div className="flex gap-2 items-center justify-center absolute bottom-5 left-5">
-            {categorias.map((item, idx) => (
-                item !== "Portada" && <Tag key={idx} categoria={item} />
+            {postcategorias?.map((item, idx) => (
+                item !== "Portada" && <Tag key={idx} categoria={item.categorie} />
             ))}
         </div>
     )
 }
+
+const PrincipalNew = ({ noticia }) => {
+    const { title, slug, dateCreated, createdAt } = noticia
+    return (
+        <div className="border-b-2 border-t-2 border-gray-300 my-4 border-dotted py-6 flex flex-col gap-4 text-2xl xl:text-5xl ">
+            <Title titulo={title} slug={slug}  />
+            <AutorLine date={dateCreated <= createdAt ? dateCreated : createdAt} />
+        </div>
+    )
+}
+
+const News = ({ noticia }) => {
+    const { title, mediaFile, slug, dateCreated, createdAt } = noticia
+    return (
+        <div className="flex items-start gap-3 border-b-2 border-gray-300 border-dotted pb-6">
+            <img className="h-20 w-20 object-cover" src={`${process.env.NEXT_PUBLIC_API_URL}${mediaFile.url}`} />
+            <div className="flex flex-col justify-start gap-2">
+                <Title size="sm" titulo={title} slug={slug} justify={true} />
+                <AutorLine date={dateCreated <= createdAt ? dateCreated : createdAt} />
+
+            </div>
+        </div>
+    )
+}
+
+

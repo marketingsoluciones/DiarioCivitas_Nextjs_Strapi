@@ -6,7 +6,7 @@ const HeaderNews = (props) => {
     const [state, setState] = useState(0)
 
     return (
-        <div className="rounded-lg bg-white shadow w-full h-10 overflow-hidden flex relative">
+        <div className="hidden rounded-lg bg-white shadow w-full h-10 overflow-hidden md:flex relative">
             <div className="h-full px-4 sm:px-8 bg-blue-500 flex items-center justify-center"> 
                 <RayoIcon className="text-white w-5 h-5"/>
                 <h3 className="text-white font-display font-semibold">Ultima hora</h3>

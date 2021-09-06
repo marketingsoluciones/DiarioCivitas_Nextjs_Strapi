@@ -3,10 +3,10 @@ import { EmailIcon } from "../icons";
 const Suscribed = () => {
     return (
       <div className="bg-white shadow-md p-8">
-        <h4 className="font-display font-semibold uppercase text-md">
+        <h4 className="font-body font-semibold uppercase text-md">
           Suscripciones
         </h4>
-        <span className="flex gap-1 py-6">
+        <span className="flex gap-1 py-3">
           <EmailIcon className="text-gray-500 h-5 w-5" />
           <p className="text-sm text-gray-500 ">
             Suscribete a las noticias del día

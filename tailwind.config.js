@@ -5,8 +5,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      "body": ['Montserrat', ...defaultTheme.fontFamily.sans],
-      "display": ['Poppins', ...defaultTheme.fontFamily.sans]
+      "body": ['Poppins', ...defaultTheme.fontFamily.sans],
+      "display": ['Kaisei HarunoUmi', ...defaultTheme.fontFamily.sans]
     },
     extend: {
       colors: {

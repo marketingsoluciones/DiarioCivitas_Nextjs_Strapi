@@ -3,12 +3,18 @@ import Head from "next/head";
 import SidebarMobile from "../Components/SidebarMobile";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
+import { useRouter } from "next/router";
+import {Capitalize} from '../functions/capitalize'
 
 const DefaultLayout = ({ children }) => {
   const [show, setShow] = useState(false)
 
   
-
+  const router = useRouter()
+  const title = {
+    "/[slug]" : Capitalize(router?.query?.slug?.replace(/-/g, " ")),
+    "/" : "Diario Civitas"
+  }
   return (
     <>
       <Head>
@@ -17,13 +23,13 @@ const DefaultLayout = ({ children }) => {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
-        <title>Diario Civitas</title>
+        <title>{title[router.pathname]}</title>
       </Head>
       {show ? 
               <SidebarMobile menu={mainMenu} set={(signal) => setShow(signal)} state={show} />
               : null}
-      <Navigation />
-      <main className="bg-white w-full grid grid-cols-1 place-items-center">
+      <Navigation show={show} setShow={act => setShow(act)} />
+      <main className="bg-gray-100 w-full ">
         {children}
       </main>
 

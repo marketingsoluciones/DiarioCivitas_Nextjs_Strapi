@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-let wpInstance = axios.create({ baseURL: 'https://miprueb.herokuapp.com/' });
+let instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
 
 const api = {
-  FetchNews: async () => {
-    return await wpInstance.get('/noticias?_limit=20&_sort=createdAt:DESC');
+  FetchNews: async (params) => {
+    return await instance.get('/posts', {
+      params : params
+    });
   },
-  DataPost: async (data) => {
-    return await wpInstance.get(`/noticias/${data}`);
-  },
+
 
   Forecast: async (location) => {
     return await axios.get('https://api.m3o.com/v1/weather/Forecast', {

@@ -9,16 +9,15 @@ import SocialLinks from "../Components/Home/SocialLinks";
 import Suscribed from "../Components/Home/Suscribed";
 import PanelPrimary from "../Components/PanelPrimary";
 
-const index = (props) => {
+const Home = (props) => {
   const [noticias, setNoticias] = useState(props.data);
   const Ultimasnoticias = noticias.slice(0, 4);
 
-
   return (
-    <section className="xl:max-w-screen-xl mx-auto inset-x-0 py-8 flex flex-col gap-10">
-      <HeaderNews titulos={noticias?.map((noticia) => noticia.titulo)} />
+    <section className="max-w-screen-lg mx-auto inset-x-0 py-8 flex flex-col gap-10 px-5 bg-white px-4">
+      {/* <HeaderNews titulos={noticias?.map((noticia) => noticia.titulo)} /> */}
       <PanelPrimary noticias={noticias} />
-      <div className="w-full grid grid-cols-3 gap-10">
+      <div className="w-full grid md:grid-cols-3 gap-10">
         <GridNews noticias={noticias} />
         <PanelSidebar noticias={noticias} />
       </div>
@@ -26,7 +25,7 @@ const index = (props) => {
         <img src="/ad.png" className="object-contain" />
      </div>
      <EditorPicks noticias={noticias} />
-     <div className="grid grid-cols-2 gap-10 -mt-10">
+     <div className="hidden md:grid grid-cols-2 gap-10 -mt-10">
       <CategoryBlock noticias={noticias}/>
       <CategoryBlock noticias={noticias}/>
       <CategoryBlock noticias={noticias}/>
@@ -36,14 +35,14 @@ const index = (props) => {
   );
 };
 
-export default index;
+export default Home;
 
 
 
 export const PanelSidebar = (props) => {
   const { noticias } = props;
   return (
-    <div className="w-full h-full flex flex-col justify-between ">
+    <div className="hidden md:flex w-full h-full flex-col items-center gap-10 ">
       <PopularPost />
       <Suscribed />
       <SocialLinks />
