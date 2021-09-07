@@ -4,7 +4,6 @@ import { api } from "../../api"
 import { News } from "../../Components/EditorPicks"
 import { AutorLine, Title } from "../../Components/PanelPrimary"
 import router from 'next/router'
-import Pagination from "../../components/Pagination"
 
 
 const Category = (props) => {
@@ -109,7 +108,6 @@ const CategorySecondary = ({ news: noticias }) => {
                     <NewsList key={idx} noticia={item} />
                 ))}
             </div>
-            <Pagination />
         </section>
     )
 }
@@ -324,7 +322,6 @@ const Block3ColsAds = ({ color }) => {
                 <img src="/ads.png" />
             </div>
             <div className="col-span-3">
-            <Pagination />
 
             </div>
         </div>
