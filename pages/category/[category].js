@@ -1,8 +1,8 @@
 import { Markup } from "interweave"
 import { useEffect, useState } from "react"
 import { api } from "../../api"
-import { News } from "../../Components/EditorPicks"
-import { AutorLine, Title } from "../../Components/PanelPrimary"
+import { News } from "../../components/EditorPicks"
+import { AutorLine, Title } from "../../components/PanelPrimary"
 import router from 'next/router'
 
 

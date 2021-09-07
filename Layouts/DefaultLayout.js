@@ -1,8 +1,8 @@
 import{ useState } from "react";
 import Head from "next/head";
-import SidebarMobile from "../Components/SidebarMobile";
-import Footer from "../Components/Footer";
-import Navigation from "../Components/Navigation";
+import SidebarMobile from "../components/SidebarMobile";
+import Footer from "../components/Footer";
+import Navigation from "../components/Navigation";
 import { useRouter } from "next/router";
 import {Capitalize} from '../functions/capitalize'
 
