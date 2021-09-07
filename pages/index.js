@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { api } from "../api";
-import CategoryBlock from "../components/CategoryBlock";
 import EditorPicks from "../components/EditorPicks";
 import GridNews from "../components/GridNews";
-import HeaderNews from "../components/HeaderNews";
 import PopularPost from "../components/Home/PopularPost";
 import SocialLinks from "../components/Home/SocialLinks";
 import Suscribed from "../components/Home/Suscribed";
 import PanelPrimary from "../components/PanelPrimary";
+import CategoryBlock from '../components/CategoryBlock'
+
 
 const Home = (props) => {
   const {ultimasNoticias, grid, opinion, locales} = props
