@@ -1,31 +1,20 @@
 import { memo, useEffect, useState } from "react";
 import { AutorLine, Title } from "./PanelPrimary";
 
-const GridNews = memo(() => {
+const GridNews = memo(({noticias}) => {
     const [selected, setSelect] = useState(0)
-    const categorias = ["Actualidad", "Deportes", "Politica", "Sucesos"];
     const [categories, setCategories] = useState([])
-
-    const FetchNewsByCategory = async (category) => {
-        try {
-            const params = {
-                "postcategorias.slug" : category.toLowerCase(),
-                _limit : 6,
-                _sort : "dataCreated:DESC"
-            }
-            const {data} = await api.FetchNews(params)
-            setCategories(old => {
-                if(!old.includes(item => item.category == category)){
-                    return [...old, {category: category, news: data}].sort((a,b) => a-b)
-                }
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
+    console.log("nuevo",noticias)
+  
     useEffect(() => {
-        categorias.forEach(item => FetchNewsByCategory(item))
+        const state = [
+            {category: "Actualidad", news: noticias?.actualidad},
+            {category: "Deportes", news: noticias?.deportes},
+            {category: "Politica", news: noticias?.politica},
+            {category: "Sucesos", news: noticias?.sucesos}
+        ]
+
+        setCategories(state)
     }, [])
     return (
         <div className="md:col-span-2 w-full flex flex-col gap-10 border-t-2 pt-2 border-gray-200">
@@ -74,13 +63,8 @@ const CardView = ({ noticia }) => {
     );
 };
 
-import React from 'react'
-import { api } from "../api";
-import Category from "../pages/categoria/[category]";
 
 const NewsByCategory = ({category}) => {
-
-
     return (
         <div className="grid md:grid-cols-2 gap-10">
             {category?.news?.map((item,idx) => (

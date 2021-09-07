@@ -1,12 +1,12 @@
 import { AutorLine, Title } from "../PanelPrimary"
 
-const PopularPost = () => {
+const PopularPost = ({noticias}) => {
     return (
         <div className="bg-white shadow-md border-gray-100 border p-8 gap-10 grid grid-cols-1 w-full font-body">
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            {noticias?.map((item,idx) => (
+                <Post key={idx} noticia={item} />
+            ))}
+            
 
         </div>
     )
@@ -15,13 +15,13 @@ const PopularPost = () => {
 export default PopularPost
 
 
-const Post = () => {
+const Post = ({noticia}) => {
+    const {title, slug, imgPrincipal} = noticia
     return (
         <div className="flex gap-4 items-center justify-start">
-            <img src="/venezuela.png" className="object-cover w-14 h-14 rounded-full" />
+            <img src={`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`} className="object-cover w-14 h-14 rounded-full" />
             <span className="block flex flex-col items-start justify-center">
-                <Title titulo={"Lorem Impsumssss"} size={"md"} font={"body"} />
-                <AutorLine />
+                <Title titulo={title} size={"sm"} font={"body"} slug={slug} />
 
             </span>
         </div>

@@ -29,7 +29,7 @@ const Navigation = ({ show, setShow }) => {
     ];
 
     return (
-        <header className="bg-gray-100">
+        <header>
 {/*             
                 <div className="bg-primary py-2 px-4 max-w-screen-lg w-full mx-auto inset-x-0 text-white flex items-center justify-center md:justify-between">
                     <ul className="md:flex gap-4 w-max hidden ">

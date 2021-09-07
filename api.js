@@ -9,6 +9,11 @@ const api = {
     });
   },
 
+  FetchCategories : async (params) => {
+    return await instance.get('/postcategorias', {
+      params: params
+    })
+  },
 
   Forecast: async (location) => {
     return await axios.get('https://api.m3o.com/v1/weather/Forecast', {

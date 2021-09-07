@@ -36,7 +36,7 @@ const Post = ({ PostData }) => {
               <div className="flex col-span-1 w-full md:flex-col gap-2 items-center justify-start">
                 <SocialMediaIcons />
               </div>
-              <div className="md:col-span-7 text-justify font-body text-sm  leading-relaxed">
+              <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup content={PostData?.content} containerTagName="article" allowAttributes={true} allowElements={true} />
               </div>
               <BlockTags list={PostData?.postcategorias} />

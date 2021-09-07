@@ -16,7 +16,7 @@ const DefaultLayout = ({ children }) => {
     "/" : "Diario Civitas"
   }
   return (
-    <>
+    <div className="banner">
       <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -29,13 +29,23 @@ const DefaultLayout = ({ children }) => {
               <SidebarMobile menu={mainMenu} set={(signal) => setShow(signal)} state={show} />
               : null}
       <Navigation show={show} setShow={act => setShow(act)} />
-      <main className="bg-gray-100 w-full ">
+      <main className="w-full ">
         {children}
       </main>
 
             <Footer />
       
-    </>
+      <style jsx>
+        {`
+        .banner {
+          background-image: url('/newspaper2.png');
+          background-size: 800px;
+          background-repeat: repeat;
+          background-attachment: fixed;
+        }
+        `}
+      </style>
+    </div>
   );
 };
 

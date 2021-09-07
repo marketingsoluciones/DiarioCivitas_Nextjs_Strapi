@@ -52,6 +52,7 @@ export const AutorLine = ({ date, author }) => {
 
 export const Title = ({ size, titulo, slug, justify = false, font = "display", ...rest }) => {
     const sizes = {
+        xs: "text-xs",
         sm: "text-sm",
         md: "text-md",
         lg: "text-md md:text-lg",
@@ -101,7 +102,7 @@ const PrincipalNew = ({ noticia }) => {
     const { title, slug, dateCreated, createdAt } = noticia
     return (
         <div className="border-b-2 border-t-2 border-gray-300 my-4 border-dotted py-6 flex flex-col gap-4 text-2xl xl:text-5xl ">
-            <Title titulo={title} slug={slug}  />
+            <Title titulo={title} slug={slug} justify={true} size="5xl"  />
             <AutorLine date={dateCreated <= createdAt ? dateCreated : createdAt} />
         </div>
     )
