@@ -4,12 +4,12 @@ import BreadCumbs from '../components/BreadCumbs.js';
 import { useRouter } from 'next/router'
 import { Markup } from 'interweave';
 import DisqusComments from '../components/DisqusComments.js';
-import TagCategory from '../components/News/TagCategory.js';
+import TagCategory from '../components/news/TagCategory.js';
 import { FacebookIcon, InstagramIcon, TwitterIcon } from '../components/icons.js';
 import { News } from '../components/EditorPicks.js';
-import PopularPost from '../components/Home/PopularPost.js';
-import Suscribed from '../components/Home/Suscribed.js';
-import SocialLinks from '../components/Home/SocialLinks.js';
+import PopularPost from '../components/home/PopularPost.js';
+import Suscribed from '../components/home/Suscribed.js';
+import SocialLinks from '../components/home/SocialLinks.js';
 import { AutorLine } from '../components/PanelPrimary.js';
 import Head from 'next/head';
 

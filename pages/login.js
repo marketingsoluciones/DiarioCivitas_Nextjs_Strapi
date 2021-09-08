@@ -1,4 +1,4 @@
-import FormLogin from "../components/Forms/FormLogin.js"
+import FormLogin from "../components/forms/FormLogin.js"
 import { ArrowIcon, FacebookIcon, GoogleIcon, InstagramIcon } from "../components/icons.js"
 import router from "next/router"
 

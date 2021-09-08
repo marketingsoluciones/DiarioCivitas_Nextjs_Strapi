@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { api } from "../api";
 import GridNews from "../components/GridNews.js";
-import PopularPost from "../components/Home/PopularPost.js";
-import SocialLinks from "../components/Home/SocialLinks.js";
-import Suscribed from "../components/Home/Suscribed.js";
+import PopularPost from "../components/home/PopularPost.js";
+import SocialLinks from "../components/home/SocialLinks.js";
+import Suscribed from "../components/home/Suscribed.js";
 import PanelPrimary from "../components/PanelPrimary.js";
 import CategoryBlock from '../components/CategoryBlock.js'
 import EditorPicks from "../components/EditorPicks.js";
