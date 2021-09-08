@@ -1,4 +1,4 @@
-import { Title } from "./PanelPrimary"
+import { Title } from "./PanelPrimary.js"
 import router from 'next/router'
 
 const EditorPicks = ({noticias}) => {

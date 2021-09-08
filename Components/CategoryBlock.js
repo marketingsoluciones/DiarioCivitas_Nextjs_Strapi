@@ -1,5 +1,5 @@
-import { FlechaIcon } from "./icons"
-import { Title } from "./PanelPrimary"
+import { FlechaIcon } from "./icons.js"
+import { Title } from "./PanelPrimary.js"
 
 const CategoryBlock = ({ noticias, title }) => {
     const colors = {

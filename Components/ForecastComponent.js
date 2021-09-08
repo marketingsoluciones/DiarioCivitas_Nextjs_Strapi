@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 import es from "dayjs/locale/es"
 import { useEffect, useState } from "react"
-import { api } from "../api"
+import { api } from "../api.js"
 
 const ForecastComponent = () => {
     const [forecast, setForecast] = useState()

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { FlechaIcon } from './icons'
+import { FlechaIcon } from './icons.js'
 
 const SidebarMobile = (props) => {
     const {menu, set,state} = props

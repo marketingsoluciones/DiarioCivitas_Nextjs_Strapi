@@ -1,4 +1,4 @@
-import { FacebookIcon, InstagramIcon, TwitterIcon } from "./icons";
+import { FacebookIcon, InstagramIcon, TwitterIcon } from "./icons.js";
 import Link from 'next/link'
 const Footer = () => {
   const ListaSobreNosotros = [

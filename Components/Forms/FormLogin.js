@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik"
 import { useState } from "react"
-import { EyeOutlineIcon, EyeSolidIcon } from "../icons"
-import InputField from "../InputField"
+import { EyeOutlineIcon, EyeSolidIcon } from "../icons.js"
+import InputField from "../InputField.js"
 
 const FormLogin = () => {
     const [showPassw, setShowPassw] = useState(false)

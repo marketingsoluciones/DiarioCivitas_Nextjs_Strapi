@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { AutorLine, Title } from "./PanelPrimary";
+import { AutorLine, Title } from "./PanelPrimary.js";
 
 const GridNews = memo(({noticias}) => {
     const [selected, setSelect] = useState(0)

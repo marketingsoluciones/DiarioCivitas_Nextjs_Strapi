@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Barra, FlechaIcon, RayoIcon } from './icons'
+import { Barra, FlechaIcon, RayoIcon } from './icons.js'
 
 const HeaderNews = (props) => {
     const {titulos} = props

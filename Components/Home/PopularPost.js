@@ -1,4 +1,4 @@
-import { AutorLine, Title } from "../PanelPrimary"
+import { AutorLine, Title } from "../PanelPrimary.js"
 
 const PopularPost = ({noticias}) => {
     return (

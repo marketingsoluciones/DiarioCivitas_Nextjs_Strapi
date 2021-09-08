@@ -1,8 +1,8 @@
 import Link from "next/link";
-import useHover from "../hooks/useHover";
-import ForecastComponent from "./ForecastComponent";
-import { FacebookIcon, FlechaIcon, InstagramIcon, MenuIcono, TwitterIcon } from "./icons";
-import Search from "./Search";
+import useHover from "../hooks/useHover.js";
+import ForecastComponent from "./ForecastComponent.js";
+import { FacebookIcon, FlechaIcon, InstagramIcon, MenuIcono, TwitterIcon } from "./icons.js";
+import Search from "./Search.js";
 import router from 'next/router'
 
 const Navigation = ({ show, setShow }) => {

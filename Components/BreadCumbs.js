@@ -1,6 +1,7 @@
 import Link from "next/link"
 
-const { FlechaIcon } = require("./icons")
+import { FlechaIcon } from "./icons.js"
+
 
 const BreadCumbs = ({router}) => {
     return (

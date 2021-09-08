@@ -1,4 +1,4 @@
-import { BuscadorIcon } from './icons'
+import { BuscadorIcon } from './icons.js'
 
 const Search = () => {
     return (

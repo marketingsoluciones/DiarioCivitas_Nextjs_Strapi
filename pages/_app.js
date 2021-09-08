@@ -1,5 +1,5 @@
 import 'tailwindcss/tailwind.css'
-import DefaultLayout from '../Layouts/DefaultLayout.js'
+import DefaultLayout from '../layouts/DefaultLayout.js'
 import "@fontsource/kaisei-harunoumi"
 
 function MyApp({ Component, pageProps }) {

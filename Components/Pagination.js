@@ -1,4 +1,4 @@
-import { ArrowNarrowIcon } from "./icons"
+import { ArrowNarrowIcon } from "./icons.js"
 
 const Pagination = () => {
     return (
