@@ -1,5 +1,5 @@
-import FormLogin from "../components/Forms/FormLogin"
-import { ArrowIcon, FacebookIcon, GoogleIcon, InstagramIcon } from "../Components/icons"
+import FormLogin from "../components/Forms/FormLogin.js"
+import { ArrowIcon, FacebookIcon, GoogleIcon, InstagramIcon } from "../components/icons.js"
 import router from "next/router"
 
 const login = () => {

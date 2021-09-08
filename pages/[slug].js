@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { api } from '../api';
-import BreadCumbs from '../Components/BreadCumbs';
+import BreadCumbs from '../components/BreadCumbs.js';
 import { useRouter } from 'next/router'
 import { Markup } from 'interweave';
-import DisqusComments from '../Components/DisqusComments';
-import TagCategory from '../components/News/TagCategory';
-import { FacebookIcon, InstagramIcon, TwitterIcon } from '../Components/icons';
-import { News } from '../Components/EditorPicks';
-import PopularPost from '../Components/Home/PopularPost';
-import Suscribed from '../Components/Home/Suscribed';
-import SocialLinks from '../Components/Home/SocialLinks';
-import { AutorLine } from '../Components/PanelPrimary';
+import DisqusComments from '../components/DisqusComments.js';
+import TagCategory from '../components/News/TagCategory.js';
+import { FacebookIcon, InstagramIcon, TwitterIcon } from '../components/icons.js';
+import { News } from '../components/EditorPicks.js';
+import PopularPost from '../components/Home/PopularPost.js';
+import Suscribed from '../components/Home/Suscribed.js';
+import SocialLinks from '../components/Home/SocialLinks.js';
+import { AutorLine } from '../components/PanelPrimary.js';
 import Head from 'next/head';
 
 

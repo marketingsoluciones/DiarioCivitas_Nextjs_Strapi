@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { api } from "../api";
-import GridNews from "../components/GridNews";
-import PopularPost from "../components/Home/PopularPost";
-import SocialLinks from "../components/Home/SocialLinks";
-import Suscribed from "../components/Home/Suscribed";
-import PanelPrimary from "../components/PanelPrimary";
-import CategoryBlock from '../components/CategoryBlock'
-import EditorPicks from "../components/EditorPicks";
+import GridNews from "../components/GridNews.js";
+import PopularPost from "../components/Home/PopularPost.js";
+import SocialLinks from "../components/Home/SocialLinks.js";
+import Suscribed from "../components/Home/Suscribed.js";
+import PanelPrimary from "../components/PanelPrimary.js";
+import CategoryBlock from '../components/CategoryBlock.js'
+import EditorPicks from "../components/EditorPicks.js";
 
 
 const Home = (props) => {
