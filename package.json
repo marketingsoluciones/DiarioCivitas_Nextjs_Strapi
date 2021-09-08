@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "@fontsource/cardo": "^4.5.0",
-    "@fontsource/kaisei-harunoumi": "^4.5.1",
     "axios": "^0.21.1",
     "dayjs": "^1.10.6",
     "disqus-react": "^1.1.1",
