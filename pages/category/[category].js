@@ -76,26 +76,27 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
     )
 }
 
+export const NewsList = ({ noticia }) => {
+    const { title, slug, imgPrincipal, content } = noticia
+    return (
+        <div className="w-full grid grid-cols-4 gap-4">
+            <img src={`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`} className="w-full h-full object-cover object-center rounded" />
+            <div className="col-span-3 flex flex-col gap-2">
+                <Title titulo={title} slug={slug} size="lg" />
+                <AutorLine />
+                <div className="font-body text-xs">
+                    <Markup content={`${content.slice(0, 400)}...`} noHtml />
+                </div>
+                <button className="bg-blue-500 text-white py-1 px-2 text-sm rounded w-max font-body focus:outline-none" onClick={() => router.push(`/${slug}`)}>Seguir leyendo</button>
+            </div>
+        </div>
+    )
+}
 
 const CategorySecondary = ({ news: noticias }) => {
     const [news, setNews] = useState(noticias)
 
-    const NewsList = ({ noticia }) => {
-        const { title, slug, imgPrincipal, content } = noticia
-        return (
-            <div className="w-full grid grid-cols-4 gap-4">
-                <img src={`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`} className="w-full h-full object-cover object-center rounded" />
-                <div className="col-span-3 flex flex-col gap-2">
-                    <Title titulo={title} slug={slug} size="lg" />
-                    <AutorLine />
-                    <div className="font-body text-xs">
-                        <Markup content={`${content.slice(0, 400)}...`} noHtml />
-                    </div>
-                    <button className="bg-blue-500 text-white py-1 px-2 text-sm rounded w-max font-body focus:outline-none" onClick={() => router.push(`/${slug}`)}>Seguir leyendo</button>
-                </div>
-            </div>
-        )
-    }
+    
     return (
         <section className="xl:max-w-screen-lg mx-auto inset-x-0 py-10 font-display flex flex-col gap-10 bg-white p-5">
             <div className="grid grid-cols-4 gap-6">

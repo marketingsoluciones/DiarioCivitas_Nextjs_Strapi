@@ -20,7 +20,8 @@ const Post = ({ PostData }) => {
   return (
     <>
       <Head>
-        <meta name="description" content="Hola mundo" />
+        <meta name="description" content={PostData?.seoDescription} />
+        <title>{PostData?.title?.slice(0,70)} | Diario Civitas</title>
       </Head>
       <div className="max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
         <BreadCumbs router={router} />
@@ -39,7 +40,7 @@ const Post = ({ PostData }) => {
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup content={PostData?.content} containerTagName="article" allowAttributes={true} allowElements={true} />
               </div>
-              <BlockTags list={PostData?.postcategorias} />
+              <BlockTags list={PostData?.tags} />
             </article>
             <RelatedArticles />
             <DisqusComments post={PostData} />
@@ -116,7 +117,7 @@ const BlockTags = ({ list }) => {
 
   const ItemTag = ({ data }) => {
     return (
-      <div className="font-body text-xs text-white w-max bg-gray-700 px-2 py-1 rounded-md">{data.categorie}</div>
+      <div className="font-body text-xs text-white w-max bg-gray-700 px-2 py-1 rounded-md capitalize ">{data}</div>
     )
   }
   return (
@@ -124,7 +125,7 @@ const BlockTags = ({ list }) => {
       <p className="font-body text-sm text-gray-900">Etiquetas</p>
       {list?.map((item, idx) => {
         return (
-          <ItemTag key={idx} data={item} />
+          <ItemTag key={idx} data={item.tag} />
         )
       })}
     </div>
