@@ -15,7 +15,6 @@ import Head from 'next/head';
 
 
 const Post = ({ PostData }) => {
-  console.log(PostData)
   const router = useRouter()
   return (
     <>
@@ -82,7 +81,7 @@ export async function getStaticPaths() {
   const { data } = await api.FetchNews()
 
   return {
-    paths: data.map(item => {
+    paths: data?.map(item => {
       return {
         params: {
           slug: item?.slug,

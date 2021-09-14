@@ -137,7 +137,6 @@ export const getStaticProps = async ({ params }) => {
 export async function getStaticPaths() {
     try {
         const { data } = await api.FetchCategories()
-        console.log("data", data)
         return {
             paths: data?.map((item) => {
                 return {
@@ -149,7 +148,7 @@ export async function getStaticPaths() {
     } catch (error) {
         console.log(error)
         return {
-            paths: [{ params: {} }]
+            paths: [{ params: {} }], fallback: false
         }
     }
 

@@ -1,7 +1,7 @@
 const TagCategory = ({categories}) => {
     return (
         <div className="flex items-center gap-3">
-            {categories.map((item, idx) => (
+            {categories?.map((item, idx) => (
                 <Category key={idx} categoryData={item} />
             ))}
         </div>

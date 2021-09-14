@@ -9,6 +9,12 @@ const api = {
     });
   },
 
+  FetchHome : async (params) => {
+    return await instance.get('/toppost', {
+      params: params
+    })
+  },
+
   FetchCategories : async (params) => {
     return await instance.get('/postcategorias', {
       params: params

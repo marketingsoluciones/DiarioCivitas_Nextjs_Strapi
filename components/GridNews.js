@@ -4,16 +4,14 @@ import { AutorLine, Title } from "./PanelPrimary.js";
 const GridNews = memo(({noticias}) => {
     const [selected, setSelect] = useState(0)
     const [categories, setCategories] = useState([])
-    console.log("nuevo",noticias)
   
     useEffect(() => {
         const state = [
-            {category: "Actualidad", news: noticias?.actualidad},
-            {category: "Deportes", news: noticias?.deportes},
-            {category: "Politica", news: noticias?.politica},
-            {category: "Sucesos", news: noticias?.sucesos}
+            {category: "Actualidad", news: Object.values(noticias?.Actualidad)},
+            {category: "Deportes", news: Object.values(noticias?.Deportes)},
+            {category: "Politica", news: Object.values(noticias?.Política)},
+            {category: "Sucesos", news: Object.values(noticias?.Sucesos)}
         ]
-
         setCategories(state)
     }, [])
     return (
@@ -32,7 +30,7 @@ const GridNews = memo(({noticias}) => {
                                 } cursor-pointer uppercase text-sm font-bold transition `}
                             key={idx}
                         >
-                            {categoria.category}
+                            {categoria?.category}
                         </li>
                     ))}
                 </ul>
@@ -49,13 +47,12 @@ export default GridNews
 
 
 const CardView = ({ noticia }) => {
-    const { imgPrincipal, title, slug, dateCreated, createdAt } = noticia
     return (
         <div className="w-full h-full bg-white shadow rounded overflow-hidden border border-gray-100">
-            <img src={`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`} className="object-cover object-norepeat w-full h-60 object-top  transition transform duration-1000" />
+            <img src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} className="object-cover object-norepeat w-full h-60 object-top  transition transform duration-1000" />
             <div className="p-6 flex flex-col gap-3">
-                <Title size="lg" titulo={title} slug={slug} />
-                <AutorLine date={dateCreated <= createdAt ? dateCreated : createdAt} />
+                <Title size="lg" titulo={noticia?.title} slug={noticia?.slug} />
+                <AutorLine date={noticia?.dateCreated <= noticia?.createdAt ? noticia?.dateCreated : noticia?.createdAt} />
                 
 
             </div>

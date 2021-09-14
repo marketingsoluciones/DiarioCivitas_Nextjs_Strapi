@@ -1,7 +1,13 @@
+import { useEffect, useState } from "react"
 import { FlechaIcon } from "./icons.js"
 import { Title } from "./PanelPrimary.js"
 
 const CategoryBlock = ({ noticias, title }) => {
+    const [news, setNews] = useState([])
+
+    useEffect(() => {
+        setNews(Object.values(noticias))
+    }, [noticias])
     const colors = {
         murcia : "bg-gradient-to-r from-red-500 to-pink-500",
         "puerto lumbreras" : "bg-gradient-to-r from-blue-500 to-green-500",
@@ -12,9 +18,9 @@ const CategoryBlock = ({ noticias, title }) => {
         <div className="font-display flex flex-col gap-4 border-t-2 border-gray-200 pt-10 ">
             <h2 className={`font-semibold text-lg tracking-wider uppercase ${colors[title.toLowerCase()]} p-2 pl-5 text-white`}>{title}</h2>
             <div className="grid grid-cols-2 gap-4">
-                <BlockNews noticia={noticias[0]} />
+                <BlockNews noticia={news[0]} />
                 <div className="grid grid-cols-1 grid-rows-4">
-                    {noticias.slice(1,5).map((item,idx) => (
+                    {news?.slice(1,5)?.map((item,idx) => (
                         <ListNews key={idx} noticia={item}/>
                     ))}
                 </div>
@@ -26,18 +32,17 @@ const CategoryBlock = ({ noticias, title }) => {
 export default CategoryBlock
 
 const BlockNews = ({ noticia }) => {
-    const { imgPrincipal, slug, title } = noticia
     return (
         <>
             <div className="block relative h-full w-full bg-black rounded overflow-hidden image-card p-4 text-white">
                 <span className="block text-center h-full flex items-end justify-center z-20 relative">
-                    <Title size="sm" titulo={title} slug={slug} />
+                    <Title size="sm" titulo={noticia?.title} slug={noticia?.slug} />
                 </span>
             </div>
             <style jsx>
                 {`
             .image-card {
-                background-image: url("${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}");
+                background-image: url("${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}");
                 background-size: cover;
                 background-position: top center;
                 background-repeat : no-repeat;
@@ -58,11 +63,10 @@ const BlockNews = ({ noticia }) => {
 }
 
 const ListNews = ({noticia}) => {
-    const { slug, title } = noticia
     return (
         <div className="w-full p-3 border flex items-start justify-start gap-1 text-gray-700">
             <FlechaIcon className="w-6 h-6 transform -rotate-90 text-blue-500" />
-            <Title size="sm" slug={slug} titulo={title} className="text-sm mt-0.5 font-semibold hover:text-blue-500 transition cursor-pointer flex flex-nowrap	  " />
+            <Title size="sm" slug={noticia?.slug} titulo={noticia?.title} className="text-sm mt-0.5 font-semibold hover:text-blue-500 transition cursor-pointer flex flex-nowrap	  " />
         </div>
     )
 }
