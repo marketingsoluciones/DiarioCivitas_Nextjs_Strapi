@@ -15,6 +15,7 @@ import Head from 'next/head';
 
 
 const Post = ({ PostData }) => {
+  console.log(PostData)
   const router = useRouter()
   return (
     <>
@@ -68,10 +69,15 @@ export const getStaticProps = async ({ params }) => {
       props: {
         PostData: data[0]
       },
-      revalidate: 10
+      revalidate: 10,
     };
   } catch (error) {
     console.log(error)
+    return {
+      props: {
+        PostData : {}
+      }
+    }
   }
   
 };

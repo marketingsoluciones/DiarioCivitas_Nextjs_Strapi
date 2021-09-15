@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { ArrowNarrowIcon } from "./icons.js"
 
-const Pagination = () => {
+export const Pagination = () => {
     const [state, setState] = useState(0)
     const pages = [0, 1, 2, 3, 4, 5]
 

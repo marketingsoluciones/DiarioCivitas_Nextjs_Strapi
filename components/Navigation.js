@@ -6,6 +6,7 @@ import Search from "./Search.js";
 import router from 'next/router'
 
 const Navigation = ({ show, setShow }) => {
+    const [hoverRef, isHovered] = useHover()
     const topMenu = [
         { title: "Noticias", route: "" },
         { title: "Vida", route: "" },
@@ -15,16 +16,14 @@ const Navigation = ({ show, setShow }) => {
 
     const mainMenu = [
         { title: "Inicio", route: "/", menu: false },
-        { title: "Region Murcia", route: "/region-murcia", menu: true },
+        { title: "Region Murcia", route: "/category/murcia", menu: true },
         // { title: "Murcia", route: "/murcia", menu: false },
         // { title: "Cartagena", route: "/cartagena", menu: false },
         // { title: "Lorca", route: "/lorca", menu: false },
-        { title: "Deportes", route: "/deportes", menu: true },
-        { title: "España", route: "/espana", menu: false },
-        { title: "Mundo", route: "/mundo", menu: true },
-        { title: "Economía", route: "/economia", menu: true },
-        { title: "Cultura", route: "/cultura", menu: true },
-        { title: "Opinión", route: "/opinion", menu: false },
+        { title: "Deportes", route: "/category/deportes", menu: true },
+        { title: "Economía", route: "/category/economia", menu: true },
+        { title: "Cultura", route: "/category/cultura", menu: true },
+        { title: "Opinión", route: "/category/opinion", menu: false },
 
     ];
 
@@ -72,16 +71,15 @@ const Navigation = ({ show, setShow }) => {
         
 
             <div className="hidden w-full bg-blue-800 
-            max-w-screen-lg mx-auto inset-x-0 text-white h-max md:grid md:place-items-center shadow px-5">
-                <ul className="flex w-full xl:max-w-screen-lg font-body py-2 justify-between">
+            max-w-screen-lg mx-auto inset-x-0 text-white h-max md:grid md:place-items-center shadow relative ">
+                <ul className="flex w-full xl:max-w-screen-lg font-body py-2 justify-between px-5">
                     {mainMenu.map(({ title, route, menu }, idx) => {
                         return (
-                            <Link key={idx} href={route}>
-                                <ItemNav title={title} menu={menu} />
-                            </Link>
+                                <ItemNav key={idx} ref={hoverRef} title={title} menu={menu} route={route}  />
                         );
                     })}
                 </ul>
+                {isHovered && <BlockNavbar />}
             </div>
         </header>
     )
@@ -90,17 +88,42 @@ const Navigation = ({ show, setShow }) => {
 export default Navigation
 
 
-const ItemNav = ({title, menu}) => {
+const ItemNav = ({title, menu, ref, route}) => {
     const [hoverRef, isHovered] = useHover()
     return (
+        <Link href={route} >
         <li ref={hoverRef} className="h-full cursor-pointer">
-            <h2 className="text-sm flex items-center gap-1 font-semibold subpixel-antialiased uppercase ">
+            <h2 ref={ref} className="text-sm px-1 flex items-center gap-1 font-semibold subpixel-antialiased uppercase ">
                 {title}
                 {menu ? (
                     <FlechaIcon className="w-2 h-2" />
                 ) : null}
             </h2>
-            <div className={`h-0.5 bg-red-500 w-full transform ${isHovered ? "scale-115" : "scale-0" } transition`}/>
+            <div className={`h-0.5 bg-white w-full transform ${isHovered ? "scale-115" : "scale-0" } transition`}/>
         </li>
+        </Link>
     )
 }
+
+
+const BlockNavbar = () => {
+    return (
+        <div className="w-full top-9 absolute left-0 h-max bg-gray-400 p-8 grid grid-cols-5 gap-4 ">
+            <div className="col-span-1 bg-black h-40 w-full">
+
+            </div>
+            <div className="col-span-4 grid grid-cols-3 gap-4 h-40 w-full">
+                <div className="bg-green-500">
+                    Hola
+                </div>
+                <div className="bg-green-500">
+                    Hola
+                </div>
+                <div className="bg-green-500">
+                    Hola
+                </div>
+            </div>
+        </div>
+    )
+}
+

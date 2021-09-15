@@ -11,6 +11,8 @@ import EditorPicks from "../components/EditorPicks.js";
 
 const Home = (props) => {
 
+
+
   return (
     <section className="max-w-screen-lg mx-auto inset-x-0 py-8 flex flex-col gap-10 px-5 bg-white px-4">
       {/* <HeaderNews titulos={noticias?.map((noticia) => noticia.titulo)} /> */}
@@ -23,12 +25,12 @@ const Home = (props) => {
         <img src="/ad.png" className="object-contain" />
      </div>
      <EditorPicks noticias={props?.ultimasNoticias} />
-     <div className="hidden md:grid grid-cols-2 gap-10 -mt-10">
+     {/* <div className="hidden md:grid grid-cols-2 gap-10 -mt-10">
       <CategoryBlock  title={"Murcia"} noticias={props?.categorias["Locales Murcia"]}/>
       <CategoryBlock  title={"Puerto Lumbreras"} noticias={props?.categorias["Locales Puerto Lumbreras"]}/>
       <CategoryBlock  title={"Lorca"} noticias={props?.categorias["Locales Lorca"]}/>
-      <CategoryBlock  title={"Pulpí"} noticias={[]}/>
-     </div>
+      <CategoryBlock  title={"Pulpí"} noticias={props?.categorias?.Pulpí}/>
+     </div> */}
     </section>
   );
 };

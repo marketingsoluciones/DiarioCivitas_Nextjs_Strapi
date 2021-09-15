@@ -52,7 +52,7 @@ const CardView = ({ noticia }) => {
             <img src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} className="object-cover object-norepeat w-full h-60 object-top  transition transform duration-1000" />
             <div className="p-6 flex flex-col gap-3">
                 <Title size="lg" titulo={noticia?.title} slug={noticia?.slug} />
-                <AutorLine date={noticia?.dateCreated <= noticia?.createdAt ? noticia?.dateCreated : noticia?.createdAt} />
+                <AutorLine date={noticia?.createdAt} />
                 
 
             </div>

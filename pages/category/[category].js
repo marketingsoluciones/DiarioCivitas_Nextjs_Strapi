@@ -4,6 +4,9 @@ import { api } from "../../api.js"
 import { News } from "../../components/EditorPicks.js"
 import { AutorLine, Title } from "../../components/PanelPrimary.js"
 import router from 'next/router'
+import Head from 'next/head'
+import { Capitalize } from "../../utils/Capitalize.js"
+import Pagination from "../../components/Pagination.js"
 
 
 const Category = (props) => {
@@ -14,6 +17,10 @@ const Category = (props) => {
     })
     return (
         <>
+        <Head>
+            <meta name="description" content={""} />
+            <title>{Capitalize(props?.category)} | Diario Civitas</title>
+        </Head>
             {news.length >= 30 ? <CategoryPrincipal news={news} category={props?.category} /> : <CategorySecondary news={news} category={props?.category} />}
         </>
     )
@@ -29,6 +36,7 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
     }
 
     return (
+        <>
         <section className="xl:max-w-screen-lg mx-auto inset-x-0 py-10 font-display flex flex-col gap-10 bg-white p-5">
             <div className="grid grid-cols-4 w-full gap-6">
                 <div className="... bg-white border border-gray-200 w-full h-max p-4 flex flex-col gap-4 rounded-lg">
@@ -73,6 +81,7 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
                 <Block3ColsAds color={colors[category]} />
             </div>
         </section>
+        </>
     )
 }
 
@@ -109,6 +118,7 @@ const CategorySecondary = ({ news: noticias }) => {
                     <NewsList key={idx} noticia={item} />
                 ))}
             </div>
+            <Pagination />
         </section>
     )
 }
@@ -167,20 +177,19 @@ const NewsListPrimary = ({ noticia }) => {
 
 
 const BlockPrincipal = ({ noticia }) => {
-    const { title, slug, dateCreated, createdAt, postcategorias, imgPrincipal } = noticia
     return (
         <div className="relative">
             <div className="w-full h-96 imagen relative rounded-lg overflow-hidden" />
             <div className="absolute bottom-0 left-0 p-10 flex flex-col gap-3 justify-center z-20 text-white ">
-                <h3 className="text-sm font-body">{postcategorias && postcategorias[0]?.categorie}</h3>
-                <Title titulo={title} slug={slug} size="2xl" />
-                <AutorLine date={dateCreated <= createdAt ? dateCreated : createdAt} />
+                <h3 className="text-sm font-body">{noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}</h3>
+                <Title titulo={noticia?.title} slug={noticia?.slug} size="2xl" />
+                <AutorLine date={noticia?.createdAt} />
             </div>
             <style jsx>
                 {`
 
                 .imagen {
-                background-image: url("${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}");
+                background-image: url("${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}");
                 background-position: center top;
                 background-size: cover;
                 overflow:hidden
@@ -203,12 +212,11 @@ const BlockPrincipal = ({ noticia }) => {
 
 
 const NewsListSecondary = ({ noticia }) => {
-    const { title, slug, imgPrincipal } = noticia
     return (
         <div className="py-4 border-b grid grid-cols-3 gap-3">
-            <img className="w-16 h-16 bg-black ... overflow-hidden rounded-lg object-cover" src={`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`} />
+            <img className="w-16 h-16 bg-black ... overflow-hidden rounded-lg object-cover" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
             <span className="col-span-2">
-                <Title titulo={title} slug={slug} size={"sm"} />
+                <Title titulo={noticia?.title} slug={noticia?.slug} size={"sm"} />
 
             </span>
         </div>
@@ -219,12 +227,11 @@ const NewsListSecondary = ({ noticia }) => {
 
 const BlockTwoNews = ({ noticias }) => {
     const News = ({ noticia }) => {
-        const { title, slug, postcategorias, imgPrincipal } = noticia
         return (
             <div className="w-full flex-col flex gap-1">
-                <img className="w-full h-60 rounded-lg overflow-hidden object-cover object-center" src={`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`} />
-                <h3 className="text-sm font-semibold text-yellow-500">{postcategorias && postcategorias[0]?.categorie}</h3>
-                <Title titulo={title} slug={slug} />
+                <img className="w-full h-60 rounded-lg overflow-hidden object-cover object-center" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
+                <h3 className="text-sm font-semibold text-yellow-500">{noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}</h3>
+                <Title titulo={noticia?.title} slug={noticia?.slug} />
             </div>
         )
     }
@@ -241,12 +248,11 @@ const BlockTwoNews = ({ noticias }) => {
 
 const NewsBlock = ({ noticias }) => {
     const News = ({ noticia }) => {
-        const { title, slug, imgPrincipal, postcategorias } = noticia
         return (
             <div className="w-full ... flex flex-col gap-1">
-                <img className=" w-full h-60 rounded-lg overflow-hidden object-cover object-center" src={`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`} />
-                <h3 className="text-sm font-semibold text-yellow-500">{postcategorias && postcategorias[0]?.categorie}</h3>
-                <Title titulo={title} slug={slug} size="md" />
+                <img className=" w-full h-60 rounded-lg overflow-hidden object-cover object-center" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
+                <h3 className="text-sm font-semibold text-yellow-500">{noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}</h3>
+                <Title titulo={noticia?.title} slug={noticia?.slug} size="md" />
             </div>
 
         )

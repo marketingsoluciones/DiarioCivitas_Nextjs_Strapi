@@ -25,9 +25,9 @@ export default PanelPrimary
 const BigBlock = ({ noticia }) => {
     return (
         <div className="w-full col-span-2 p-2 flex flex-col gap-3">
-            <img className="w-full h-96 object-cover rounded" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.mediaFile.url}`} />
+            <img className="w-full h-96 object-cover rounded" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
             <Title size="2xl" titulo={noticia?.title} slug={noticia?.slug} />
-            <AutorLine date={noticia?.dateCreated <= noticia?.createdAt ? noticia?.dateCreated : noticia?.createdAt} />
+            <AutorLine date={noticia?.createdAt} />
         </div>
     )
 }
@@ -36,7 +36,7 @@ const SecondaryBlock = ({ noticia }) => {
     return (
         <div className="flex flex-col gap-2 border-b-2 border-gray-300 border-dotted pb-4 w-full">
             <Title size="xl" titulo={noticia?.title} slug={noticia?.slug} justify={true} />
-            <AutorLine date={noticia?.dateCreated <= noticia?.createdAt ? noticia?.dateCreated : noticia?.createdAt} />
+            <AutorLine date={noticia?.createdAt} />
         </div>
     )
 }
@@ -100,7 +100,7 @@ const PrincipalNew = ({ noticia }) => {
     return (
         <div className="border-b-2 border-t-2 border-gray-300 my-4 border-dotted py-6 flex flex-col gap-4 text-2xl xl:text-5xl ">
             <Title titulo={noticia?.title} slug={noticia?.slug} justify={true} size="5xl"  />
-            <AutorLine date={noticia?.dateCreated <= noticia?.createdAt ? noticia?.dateCreated : noticia?.createdAt} />
+            <AutorLine date={noticia?.createdAt} />
         </div>
     )
 }
@@ -108,10 +108,10 @@ const PrincipalNew = ({ noticia }) => {
 const News = ({ noticia }) => {
     return (
         <div className="flex items-start gap-3 border-b-2 border-gray-300 border-dotted pb-6">
-            <img className="h-20 w-20 object-cover" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.mediaFile.url}`} />
+            <img className="h-20 w-20 object-cover" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
             <div className="flex flex-col justify-start gap-2">
                 <Title size="sm" titulo={noticia?.title} slug={noticia?.slug} justify={true} />
-                <AutorLine date={noticia?.dateCreated <= noticia?.createdAt ? noticia?.dateCreated : noticia?.createdAt} />
+                <AutorLine date={noticia?.createdAt} />
 
             </div>
         </div>
