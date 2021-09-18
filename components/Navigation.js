@@ -91,7 +91,7 @@ export default Navigation
 const ItemNav = ({title, menu, ref, route}) => {
     const [hoverRef, isHovered] = useHover()
     return (
-        <Link href={route} >
+        <Link href={route} replace={true} >
         <li ref={hoverRef} className="h-full cursor-pointer">
             <h2 ref={ref} className="text-sm px-1 flex items-center gap-1 font-semibold subpixel-antialiased uppercase ">
                 {title}

@@ -7,6 +7,7 @@ import Suscribed from "../components/home/Suscribed.js";
 import PanelPrimary from "../components/PanelPrimary.js";
 import CategoryBlock from '../components/CategoryBlock.js'
 import EditorPicks from "../components/EditorPicks.js";
+import { ModeloPost } from "../db/PostSchema";
 
 
 const Home = (props) => {
@@ -57,7 +58,6 @@ export async function getServerSideProps(context) {
   try {
     const { data: ultimasNoticias } = await api.FetchNews({_limit : 6, _sort : "createdAt:DESC"})
     const {data} = await api.FetchHome()
-    
     return {
       props: { ultimasNoticias: ultimasNoticias, categorias: data?.lastPost?.ultimosPost },
     }

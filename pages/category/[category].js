@@ -1,5 +1,5 @@
 import { Markup } from "interweave"
-import { useEffect, useState } from "react"
+import { memo, useEffect, useState } from "react"
 import { api } from "../../api.js"
 import { News } from "../../components/EditorPicks.js"
 import { AutorLine, Title } from "../../components/PanelPrimary.js"
@@ -10,11 +10,21 @@ import Pagination from "../../components/Pagination.js"
 
 
 const Category = (props) => {
-    const [news, setNews] = useState(props?.news)
-    const [count, setCount] = useState(() => {
-        const res = props?.news[0]?.postcategorias?.find(item => item?.slug == props?.category)
-        return res?.quantity
-    })
+    const [news, setNews] = useState([])
+    // const [count, setCount] = useState(() => {
+    //     const res = props?.news[0]?.postcategorias?.find(item => item?.slug == props?.category)
+    //     return res?.quantity
+    // })
+
+    useEffect(() => {
+        setNews(props.news)
+        console.log("Render categoria", props.category)
+        const r = async () => {
+            const {data} = await api.FetchNews2()
+            console.log(data.data.getNoticias.length)
+        }
+        r()
+    }, [props.news])
     return (
         <>
         <Head>
@@ -127,14 +137,18 @@ const CategorySecondary = ({ news: noticias }) => {
 
 export const getStaticProps = async ({ params }) => {
     try {
-        const { data } = await api.FetchNews({
-            _limit: 30,
-            _sort: "createdAt:DESC",
-            "postcategorias.slug": params?.category
-        })
+        //const {data:res} = await api.FetchCategory(params?.category)
+        //const data = res?.data?.getCategory
+         const { data } = await api.FetchNews({
+             "postcategorias.slug": params?.category,
+             _limit: 30,
+             _sort: "createdAt:DESC"
+         })
         return {
-            props: { category: params?.category, news: data }
+             props: { category: params?.category, news: data }
         }
+
+
     } catch (error) {
         console.log(error)
         return {
@@ -146,19 +160,21 @@ export const getStaticProps = async ({ params }) => {
 
 export async function getStaticPaths() {
     try {
-        const { data } = await api.FetchCategories()
+        const {data} = await api.FetchCategories()
+        const res = data.data.getCategories
+        
         return {
-            paths: data?.map((item) => {
+            paths: res?.map((item) => {
                 return {
-                    params: { category: item?.slug }
+                    params: {category : item?.slug}
                 }
             }),
-            fallback: false
+            fallback: 'blocking'
         }
     } catch (error) {
         console.log(error)
         return {
-            paths: [{ params: {} }], fallback: false
+            paths: [{ params: {} }], fallback: 'blocking'
         }
     }
 
