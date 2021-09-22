@@ -4,7 +4,7 @@ import SidebarMobile from "../components/SidebarMobile";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { useRouter } from "next/router";
-import {Capitalize} from '../functions/capitalize'
+import { Capitalize } from "../utils/Capitalize";
 
 const DefaultLayout = ({ children }) => {
   const [show, setShow] = useState(false)

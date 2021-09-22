@@ -1,7 +1,9 @@
 import { gql, ApolloServer } from "apollo-server-micro";
 import { conectorDB } from "../../db/conector";
-import { ModeloCategory, ModeloPost } from "../../db/PostSchema";
-import { ModeloGallery } from "../../db/UploadSchema";
+import { ModeloPost } from "../../db/Modelos/ModeloPost";
+import { ModeloCategory } from "../../db/Modelos/ModeloPostCategory";
+import { ModeloTopPost } from "../../db/Modelos/ModeloTopPost";
+
 
 conectorDB()
 

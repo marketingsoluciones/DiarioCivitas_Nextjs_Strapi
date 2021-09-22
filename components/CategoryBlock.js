@@ -34,19 +34,14 @@ export default CategoryBlock
 const BlockNews = ({ noticia }) => {
     return (
         <>
-            <div className="block relative h-full w-full bg-black rounded overflow-hidden image-card p-4 text-white">
-                <span className="block text-center h-full flex items-end justify-center z-20 relative">
+            <div className="block relative h-full w-full bg-black rounded overflow-hidden image-card text-white">
+                <img className="object-cover object-top absolute w-full h-full" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
+                <span className="block text-center h-full flex items-end justify-center z-20 relative p-4">
                     <Title size="sm" titulo={noticia?.title} slug={noticia?.slug} />
                 </span>
             </div>
             <style jsx>
                 {`
-            .image-card {
-                background-image: url("${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}");
-                background-size: cover;
-                background-position: top center;
-                background-repeat : no-repeat;
-            }
             .image-card::before {
                 content: "";
                 background: linear-gradient(0deg, rgba(2,0,36,0.95) 0%, rgba(0,212,255,0) 100%);
@@ -55,6 +50,7 @@ const BlockNews = ({ noticia }) => {
                 height: 100%;
                 top:0;
                 left:0;
+                z-index: 10;
             }
             `}
             </style>

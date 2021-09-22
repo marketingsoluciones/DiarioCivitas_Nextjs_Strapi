@@ -46,25 +46,11 @@ const api = {
   },
 
   FetchCategories: async () => {
-    return await axios.post('http://localhost:3000/api/api', queryCategories, {})
+    return await instance.get('/postcategorias')
 
   },
   FetchCategory: async (slug) => {
-    console.log(slug)
-    const queryCategory = {
-      query: `mutation {
-        getCategory(categorie : "${slug}"){
-            _id
-            slug
-            title
-        }
-    }
-      `,
-      variables: {
-      },
-    }
-    return await axios.post('http://localhost:3000/api/api', queryCategory, {})
-
+    return await instance.get(`/toppostcategories/slug/${slug}`)
   },
 
   Forecast: async (location) => {

@@ -44,7 +44,7 @@ const SecondaryBlock = ({ noticia }) => {
 
 export const AutorLine = ({ date, author }) => {
     return (
-        <p className="capitalize text-xs font-body h-max">Por <span className="text-blue-500 font-semibold capitalize hover:text-gray-800 transition cursor-pointer">Francisco Montilla{author}</span> - {date ? dayjs(date).format('DD MMM YYYY') : "00 Ene 2021"}</p>
+        <p className="capitalize text-xs font-body h-max">Por <span className="text-blue-500 font-semibold capitalize hover:text-gray-800 transition cursor-pointer">{author ?? "Jhon Doe"}</span> - {date ? dayjs(date).format('DD MMM YYYY') : "00 Ene 2021"}</p>
     )
 }
 

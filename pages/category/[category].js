@@ -17,14 +17,11 @@ const Category = (props) => {
     // })
 
     useEffect(() => {
+        console.log(props)
         setNews(props.news)
         console.log("Render categoria", props.category)
-        const r = async () => {
-            const {data} = await api.FetchNews2()
-            console.log(data.data.getNoticias.length)
-        }
-        r()
-    }, [props.news])
+        
+    }, [props])
     return (
         <>
         <Head>
@@ -40,10 +37,14 @@ export default Category
 
 
 const CategoryPrincipal = ({ news: noticias, category }) => {
-    const [news, setNews] = useState(noticias)
+    const [news, setNews] = useState([])
     const colors = {
         deportes: "blue"
     }
+
+    useEffect(() => {
+        setNews(noticias)
+    }, [noticias])
 
     return (
         <>
@@ -58,13 +59,13 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
                 </div>
 
                 <div className="col-span-2 w-full relative flex flex-col gap-6">
-                    <BlockPrincipal noticia={news.length && news[0]} />
-                    <BlockTwoNews noticias={news.slice(9, 11)} />
+                    <BlockPrincipal noticia={news?.length && news[0]} />
+                    <BlockTwoNews noticias={news?.slice(9, 11)} />
                 </div>
 
                 <div className="... bg-white border border-gray-200 w-full h-max p-4 flex flex-col gap-4 rounded-lg">
                     <h2 className={`font-semibold text-md text-${colors[category]}-500`}>Populares de esta semana</h2>
-                    {news?.slice(12, 17)?.map((item, idx) => (
+                    {news?.slice(11, 16)?.map((item, idx) => (
                         <NewsListSecondary key={idx} noticia={item} />
                     ))}
 
@@ -78,17 +79,16 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
 
             <div className="py-6 border-t">
                 <h2 className={`text-lg font-semibold text-${colors[category]}-500 uppercase pb-4`}>Más noticias de {category}</h2>
-                <NewsBlock noticias={news?.slice(18, 24)} />
+                <NewsBlock noticias={news?.slice(16, 22)} />
             </div>
 
             <div className="py-6 border-t">
-                <h2 className={`text-lg font-semibold text-${colors[category]}-500 uppercase pb-4`}>Articulos de opinión</h2>
-                <BlockInlineX4 color={colors[category]} />
+                <BlockInlineX4 color={colors[category]} noticias={news?.slice(22,26)} />
             </div>
 
             <div className="py-6 border-t">
                 <h2 className={`text-lg font-semibold text-${colors[category]}-500 uppercase pb-4`}>Más relevantes</h2>
-                <Block3ColsAds color={colors[category]} />
+                <Block3ColsAds color={colors[category]} noticias={news?.slice(22)} />
             </div>
         </section>
         </>
@@ -96,26 +96,31 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
 }
 
 export const NewsList = ({ noticia }) => {
-    const { title, slug, imgPrincipal, content } = noticia
     return (
         <div className="w-full grid grid-cols-4 gap-4">
-            <img src={`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`} className="w-full h-full object-cover object-center rounded" />
+            <div className="w-full h-28 rounded overflow-hidden">
+                <img src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} className="w-full h-full object-cover object-center" />
+            </div>
+            
             <div className="col-span-3 flex flex-col gap-2">
-                <Title titulo={title} slug={slug} size="lg" />
-                <AutorLine />
-                <div className="font-body text-xs">
-                    <Markup content={`${content.slice(0, 400)}...`} noHtml />
-                </div>
-                <button className="bg-blue-500 text-white py-1 px-2 text-sm rounded w-max font-body focus:outline-none" onClick={() => router.push(`/${slug}`)}>Seguir leyendo</button>
+                <Title titulo={noticia?.title} slug={noticia?.slug} size="lg" />
+                <AutorLine date={noticia?.createdAt} />
+                {/* <div className="font-body text-xs">
+                    <Markup content={`${noticia?.content?.slice(0, 400)}...`} noHtml />
+                </div> */}
+                <button className="bg-blue-500 text-white py-1 px-2 text-sm rounded w-max font-body focus:outline-none" onClick={() => router.push(`/${noticia?.slug}`)}>Seguir leyendo</button>
             </div>
         </div>
     )
 }
 
-const CategorySecondary = ({ news: noticias }) => {
-    const [news, setNews] = useState(noticias)
+const CategorySecondary = ({ news: noticias, category }) => {
+    const [news, setNews] = useState([])
 
-    
+    useEffect(() => {
+        setNews(noticias)
+    }, [noticias])
+
     return (
         <section className="xl:max-w-screen-lg mx-auto inset-x-0 py-10 font-display flex flex-col gap-10 bg-white p-5">
             <div className="grid grid-cols-4 gap-6">
@@ -137,13 +142,14 @@ const CategorySecondary = ({ news: noticias }) => {
 
 export const getStaticProps = async ({ params }) => {
     try {
-        //const {data:res} = await api.FetchCategory(params?.category)
+        const {data:res} = await api.FetchCategory(params?.category)
+        const data = Object.values(res?.lastPost)
         //const data = res?.data?.getCategory
-         const { data } = await api.FetchNews({
-             "postcategorias.slug": params?.category,
-             _limit: 30,
-             _sort: "createdAt:DESC"
-         })
+        //  const { data } = await api.FetchNews({
+        //      "postcategorias.slug": params?.category,
+        //      _limit: 30,
+        //      _sort: "createdAt:DESC"
+        //  })
         return {
              props: { category: params?.category, news: data }
         }
@@ -161,10 +167,9 @@ export const getStaticProps = async ({ params }) => {
 export async function getStaticPaths() {
     try {
         const {data} = await api.FetchCategories()
-        const res = data.data.getCategories
         
         return {
-            paths: res?.map((item) => {
+            paths: data?.map((item) => {
                 return {
                     params: {category : item?.slug}
                 }
@@ -183,10 +188,9 @@ export async function getStaticPaths() {
 
 
 const NewsListPrimary = ({ noticia }) => {
-    const { title, slug } = noticia
     return (
         <div className="border-b w-full pb-4">
-            <Title titulo={title} slug={slug} size={"sm"} />
+            <Title titulo={noticia?.title} slug={noticia?.slug} size={"sm"} />
         </div>
     )
 }
@@ -195,7 +199,9 @@ const NewsListPrimary = ({ noticia }) => {
 const BlockPrincipal = ({ noticia }) => {
     return (
         <div className="relative">
-            <div className="w-full h-96 imagen relative rounded-lg overflow-hidden" />
+            <div className="w-full h-96 imagen relative rounded-lg overflow-hidden" >
+                <img src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} className="object-cover object-top w-full absolute h-full" />
+            </div>
             <div className="absolute bottom-0 left-0 p-10 flex flex-col gap-3 justify-center z-20 text-white ">
                 <h3 className="text-sm font-body">{noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}</h3>
                 <Title titulo={noticia?.title} slug={noticia?.slug} size="2xl" />
@@ -203,13 +209,6 @@ const BlockPrincipal = ({ noticia }) => {
             </div>
             <style jsx>
                 {`
-
-                .imagen {
-                background-image: url("${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}");
-                background-position: center top;
-                background-size: cover;
-                overflow:hidden
-            }
                 .imagen::before {
                     content: "";
                     background: linear-gradient(0deg, rgba(2,0,36,0.9) 0%, rgba(0,212,255,0) 100%);
@@ -246,7 +245,7 @@ const BlockTwoNews = ({ noticias }) => {
         return (
             <div className="w-full flex-col flex gap-1">
                 <img className="w-full h-60 rounded-lg overflow-hidden object-cover object-center" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
-                <h3 className="text-sm font-semibold text-yellow-500">{noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}</h3>
+                <AutorLine date={noticia?.createdAt} />
                 <Title titulo={noticia?.title} slug={noticia?.slug} />
             </div>
         )
@@ -268,7 +267,10 @@ const NewsBlock = ({ noticias }) => {
             <div className="w-full ... flex flex-col gap-1">
                 <img className=" w-full h-60 rounded-lg overflow-hidden object-cover object-center" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
                 <h3 className="text-sm font-semibold text-yellow-500">{noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}</h3>
+                <div className="pt-2">
+                <AutorLine date={noticia?.createdAt} />
                 <Title titulo={noticia?.title} slug={noticia?.slug} size="md" />
+                </div>
             </div>
 
         )
@@ -290,42 +292,46 @@ const NewsBlock = ({ noticias }) => {
 }
 
 
-const BlockInlineX4 = ({ color }) => {
+const BlockInlineX4 = ({ noticias, color }) => {
 
-    const News = () => {
+    const News = ({noticia}) => {
         return (
             <div className="w-full flex flex-col gap-0.5">
-                <img className="w-full object-cover object-center bg-black h-48 rounded-lg overflow-hidden" />
-                <h3 className="text-xs font-medium text-yellow-500 pt-0.5">Francisco Montilla</h3>
-                <h2 className="font-semibold ">Barack Obama and Family Visit Balinese Paddy Fields</h2>
+                <img className="w-full object-cover object-top bg-black h-48 rounded-lg overflow-hidden" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
+                <div className="pt-2">
+                <AutorLine date={noticia?.createdAt} />
+                <Title size={"sm"} slug={noticia?.slug} titulo={noticia?.title} />
+
+                </div>
             </div>
         )
     }
     return (
         <div className="w-full">
             <div className="grid grid-cols-4 gap-8">
-                <News />
-                <News />
-                <News />
-                <News />
+                {noticias?.map((item,idx) => (
+                    <News key={idx} noticia={item} />
+                ))}
             </div>
         </div>
     )
 }
 
 
-const Block3ColsAds = ({ color }) => {
+const Block3ColsAds = ({ noticias, color }) => {
 
-    const News = () => {
+    const News = ({noticia}) => {
         return (
             <div className="w-full flex items-center gap-6 grid grid-cols-5">
-                <img className="col-span-2 rounded-md bg-black w-full h-40" />
+                <div className="w-full h-28 rounded overflow-hidden col-span-2">
+                <img src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} className="w-full h-full object-cover object-top" />
+            </div>
                 <div className="col-span-3 flex flex-col gap-1">
-                <Title titulo={"Barack Obama and Family Visit Balinese Paddy Fields"} size="lg" />
-                <AutorLine />
-                <div className="text-xs font-body mt-3">
+                <Title titulo={noticia?.title} size="lg" />
+                <AutorLine date={noticia?.createdAt} />
+                {/* <div className="text-xs font-body mt-3">
                     <Markup content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ab odio consectetur! Asperiores pariatur ut, neque cupiditate temporibus sequi, architecto omnis, perferendis autem repellat rem incidunt!" noHtml/>
-                </div>
+                </div> */}
                 </div>
             </div>
         )
@@ -333,12 +339,10 @@ const Block3ColsAds = ({ color }) => {
     return (
         <div className="w-full grid grid-cols-3 gap-12">
             <div className="col-span-2 grid grid-cols-1 gap-6">
-                <News />
-                <News />
-                <News />
-                <News />
-                <News />
-                <News />
+                {noticias?.map((item,idx) => (
+                    <News key={idx} noticia={item} />
+                ))}
+                
             </div>
             <div>
                 <img src="/ads.png" />
