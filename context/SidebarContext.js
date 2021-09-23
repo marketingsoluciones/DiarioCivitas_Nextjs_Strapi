@@ -8,7 +8,7 @@ const initialContext = {
 const SidebarContext = createContext(initialContext);
 
 const SidebarContextProvider = ({ children }) => {
-    const [isVisible, setSidebar] = useState(initialContext);
+    const [isVisible, setSidebar] = useState(false);
   
     return (
       <SidebarContext.Provider value={{ isVisible, setSidebar }}>
