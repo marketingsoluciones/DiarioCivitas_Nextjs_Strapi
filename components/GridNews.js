@@ -16,11 +16,11 @@ const GridNews = memo(({noticias}) => {
     }, [])
     return (
         <div className="md:col-span-2 w-full flex flex-col gap-10 border-t-2 pt-2 border-gray-200">
-            <div className="w-full flex justify-between items-center flex-wrap">
-                <h3 className="font-display font-semibold text-xl uppercase py-2 text-primary">
+            <div className="w-full flex justify-between items-center md:flex-row flex-col ">
+                <h3 className="font-display font-semibold text-xl uppercase py-2 text-primary md:text-left text-center w-full">
                     Ultimas Noticias
                 </h3>
-                <ul className="flex gap-4 font-body">
+                <ul className="flex gap-4 font-body w-full">
                     {categories.map((categoria, idx) => (
                         <li
                             onClick={() => setSelect(idx)}

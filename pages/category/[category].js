@@ -49,8 +49,8 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
     return (
         <>
         <section className="xl:max-w-screen-lg mx-auto inset-x-0 py-10 font-display flex flex-col gap-10 bg-white p-5">
-            <div className="grid grid-cols-4 w-full gap-6">
-                <div className="... bg-white border border-gray-200 w-full h-max p-4 flex flex-col gap-4 rounded-lg">
+            <div className="grid md:grid-cols-4 w-full gap-6">
+                <div className="... hidden md:flex bg-white border border-gray-200 w-full h-max p-4 flex flex-col gap-4 rounded-lg">
                     <h2 className={`font-semibold font-body text-md text-${colors[category]}-500`}>Titulares</h2>
                     {news?.slice(1, 9)?.map((item, idx) => (
                         <NewsListPrimary key={idx} noticia={item} color={colors[category]} />
@@ -58,7 +58,7 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
 
                 </div>
 
-                <div className="col-span-2 w-full relative flex flex-col gap-6">
+                <div className="md:col-span-2 w-full relative flex flex-col gap-6">
                     <BlockPrincipal noticia={news?.length && news[0]} />
                     <BlockTwoNews noticias={news?.slice(9, 11)} />
                 </div>
@@ -265,7 +265,7 @@ const NewsBlock = ({ noticias }) => {
     const News = ({ noticia }) => {
         return (
             <div className="w-full ... flex flex-col gap-1">
-                <img className=" w-full h-60 rounded-lg overflow-hidden object-cover object-center" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
+                <img className="w-full h-60 rounded-lg overflow-hidden object-cover object-center" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
                 <h3 className="text-sm font-semibold text-yellow-500">{noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}</h3>
                 <div className="pt-2">
                 <AutorLine date={noticia?.createdAt} />
@@ -276,13 +276,13 @@ const NewsBlock = ({ noticias }) => {
         )
     }
     return (
-        <div className="w-full grid grid-cols-4 gap-6">
+        <div className="w-full grid md:grid-cols-4 gap-6">
             <News noticia={noticias[0]} />
-            <div className="col-span-2 w-full">
+            <div className="md:col-span-2 w-full">
                 <BlockPrincipal noticia={noticias[1]} />
             </div>
             <News noticia={noticias[2]} />
-            <div className="col-span-2 w-full">
+            <div className="md:col-span-2 w-full">
                 <BlockPrincipal noticia={noticias[3]} />
             </div>
             <News noticia={noticias[4]} />
@@ -308,7 +308,7 @@ const BlockInlineX4 = ({ noticias, color }) => {
     }
     return (
         <div className="w-full">
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-4 gap-8">
                 {noticias?.map((item,idx) => (
                     <News key={idx} noticia={item} />
                 ))}
@@ -322,11 +322,11 @@ const Block3ColsAds = ({ noticias, color }) => {
 
     const News = ({noticia}) => {
         return (
-            <div className="w-full flex items-center gap-6 grid grid-cols-5">
-                <div className="w-full h-28 rounded overflow-hidden col-span-2">
+            <div className="w-full flex items-center gap-6 grid md:grid-cols-5">
+                <div className="w-full h-28 rounded overflow-hidden md:col-span-2">
                 <img src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} className="w-full h-full object-cover object-top" />
             </div>
-                <div className="col-span-3 flex flex-col gap-1">
+                <div className="md:col-span-3 flex flex-col gap-1">
                 <Title titulo={noticia?.title} size="lg" />
                 <AutorLine date={noticia?.createdAt} />
                 {/* <div className="text-xs font-body mt-3">
@@ -337,8 +337,8 @@ const Block3ColsAds = ({ noticias, color }) => {
         )
     }
     return (
-        <div className="w-full grid grid-cols-3 gap-12">
-            <div className="col-span-2 grid grid-cols-1 gap-6">
+        <div className="w-full grid md:grid-cols-3 gap-12">
+            <div className="md:col-span-2 grid md:grid-cols-1 gap-6">
                 {noticias?.map((item,idx) => (
                     <News key={idx} noticia={item} />
                 ))}
@@ -347,9 +347,7 @@ const Block3ColsAds = ({ noticias, color }) => {
             <div>
                 <img src="/ads.png" />
             </div>
-            <div className="col-span-3">
-
-            </div>
+            
         </div>
     )
 }

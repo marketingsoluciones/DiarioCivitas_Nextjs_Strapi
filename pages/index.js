@@ -11,7 +11,8 @@ import EditorPicks from "../components/EditorPicks.js";
 
 const Home = (props) => {
   return (
-    <section className="max-w-screen-lg mx-auto inset-x-0 py-8 flex flex-col gap-10 px-5 bg-white px-4">
+    <section className="max-w-screen-lg mx-auto inset-x-0 md:py-8 flex flex-col gap-10 px-5 bg-white px-4">
+      <h1 className="hidden">Diario Civitas</h1>
       {/* <HeaderNews titulos={noticias?.map((noticia) => noticia.titulo)} /> */}
       <PanelPrimary noticias={props?.ultimasNoticias} />
       <div className="w-full grid md:grid-cols-3 gap-10">

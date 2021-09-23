@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { useRouter } from "next/router";
 import { Capitalize } from "../utils/Capitalize";
+import {SidebarContextProvider} from '../context/SidebarContext'
 
 const DefaultLayout = ({ children }) => {
-  const [show, setShow] = useState(false)
-
+  
   
   const router = useRouter()
   const title = {
@@ -16,7 +16,8 @@ const DefaultLayout = ({ children }) => {
     "/" : "Diario Civitas"
   }
   return (
-    <div className="banner">
+    <SidebarContextProvider>
+    <div className="bg-gray-200">
       <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -25,27 +26,17 @@ const DefaultLayout = ({ children }) => {
         />
         <title>{title[router.pathname]}</title>
       </Head>
-      {show ? 
-              <SidebarMobile menu={mainMenu} set={(signal) => setShow(signal)} state={show} />
-              : null}
-      <Navigation show={show} setShow={act => setShow(act)} />
+              <SidebarMobile/>
+      <Navigation />
       <main className="w-full ">
         {children}
       </main>
 
             <Footer />
       
-      <style jsx>
-        {`
-        .banner {
-          background-image: url('/newspaper2.png');
-          background-size: 800px;
-          background-repeat: repeat;
-          background-attachment: fixed;
-        }
-        `}
-      </style>
+      
     </div>
+    </SidebarContextProvider>
   );
 };
 

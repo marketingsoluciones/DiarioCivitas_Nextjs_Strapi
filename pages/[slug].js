@@ -23,18 +23,18 @@ const Post = ({ PostData }) => {
         <meta name="description" content={PostData?.seoDescription} />
         <title>{PostData?.title?.slice(0,70)} | Diario Civitas</title>
       </Head>
-      <div className="max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
+      <div className="w-full md:max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
         <BreadCumbs router={router} />
-        <section className="grid md:grid-cols-3 gap-16">
-          <div className="col-span-2 flex flex-col justify-center gap-4">
+        <section className="w-full grid md:grid-cols-3 gap-12 ">
+          <div className="md:col-span-2 flex flex-col justify-center gap-4">
             <h1 className="font-display font-bold text-2xl md:text-3xl text-justify ">{PostData?.title}</h1>
             {/* <h2 className="font-display text-gray-400 font-light text-md md:text-lg text-justify ">Aqui va el subtitulo</h2> */}
             <TagCategory categories={PostData?.postcategorias} />
             <img src={`${process.env.NEXT_PUBLIC_API_URL}${PostData?.imgPrincipal?.url}`} className="w-full h-96 object-cover rounded-lg" alt={PostData?.imgPrincipal?.alternativeText} />
             <p className="text-xs font-light text-gray-900">Cortesía/Fuente</p>
             <AutorLine date={PostData?.dateCreated <= PostData?.createdAt ? PostData?.dateCreated : PostData.createdAt} />
-            <article className="grid md:grid-cols-8 py-2 gap-6">
-              <div className="flex col-span-1 w-full md:flex-col gap-2 items-center justify-start">
+            <article className="grid md:grid-cols-8 py-2 gap-6 w-full">
+              <div className="flex md:col-span-1 w-full md:flex-col gap-2 items-center justify-start">
                 <SocialMediaIcons />
               </div>
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
@@ -45,8 +45,8 @@ const Post = ({ PostData }) => {
             <RelatedArticles />
             <DisqusComments post={PostData} />
           </div>
-          <aside className="... md:flex flex-col gap-6 hidden">
-            <PopularPost />
+          <aside className="hidden ... md:flex flex-col gap-6 ">
+            {/* <PopularPost /> */}
             <Suscribed />
             <SocialLinks />
             <img src={"/ads.png"} className="object-contain w-full p-1" />
@@ -126,7 +126,7 @@ const BlockTags = ({ list }) => {
     )
   }
   return (
-    <div className="flex gap-2 items-center w-full ">
+    <div className="flex gap-2 items-center w-full flex-wrap md:flex-nowrap ">
       <p className="font-body text-sm text-gray-900">Etiquetas</p>
       {list?.map((item, idx) => {
         return (
@@ -156,9 +156,9 @@ const RelatedArticles = () => {
     FetchNews()
   }, [])
   return (
-    <div className="border-t border-b pb-10 py-6 border-gray-200">
+    <div className="border-t border-b pb-10 py-6 border-gray-200 w-full">
       <h3 className="font-body text-lg font-semibold uppercase pb-4">Noticias Relacionadas</h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-6">
         {news?.map((item,idx)=> (
           <News key={idx} noticia={item} />
         ))}
