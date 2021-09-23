@@ -23,6 +23,10 @@ const api = {
     });
   },
 
+  FetchNewsSitemap: async () => {
+    return await instance.get('/postsSitemap');
+  },
+
   FetchNews2: async (params) => {
     const queryCategory = {
       query: `mutation {
