@@ -7,4 +7,3 @@ Host: https://diariocivitas.com
 
 # Sitemaps
 Sitemap: https://diariocivitas.com/sitemap.xml
-Sitemap: https://diariocivitas.com/server-sitemap.xml

@@ -140,7 +140,7 @@ const CategorySecondary = ({ news: noticias, category }) => {
 
 
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
     try {
         const {data:res} = await api.FetchCategory(params?.category)
         const data = Object.values(res?.lastPost)
