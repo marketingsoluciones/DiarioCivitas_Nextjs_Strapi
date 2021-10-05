@@ -4,10 +4,12 @@ import ForecastComponent from "./ForecastComponent.js";
 import { FacebookIcon, FlechaIcon, InstagramIcon, MenuIcono, TwitterIcon } from "./icons.js";
 import Search from "./Search.js";
 import router from 'next/router'
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SidebarContext } from "../context/SidebarContext.js";
+import { LoadingContext } from "../context/LoadingContext.js";
 
 const Navigation = ({ show, setShow }) => {
+    const {setLoading} = useContext(LoadingContext)
     const [hoverRef, isHovered] = useHover()
     const topMenu = [
         { title: "Noticias", route: "" },
@@ -30,6 +32,25 @@ const Navigation = ({ show, setShow }) => {
     ];
 
     const {isVisible, setSidebar} = useContext(SidebarContext)
+
+    useEffect(() => {
+        const start = () => {
+            console.log("start");
+            setLoading(true);
+          };
+          const end = () => {
+            console.log("findished");
+            setLoading(false);
+          };
+        router.events.on("routeChangeStart", start);
+        router.events.on("routeChangeComplete", end);
+        router.events.on("routeChangeError", end);
+        return () => {
+            router.events.off("routeChangeStart", start);
+            router.events.off("routeChangeComplete", end);
+            router.events.off("routeChangeError", end);
+          };
+    }, [router])
     return (
         <header>
 {/*             

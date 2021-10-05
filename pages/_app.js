@@ -3,7 +3,6 @@ import DefaultLayout from "../layouts/DefaultLayout.js";
 
 function MyApp({ Component, pageProps }) {
   return (
-
       <DefaultLayout>
         <Component {...pageProps} />
       </DefaultLayout>

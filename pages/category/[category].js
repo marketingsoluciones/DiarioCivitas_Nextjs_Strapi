@@ -1,5 +1,5 @@
 import { Markup } from "interweave"
-import { memo, useEffect, useState } from "react"
+import { memo, useContext, useEffect, useState } from "react"
 import { api } from "../../api.js"
 import { News } from "../../components/EditorPicks.js"
 import { AutorLine, Title } from "../../components/PanelPrimary.js"
@@ -7,6 +7,7 @@ import router from 'next/router'
 import Head from 'next/head'
 import { Capitalize } from "../../utils/Capitalize.js"
 import Pagination from "../../components/Pagination.js"
+import { LoadingContext } from "../../context/LoadingContext.js"
 
 
 const Category = (props) => {
