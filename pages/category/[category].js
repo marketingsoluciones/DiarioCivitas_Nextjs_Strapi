@@ -140,7 +140,7 @@ const CategorySecondary = ({ news: noticias, category }) => {
 
 
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
     try {
         const {data:res} = await api.FetchCategory(params?.category)
         const data = Object.values(res?.lastPost)
@@ -164,27 +164,27 @@ export const getStaticProps = async ({ params }) => {
 
 };
 
-export async function getStaticPaths() {
-    try {
-        const {data} = await api.FetchCategories()
+// export async function getStaticPaths() {
+//     try {
+//         const {data} = await api.FetchCategories()
         
-        return {
-            paths: data?.map((item) => {
-                return {
-                    params: {category : item?.slug}
-                }
-            }),
-            fallback: 'blocking'
-        }
-    } catch (error) {
-        console.log(error)
-        return {
-            paths: [{ params: {} }], fallback: 'blocking'
-        }
-    }
+//         return {
+//             paths: data?.map((item) => {
+//                 return {
+//                     params: {category : item?.slug}
+//                 }
+//             }),
+//             fallback: 'blocking'
+//         }
+//     } catch (error) {
+//         console.log(error)
+//         return {
+//             paths: [{ params: {} }], fallback: 'blocking'
+//         }
+//     }
 
 
-}
+// }
 
 
 const NewsListPrimary = ({ noticia }) => {
