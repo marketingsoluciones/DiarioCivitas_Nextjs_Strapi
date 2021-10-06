@@ -36,7 +36,7 @@ const PanelPrimary = ({ noticias }) => {
       <div className="relative grid grid-cols-1 w-full pb-10 overflow-hidden">
         <Slider {...settings}>
           {noticias?.slice(3)?.map((item, idx) => (
-            <PrincipalNew key={idx} noticia={item} className="h-80 md:w-95 " />
+            <PrincipalNew key={idx} noticia={item} className="h-80 w-95 " />
           ))}
         </Slider>
       </div>
@@ -141,8 +141,10 @@ const PrincipalNew = ({ noticia, className }) => {
       </div>
       <style jsx>
         {`
-          .w-95 {
-            width: 95%;
+          @media screen and (min-width: 1024px) {
+            .w-95 {
+                width: 95%;
+              }
           }
         `}
       </style>
