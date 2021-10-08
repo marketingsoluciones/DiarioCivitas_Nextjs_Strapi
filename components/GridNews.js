@@ -1,5 +1,6 @@
 import { memo, useEffect, useState } from "react";
 import { AutorLine, Title } from "./PanelPrimary.js";
+import Image from 'next/image'
 
 const GridNews = memo(({noticias}) => {
     const [selected, setSelect] = useState(0)
@@ -47,9 +48,23 @@ export default GridNews
 
 
 const CardView = ({ noticia }) => {
+    const LoaderImage = ({ src, width, quality }) => {
+        const domain = process.env.NEXT_PUBLIC_API_URL
+        return `${domain}${src}`
+      }
     return (
         <div className="w-full h-full bg-white shadow rounded overflow-hidden border border-gray-100">
-            <img src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} className="object-cover object-norepeat w-full h-60 object-top  transition transform duration-1000" />
+            <Image 
+                loader={LoaderImage}
+                src={`${noticia?.imgPrincipal?.url}`}
+                alt={noticia?.title}
+                objectFit={"cover"}
+                objectPosition={"center"}
+                height={240}
+                width={"auto"}
+                layout={"responsive"}
+            />
+           
             <div className="p-6 flex flex-col gap-3">
                 <Title size="lg" titulo={noticia?.title} slug={noticia?.slug} />
                 <AutorLine date={noticia?.createdAt} />

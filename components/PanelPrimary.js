@@ -1,6 +1,7 @@
 import Link from "next/link";
 import dayjs from "dayjs";
 import Slider from "react-slick";
+import Image from 'next/image'
 
 const PanelPrimary = ({ noticias }) => {
   const settings = {
@@ -125,15 +126,24 @@ const TagCategories = ({ postcategorias }) => {
 };
 
 const PrincipalNew = ({ noticia, className }) => {
+  const LoaderImage = ({ src, width, quality }) => {
+    const domain = process.env.NEXT_PUBLIC_API_URL;
+    return `${domain}${src}`;
+  };
   return (
     <>
       <div
         className={`... w-full rounded-lg p-4 relative flex items-end overflow-hidden ${className}`}
       >
-        <img
-          src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`}
-          className="absolute w-full h-full top-0 left-0 z-0 object-cover"
+        <Image
+          loader={LoaderImage}
+          src={`${noticia?.imgPrincipal?.url}`}
+          alt={noticia?.title}
+          objectFit={"cover"}
+          objectPosition={"center"}
+          layout={"fill"}
         />
+
         <div className="bg-white p-3 w-full rounded-lg z-10 flex flex-col gap-1">
           <Title titulo={noticia?.title} slug={noticia?.slug} justify={true} />
           <AutorLine date={noticia?.createdAt} />
@@ -143,8 +153,8 @@ const PrincipalNew = ({ noticia, className }) => {
         {`
           @media screen and (min-width: 1024px) {
             .w-95 {
-                width: 95%;
-              }
+              width: 95%;
+            }
           }
         `}
       </style>

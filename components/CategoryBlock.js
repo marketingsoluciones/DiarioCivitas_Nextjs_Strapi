@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { FlechaIcon } from "./icons.js"
 import { Title } from "./PanelPrimary.js"
+import Image from 'next/image'
 
 const CategoryBlock = ({ noticias, title }) => {
     const [news, setNews] = useState([])
@@ -32,10 +33,23 @@ const CategoryBlock = ({ noticias, title }) => {
 export default CategoryBlock
 
 const BlockNews = ({ noticia }) => {
+    const LoaderImage = ({ src, width, quality }) => {
+        const domain = process.env.NEXT_PUBLIC_API_URL
+        return `${domain}${src}`
+      }
+
     return (
         <>
             <div className="block relative h-full w-full bg-black rounded overflow-hidden image-card text-white">
-                <img className="object-cover object-top absolute w-full h-full" src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} />
+                <Image 
+                    loader={LoaderImage}
+                    src={`${noticia?.imgPrincipal?.url}`}
+                    alt={noticia?.title}
+                    objectFit={"cover"}
+                    objectPosition={"left"}
+                    layout={"fill"}
+                    />
+                
                 <span className="block text-center h-full flex items-end justify-center z-20 relative p-4">
                     <Title size="sm" titulo={noticia?.title} slug={noticia?.slug} />
                 </span>
