@@ -18,6 +18,7 @@ const LoadingComponent = () => {
                   objectPosition={"center"}
                   height={40}
                   width={320}
+                  priority={true}
                 />
               </span>
               
