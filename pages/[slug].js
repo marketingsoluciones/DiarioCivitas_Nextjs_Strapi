@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../api";
-import BreadCumbs from "../components/BreadCumbs.js";
-import { useRouter } from "next/router";
 import { Markup } from "interweave";
 import DisqusComments from "../components/DisqusComments.js";
 import TagCategory from "../components/news/TagCategory.js";
@@ -23,8 +21,6 @@ import Image from "next/image";
 
 const Post = ({ PostData }) => {
   const url = "https://api.diariocivitas.com/uploads/";
-  const router = useRouter();
-  console.log(PostData);
 
   const settings = {
     dots: true,
@@ -39,7 +35,7 @@ const Post = ({ PostData }) => {
     cssEase: "linear",
   };
 
-  const LoaderImage = ({ src, width, quality }) => {
+  const LoaderImage = ({ src }) => {
     const domain = process.env.NEXT_PUBLIC_API_URL;
     return `${domain}${src}`;
   };
@@ -50,7 +46,6 @@ const Post = ({ PostData }) => {
         <title>{PostData?.title?.slice(0, 70)} | Diario Civitas</title>
       </Head>
       <div className="w-full md:max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
-        <BreadCumbs router={router} />
         <section className="w-full grid md:grid-cols-3 gap-12 ">
           <div className="md:col-span-2 flex flex-col justify-center gap-4">
             <h1 className="font-display font-bold text-2xl md:text-3xl text-justify ">
@@ -93,7 +88,7 @@ const Post = ({ PostData }) => {
                   allowAttributes={true}
                   allowElements={true}
                 />
-                {PostData?.ImgCarrusel && (
+                {PostData?.ImgCarrusel.length >= 1 && (
                   <>
                     <h2 className="text-gray-700 text-xl font-display">
                       Más imagenes

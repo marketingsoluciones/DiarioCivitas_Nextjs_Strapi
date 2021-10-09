@@ -6,10 +6,11 @@ export const getServerSideProps = async (ctx) => {
         console.time("sitemap")
         const {data} = await api.FetchNews({_limit : 0})
         console.timeEnd("sitemap")
-        console.log(data.length)
         const fields = data.map(item => (
             {
                 loc: `https://diariocivitas.com/${item?.slug}`,
+                changefreq : "daily",
+                priority: 0.7,
                 lastmod: new Date().toISOString(),
              }
         ))

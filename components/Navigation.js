@@ -36,11 +36,9 @@ const Navigation = ({ show, setShow }) => {
 
     useEffect(() => {
         const start = () => {
-            console.log("start");
             setLoading(true);
           };
           const end = () => {
-            console.log("findished");
             setLoading(false);
           };
         router.events.on("routeChangeStart", start);

@@ -23,9 +23,7 @@ const Category = (props) => {
   // })
 
   useEffect(() => {
-    console.log(props);
     setNews(props.news);
-    console.log("Render categoria", props.category);
   }, [props]);
   return (
     <>
