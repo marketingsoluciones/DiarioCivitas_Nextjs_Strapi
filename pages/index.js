@@ -63,18 +63,12 @@ export const PanelSidebar = ({ noticiasOpinion }) => {
 
 export async function getServerSideProps(context) {
   try {
-    console.time("nuevo1");
-    const { data: ultimasNoticias } = await api.FetchNews({
-      _limit: 10,
-      _sort: "createdAt:DESC",
-    });
-    console.timeEnd("nuevo1");
     console.time("nuevo2");
     const { data } = await api.FetchHome();
     console.timeEnd("nuevo2");
     return {
       props: {
-        ultimasNoticias: ultimasNoticias,
+        ultimasNoticias: data?.lastPost?.quinceUltimosPost,
         categorias: data?.lastPost?.ultimosPost,
       },
     };
