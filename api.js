@@ -9,6 +9,10 @@ const api = {
     });
   },
 
+  FetchSiteMap : async () => {
+    return await instance.get('/topslug')
+  },
+
   FetchHome: async (params) => {
     return await instance.get('/toppost', {
       params: params
