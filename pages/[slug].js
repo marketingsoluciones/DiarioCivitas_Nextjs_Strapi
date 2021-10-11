@@ -68,7 +68,7 @@ const Post = ({ PostData }) => {
             />
             <p className="text-xs font-light text-gray-900">Cortesía/Fuente</p>
             <AutorLine
-              author={noticia?.autorName}
+              author={PostData?.autorName}
               date={
                 PostData?.dateCreated <= PostData?.createdAt
                   ? PostData?.dateCreated
