@@ -67,7 +67,7 @@ const Post = ({ PostData }) => {
             />
             <article className="grid md:grid-cols-8 py-2 gap-6 w-full">
               <div className="flex md:col-span-1 w-full md:flex-col gap-2 items-center justify-start">
-                <SocialMediaIcons />
+                <SocialMediaIcons title={PostData?.title} url={PostData?.slug}/>
               </div>
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup
@@ -155,14 +155,15 @@ export async function getStaticPaths() {
   };
 }
 
-export const SocialMediaIcons = () => {
+export const SocialMediaIcons = ({title,url}) => {
+  const urlFinal = `https://diariocivitas.com/${url}`
   return (
     <>
+      <a className="h-10 w-10 rounded-full bg-blue-500 grid place-items-center" href={`https://twitter.com/intent/tweet?url=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
+      <TwitterIcon className="text-white w-5 h-5" />
+      </a>
       <div className="h-10 w-10 rounded-full bg-blue-700 grid place-items-center">
         <FacebookIcon className="text-white w-5 h-5" />
-      </div>
-      <div className="h-10 w-10 rounded-full bg-blue-500 grid place-items-center">
-        <TwitterIcon className="text-white w-5 h-5" />
       </div>
       <div className="h-10 w-10 rounded-full bg-pink-600 grid place-items-center">
         <InstagramIcon className="text-white w-5 h-5" />
