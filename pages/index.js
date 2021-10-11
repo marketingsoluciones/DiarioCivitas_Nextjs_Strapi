@@ -12,6 +12,10 @@ import Image from "next/image";
 const Home = (props) => {
   
   return (
+    <>
+    <Head>
+    <meta name="description" content={"El periodico digital más grande de Murcia, Lorca, Alicante y Puerto Lumbreras | Noticias más destacadas del acontecer local, regional y nacional"} />
+    </Head>
     <section className="max-w-screen-lg mx-auto inset-x-0 md:py-8 flex flex-col gap-10 px-5 bg-white">
       <h1 className="hidden">Diario Civitas</h1>
       {/* <HeaderNews titulos={noticias?.map((noticia) => noticia.titulo)} /> */}
@@ -46,6 +50,7 @@ const Home = (props) => {
         <CategoryBlock title={"Pulpí"} noticias={props?.categorias?.Pulpí} />
       </div>
     </section>
+    </>
   );
 };
 
