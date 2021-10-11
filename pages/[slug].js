@@ -152,7 +152,9 @@ export default Post;
 export const getStaticProps = async ({ params }) => {
  
   try {
-    const { data } = await api.FetchNews(params?.slug);
+    console.log("ESTE ES FETCHNEWSS")
+    console.log(params)
+    const { data } = await api.FetchNews(encodeURI(params?.slug));
     console.log(data)
     return {
       props: {
@@ -171,6 +173,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export async function getStaticPaths() {
+  console.log("ESTE ES FETCHALL")
   const { data } = await api.FetchAllNews();
 
   return {
