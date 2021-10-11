@@ -8,6 +8,7 @@ import PanelPrimary from "../components/PanelPrimary.js";
 import CategoryBlock from "../components/CategoryBlock.js";
 import EditorPicks from "../components/EditorPicks.js";
 import Image from "next/image";
+import Head from 'next/head'
 
 const Home = (props) => {
   
