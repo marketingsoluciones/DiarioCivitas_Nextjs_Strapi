@@ -22,6 +22,8 @@ const Category = (props) => {
   //     return res?.quantity
   // })
 
+  console.log(props)
+
   useEffect(() => {
     setNews(props.news);
   }, [props]);
@@ -144,7 +146,7 @@ export const NewsList = ({ noticia }) => {
 
       <div className="col-span-3 flex flex-col gap-2">
         <Title titulo={noticia?.title} slug={noticia?.slug} size="lg" />
-        <AutorLine date={noticia?.createdAt} />
+        <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
         {/* <div className="font-body text-xs">
                     <Markup content={`${noticia?.content?.slice(0, 400)}...`} noHtml />
                 </div> */}
@@ -187,12 +189,6 @@ export const getServerSideProps = async ({ params }) => {
   try {
     const { data: res } = await api.FetchCategory(params?.category);
     const data = Object.values(res?.lastPost);
-    //const data = res?.data?.getCategory
-    //  const { data } = await api.FetchNews({
-    //      "postcategorias.slug": params?.category,
-    //      _limit: 30,
-    //      _sort: "createdAt:DESC"
-    //  })
     return {
       props: { category: params?.category, news: data },
     };
@@ -251,7 +247,7 @@ const BlockPrincipal = ({ noticia }) => {
           {noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}
         </h3>
         <Title titulo={noticia?.title} slug={noticia?.slug} size="2xl" />
-        <AutorLine date={noticia?.createdAt} />
+        <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
       </div>
       <style jsx>
         {`
@@ -312,7 +308,7 @@ const BlockTwoNews = ({ noticias }) => {
                 width={"auto"}
                 className="rounded-lg"
             />
-        <AutorLine date={noticia?.createdAt} />
+        <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
         <Title titulo={noticia?.title} slug={noticia?.slug} />
       </div>
     );
@@ -345,7 +341,7 @@ const NewsBlock = ({ noticias }) => {
           {noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}
         </h3>
         <div className="pt-2">
-          <AutorLine date={noticia?.createdAt} />
+          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
           <Title titulo={noticia?.title} slug={noticia?.slug} size="md" />
         </div>
       </div>
@@ -384,7 +380,7 @@ const BlockInlineX4 = ({ noticias, color }) => {
             />
        
         <div className="pt-2">
-          <AutorLine date={noticia?.createdAt} />
+          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
           <Title size={"sm"} slug={noticia?.slug} titulo={noticia?.title} />
         </div>
       </div>
@@ -420,7 +416,7 @@ const Block3ColsAds = ({ noticias, color }) => {
         </div>
         <div className="md:col-span-3 flex flex-col gap-1">
           <Title titulo={noticia?.title} size="lg" />
-          <AutorLine date={noticia?.createdAt} />
+          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
           {/* <div className="text-xs font-body mt-3">
                     <Markup content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ab odio consectetur! Asperiores pariatur ut, neque cupiditate temporibus sequi, architecto omnis, perferendis autem repellat rem incidunt!" noHtml/>
                 </div> */}

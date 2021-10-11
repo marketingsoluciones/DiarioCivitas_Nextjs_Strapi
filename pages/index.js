@@ -11,7 +11,7 @@ import Image from "next/image";
 import Head from 'next/head'
 
 const Home = (props) => {
-  
+  console.log(props)
   return (
     <>
     <Head>
@@ -69,9 +69,7 @@ export const PanelSidebar = ({ noticiasOpinion }) => {
 
 export async function getServerSideProps(context) {
   try {
-    console.time("nuevo2");
     const { data } = await api.FetchHome();
-    console.timeEnd("nuevo2");
     return {
       props: {
         ultimasNoticias: data?.lastPost?.quinceUltimosPost,

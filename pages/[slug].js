@@ -39,6 +39,8 @@ const Post = ({ PostData }) => {
     const domain = process.env.NEXT_PUBLIC_API_URL;
     return `${domain}${src}`;
   };
+
+  console.log(PostData);
   return (
     <>
       <Head>
@@ -66,6 +68,7 @@ const Post = ({ PostData }) => {
             />
             <p className="text-xs font-light text-gray-900">Cortesía/Fuente</p>
             <AutorLine
+              author={noticia?.autorName}
               date={
                 PostData?.dateCreated <= PostData?.createdAt
                   ? PostData?.dateCreated
@@ -128,17 +131,15 @@ const Post = ({ PostData }) => {
             <Suscribed />
             <SocialLinks />
             <div>
-            <Image
-              src={"/ads.png"}
-              objectFit={"contain"}
-              objectPosition={"center"}
-              width={"100vw"}
-              height={"100vw"}
-              layout={"responsive"}
-            />
+              <Image
+                src={"/ads.png"}
+                objectFit={"contain"}
+                objectPosition={"center"}
+                width={"100vw"}
+                height={"100vw"}
+                layout={"responsive"}
+              />
             </div>
-
-           
           </aside>
         </section>
       </div>

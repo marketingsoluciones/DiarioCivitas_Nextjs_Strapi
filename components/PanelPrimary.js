@@ -52,7 +52,7 @@ export const AutorLine = ({ date, author }) => {
     <p className="capitalize text-xs font-body h-max">
       Por{" "}
       <span className="text-blue-500 font-semibold capitalize hover:text-gray-800 transition cursor-pointer">
-        {author ?? "Jhon Doe"}
+        {author ?? "Neybeth Pernía"}
       </span>{" "}
       - {date ? dayjs(date).format("DD MMM YYYY") : "00 Ene 2021"}
     </p>
@@ -146,7 +146,7 @@ const PrincipalNew = ({ noticia, className }) => {
 
         <div className="bg-white p-3 w-full rounded-lg z-10 flex flex-col gap-1">
           <Title titulo={noticia?.title} slug={noticia?.slug} justify={true} />
-          <AutorLine date={noticia?.createdAt} />
+          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
         </div>
       </div>
       <style jsx>
