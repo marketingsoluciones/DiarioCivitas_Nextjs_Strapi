@@ -20,7 +20,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
 const Post = ({ PostData }) => {
-  const url = "https://api.diariocivitas.com/uploads/";
 
   const settings = {
     dots: true,
@@ -40,7 +39,6 @@ const Post = ({ PostData }) => {
     return `${domain}${src}`;
   };
 
-  console.log(PostData);
   return (
     <>
       <Head>
@@ -85,8 +83,8 @@ const Post = ({ PostData }) => {
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup
                   content={PostData?.content
-                    ?.replace("/uploads/", `${url}`)
-                    ?.replace("https://diariocivitas.com/uploads/", `${url}`)}
+                    ?.replace(/src=\"https:\/\/diarioCivitas.com\/uploads\//g,"src=\"https://api.diarioCivitas.com/uploads/")
+                    ?.replace(/src=\"\/uploads\//g,"src=\"https://api.diarioCivitas.com/uploads/")}
                   containerTagName="article"
                   allowAttributes={true}
                   allowElements={true}
