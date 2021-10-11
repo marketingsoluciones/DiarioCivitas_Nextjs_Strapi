@@ -85,13 +85,13 @@ const Post = ({ PostData }) => {
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup
                   content={PostData?.content
-                    .replace("/uploads/", `${url}`)
-                    .replace("https://diariocivitas.com/uploads/", `${url}`)}
+                    ?.replace("/uploads/", `${url}`)
+                    ?.replace("https://diariocivitas.com/uploads/", `${url}`)}
                   containerTagName="article"
                   allowAttributes={true}
                   allowElements={true}
                 />
-                {PostData?.ImgCarrusel.length >= 1 && (
+                {PostData?.ImgCarrusel?.length >= 1 && (
                   <>
                     <h2 className="text-gray-700 text-xl font-display">
                       Más imagenes
@@ -150,14 +150,13 @@ const Post = ({ PostData }) => {
 export default Post;
 
 export const getStaticProps = async ({ params }) => {
-  const parametros = {
-    slug: params.slug,
-  };
+ 
   try {
-    const { data } = await api.FetchNews(parametros);
+    const { data } = await api.FetchNews(params?.slug);
+    console.log(data)
     return {
       props: {
-        PostData: data[0],
+        PostData: data,
       },
       revalidate: 300,
     };
@@ -172,7 +171,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export async function getStaticPaths() {
-  const { data } = await api.FetchNews();
+  const { data } = await api.FetchAllNews();
 
   return {
     paths: data?.map((item) => {
@@ -237,7 +236,7 @@ const RelatedArticles = () => {
     };
 
     try {
-      const { data } = await api.FetchNews(params);
+      const { data } = await api.FetchAllNews(params);
       setNews(data);
     } catch (error) {
       console.log(error);

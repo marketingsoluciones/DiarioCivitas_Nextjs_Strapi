@@ -6,7 +6,7 @@ import Image from "next/image";
 const PopularPost = ({ noticias }) => {
   const [news, setNews] = useState([]);
   const fetchNews = async () => {
-    const { data } = await api.FetchNews({
+    const { data } = await api.FetchAllNews({
       _limit: 6,
       _sort: "createdAt:DESC",
     });

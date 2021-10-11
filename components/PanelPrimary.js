@@ -1,19 +1,19 @@
 import Link from "next/link";
 import dayjs from "dayjs";
 import Slider from "react-slick";
-import Image from 'next/image'
+import Image from "next/image";
 
 const PanelPrimary = ({ noticias }) => {
   const settings = {
-    dots: true,
     speed: 200,
-    slidesToShow: 4,
+    slidesToShow: 2,
     slidesToScroll: 1,
     slidesPerRow: 1,
     infinite: false,
     centerMode: false,
     pauseOnHover: true,
     lazyLoad: true,
+    autoplay: true,
     centerPadding: "1000px",
     responsive: [
       {
@@ -27,19 +27,23 @@ const PanelPrimary = ({ noticias }) => {
   };
   return (
     <>
-      <div className="w-full grid md:grid-cols-2 md:h-96 gap-4">
-        <PrincipalNew noticia={noticias[0]} className="h-96" />
-        <div className="w-full h-max grid grid-rows-2 gap-4">
-          <PrincipalNew noticia={noticias[1]} />
-          <PrincipalNew noticia={noticias[2]} />
+      <div className="w-full gap-4 grid">
+        <div className="grid md:grid-cols-2 gap-4">
+          <PrincipalNew noticia={noticias[0]} className="h-96" />
+          <div className="grid gap-4">
+            <SecondaryNews noticia={noticias[1]}  />
+            <SecondaryNews noticia={noticias[2]}  />
+            <SecondaryNews noticia={noticias[3]}  />
+            <SecondaryNews noticia={noticias[4]}  />
+          </div>
         </div>
-      </div>
-      <div className="relative grid grid-cols-1 w-full pb-10 overflow-hidden">
-        <Slider {...settings}>
-          {noticias?.slice(3)?.map((item, idx) => (
-            <PrincipalNew key={idx} noticia={item} className="h-80 w-95 " />
-          ))}
-        </Slider>
+        <div className="relative grid grid-cols-1 w-full pb-10 overflow-hidden">
+          <Slider {...settings}>
+            {noticias?.slice(5)?.map((item, idx) => (
+              <SliderNews key={idx} noticia={item} className="h-80 w-95 " />
+            ))}
+          </Slider>
+        </div>
       </div>
     </>
   );
@@ -97,34 +101,6 @@ export const Title = ({
   );
 };
 
-const TagCategories = ({ postcategorias }) => {
-  const colors = {
-    actualidad: "bg-red-500",
-    salud: "bg-green-500",
-  };
-
-  const Tag = ({ categoria }) => {
-    return (
-      <div
-        className={`${
-          colors[categoria.toLowerCase()]
-        } rounded px-2 py-1 cursor-pointer hover:opacity-90 transition`}
-      >
-        <p className="font-display text-white text-xs uppercase">{categoria}</p>
-      </div>
-    );
-  };
-
-  return (
-    <div className="flex gap-2 items-center justify-center absolute bottom-5 left-5">
-      {postcategorias?.map(
-        (item, idx) =>
-          item !== "Portada" && <Tag key={idx} categoria={item.categorie} />
-      )}
-    </div>
-  );
-};
-
 const PrincipalNew = ({ noticia, className }) => {
   const LoaderImage = ({ src, width, quality }) => {
     const domain = process.env.NEXT_PUBLIC_API_URL;
@@ -133,7 +109,7 @@ const PrincipalNew = ({ noticia, className }) => {
   return (
     <>
       <div
-        className={`... w-full rounded-lg p-4 relative flex items-end overflow-hidden ${className}`}
+        className={`... w-full rounded p-4 relative flex items-end overflow-hidden cursor-pointer hover:opacity-95 transition ${className}`}
       >
         <Image
           loader={LoaderImage}
@@ -144,10 +120,65 @@ const PrincipalNew = ({ noticia, className }) => {
           layout={"fill"}
         />
 
-        <div className="bg-white p-3 w-full rounded-lg z-10 flex flex-col gap-1">
-          <Title titulo={noticia?.title} slug={noticia?.slug} justify={true} />
-          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+        <div className="p-3 w-full z-10 flex flex-col gap-1 text-white block-title ">
+          <span className="z-20 grid gap-2">
+            <Title
+              titulo={noticia?.title}
+              slug={noticia?.slug}
+              justify={true}
+              size="3xl"
+            />
+            <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+          </span>
         </div>
+      </div>
+      <style jsx>
+        {`
+          .block-title::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              0deg,
+              rgba(32, 32, 32, 1) 0%,
+              rgba(255, 255, 255, 0) 60%
+            );
+            z-index: 0;
+          }
+        `}
+      </style>
+    </>
+  );
+};
+
+const SecondaryNews = ({ noticia, className }) => {
+  const LoaderImage = ({ src }) => {
+    const domain = process.env.NEXT_PUBLIC_API_URL;
+    return `${domain}${src}`;
+  };
+  return (
+    <>
+      <div
+        className={`grid grid-cols-3 gap-2`}
+      >
+        <div className="h-20 w-auto overflow-hidden rounded relative">
+          <Image
+            loader={LoaderImage}
+            src={`${noticia?.imgPrincipal?.url}`}
+            alt={noticia?.title}
+            objectFit={"cover"}
+            objectPosition={"center"}
+            layout={"fill"}
+          />
+        </div>
+
+          <div className="col-span-2 gap-2 flex flex-col text-gray-700 h-max">
+            <Title titulo={noticia?.title} slug={noticia?.slug} />
+            <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+          </div>
       </div>
       <style jsx>
         {`
@@ -155,6 +186,59 @@ const PrincipalNew = ({ noticia, className }) => {
             .w-95 {
               width: 95%;
             }
+          }
+        `}
+      </style>
+    </>
+  );
+};
+
+const SliderNews = ({ noticia, className }) => {
+  const LoaderImage = ({ src, width, quality }) => {
+    const domain = process.env.NEXT_PUBLIC_API_URL;
+    return `${domain}${src}`;
+  };
+  return (
+    <>
+      <div
+        className={`... w-full p-4 relative flex items-end overflow-hidden cursor-pointer hover:opacity-95 transition grid ${className}`}
+      >
+        <Image
+          loader={LoaderImage}
+          src={`${noticia?.imgPrincipal?.url}`}
+          alt={noticia?.title}
+          objectFit={"cover"}
+          objectPosition={"center"}
+          layout={"fill"}
+        />
+
+        <div className="p-3 w-full z-10 flex flex-col gap-1 text-white block-title ">
+          <span className="z-20 grid gap-2">
+            <Title
+              titulo={noticia?.title}
+              slug={noticia?.slug}
+              justify={true}
+              size="2xl"
+            />
+            <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+          </span>
+        </div>
+      </div>
+      <style jsx>
+        {`
+          .block-title::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              0deg,
+              rgba(32, 32, 32, 1) 0%,
+              rgba(255, 255, 255, 0) 60%
+            );
+            z-index: 0;
           }
         `}
       </style>

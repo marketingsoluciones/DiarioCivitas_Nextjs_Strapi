@@ -3,10 +3,14 @@ import axios from 'axios'
 let instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
 
 const api = {
-  FetchNews: async (params) => {
+  FetchAllNews: async (params) => {
     return await instance.get('/posts', {
       params: params
     });
+  },
+  
+  FetchNews: async (slug) => {
+    return await instance.get(`/posts/slug/${slug}`);
   },
 
   FetchSiteMap : async () => {
