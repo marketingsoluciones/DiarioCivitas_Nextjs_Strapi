@@ -1,5 +1,6 @@
 import { memo, useEffect, useState } from "react";
 import { AutorLine, Title } from "./PanelPrimary.js";
+import Image from 'next/image'
 
 const GridNews = memo(({noticias}) => {
     const [selected, setSelect] = useState(0)
@@ -18,7 +19,7 @@ const GridNews = memo(({noticias}) => {
         <div className="md:col-span-2 w-full flex flex-col gap-10 border-t-2 pt-2 border-gray-200">
             <div className="w-full flex justify-between items-center md:flex-row flex-col ">
                 <h3 className="font-display font-semibold text-xl uppercase py-2 text-primary md:text-left text-center w-full">
-                    Ultimas Noticias
+                    Más noticias
                 </h3>
                 <ul className="flex gap-4 font-body w-full">
                     {categories.map((categoria, idx) => (
@@ -47,12 +48,26 @@ export default GridNews
 
 
 const CardView = ({ noticia }) => {
+    const LoaderImage = ({ src, width, quality }) => {
+        const domain = process.env.NEXT_PUBLIC_API_URL
+        return `${domain}${src}`
+      }
     return (
         <div className="w-full h-full bg-white shadow rounded overflow-hidden border border-gray-100">
-            <img src={`${process.env.NEXT_PUBLIC_API_URL}${noticia?.imgPrincipal?.url}`} className="object-cover object-norepeat w-full h-60 object-top  transition transform duration-1000" />
+            <Image 
+                loader={LoaderImage}
+                src={`${noticia?.imgPrincipal?.url}`}
+                alt={noticia?.title}
+                objectFit={"cover"}
+                objectPosition={"center"}
+                height={240}
+                width={"auto"}
+                layout={"responsive"}
+            />
+           
             <div className="p-6 flex flex-col gap-3">
                 <Title size="lg" titulo={noticia?.title} slug={noticia?.slug} />
-                <AutorLine date={noticia?.createdAt} />
+                <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
             </div>
         </div>
     );

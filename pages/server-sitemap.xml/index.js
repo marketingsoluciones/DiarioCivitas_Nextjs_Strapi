@@ -3,10 +3,14 @@ import { getServerSideSitemap } from 'next-sitemap'
 
 export const getServerSideProps = async (ctx) => {
     try {
-        const {data} = await api.FetchNewsSitemap()
-        const fields = data.map(item => (
+        console.time("sitemap")
+        const {data} = await api.FetchSiteMap()
+        console.timeEnd("sitemap")
+        const fields = data?.slugs?.map(item => (
             {
-                loc: item?.permaLink,
+                loc: `https://diariocivitas.com/${item}`,
+                changefreq : "daily",
+                priority: 0.7,
                 lastmod: new Date().toISOString(),
              }
         ))

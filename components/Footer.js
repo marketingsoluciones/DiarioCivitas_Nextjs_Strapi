@@ -1,5 +1,6 @@
 import { FacebookIcon, InstagramIcon, TwitterIcon } from "./icons.js";
 import Link from 'next/link'
+import Image from 'next/image'
 const Footer = () => {
   const ListaSobreNosotros = [
     { title: "Anuncia", route: "/" },
@@ -20,7 +21,12 @@ const Footer = () => {
   return (
     <footer className="max-w-screen-lg flex items-center gap-40 justify-center mx-auto inset-x-0 bg-primary p-6">
       <div className="flex items-start gap-3 flex-col">
-        <img src="/logoBlanco.png" className={`object-contain w-60`} />
+        <Image
+          src={"/LogoBlanco.png"}
+          width={240}
+          height={40}
+          objectFit="contain"
+          />
         <p className="text-xs font-display text-white text-center w-full md:text-left">
           © {date.getFullYear()} Diario Civitas | Sede Alicante
         </p>
@@ -50,22 +56,7 @@ const Footer = () => {
 
 export default Footer
 
-const PopularPost = (props) => {
-  const { image, title } = props;
-  return (
-    <div className="flex w-full py-4">
-      <div className="bg-gray-200 w-16 h-16 rounded-full">
-        <img src={image} />
-      </div>
-      <div className="w-2/3 pl-2 h-full flex flex-col justify-center">
-        <h3 className="text-xs text-white font-body">{title}</h3>
-        <p className="text-xs pt-2 text-white">
-          Francisco Montilla | 01 Marzo 2020
-        </p>
-      </div>
-    </div>
-  );
-};
+
 
 
 export const ListBlock = ({ titulo, lista }) => {

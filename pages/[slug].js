@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../api";
-import BreadCumbs from "../components/BreadCumbs.js";
-import { useRouter } from "next/router";
 import { Markup } from "interweave";
 import DisqusComments from "../components/DisqusComments.js";
 import TagCategory from "../components/news/TagCategory.js";
@@ -19,11 +17,9 @@ import Head from "next/head";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
 
 const Post = ({ PostData }) => {
-  const url = "https://api.diariocivitas.com/uploads/";
-  const router = useRouter();
-  console.log(PostData);
 
   const settings = {
     dots: true,
@@ -31,12 +27,18 @@ const Post = ({ PostData }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    lazyLoad : true,
-    fade : true,
+    lazyLoad: true,
+    fade: true,
     autoplay: true,
     autoplaySpeed: 3000,
-    cssEase: "linear"
+    cssEase: "linear",
   };
+
+  const LoaderImage = ({ src }) => {
+    const domain = process.env.NEXT_PUBLIC_API_URL;
+    return `${domain}${src}`;
+  };
+
   return (
     <>
       <Head>
@@ -44,7 +46,6 @@ const Post = ({ PostData }) => {
         <title>{PostData?.title?.slice(0, 70)} | Diario Civitas</title>
       </Head>
       <div className="w-full md:max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
-        <BreadCumbs router={router} />
         <section className="w-full grid md:grid-cols-3 gap-12 ">
           <div className="md:col-span-2 flex flex-col justify-center gap-4">
             <h1 className="font-display font-bold text-2xl md:text-3xl text-justify ">
@@ -52,13 +53,20 @@ const Post = ({ PostData }) => {
             </h1>
             {/* <h2 className="font-display text-gray-400 font-light text-md md:text-lg text-justify ">Aqui va el subtitulo</h2> */}
             <TagCategory categories={PostData?.postcategorias} />
-            <img
-              src={`${process.env.NEXT_PUBLIC_API_URL}${PostData?.imgPrincipal?.url}`}
-              className="w-full h-96 object-cover rounded-lg"
+            <Image
+              loader={LoaderImage}
+              src={`${PostData?.imgPrincipal?.url}`}
               alt={PostData?.imgPrincipal?.alternativeText}
+              objectFit={"cover"}
+              objectPosition={"center"}
+              width={100}
+              height={70}
+              className="rounded-lg overflow-hidden"
+              layout={"responsive"}
             />
             <p className="text-xs font-light text-gray-900">Cortesía/Fuente</p>
             <AutorLine
+              author={PostData?.autorName}
               date={
                 PostData?.dateCreated <= PostData?.createdAt
                   ? PostData?.dateCreated
@@ -67,35 +75,47 @@ const Post = ({ PostData }) => {
             />
             <article className="grid md:grid-cols-8 py-2 gap-6 w-full">
               <div className="flex md:col-span-1 w-full md:flex-col gap-2 items-center justify-start">
-                <SocialMediaIcons title={PostData?.title} url={PostData?.slug}/>
+                <SocialMediaIcons
+                  title={PostData?.title}
+                  url={PostData?.slug}
+                />
               </div>
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup
-                  content={PostData.content
-                    .replace("/uploads/", `${url}`)
-                    .replace("https://diariocivitas.com/uploads/", `${url}`)}
+                  content={PostData?.content
+                    ?.replace(/src=\"https:\/\/diarioCivitas.com\/uploads\//g,"src=\"https://api.diarioCivitas.com/uploads/")
+                    ?.replace(/src=\"\/uploads\//g,"src=\"https://api.diarioCivitas.com/uploads/")}
                   containerTagName="article"
                   allowAttributes={true}
                   allowElements={true}
                 />
-                {PostData?.ImgCarrusel && (
-                    <Slider {...settings}  className="my-10 flex">
+                {PostData?.ImgCarrusel?.length >= 1 && (
+                  <>
+                    <h2 className="text-gray-700 text-xl font-display">
+                      Más imagenes
+                    </h2>
+                    <Slider {...settings} className="mb-10 my-3 flex">
                       {PostData?.ImgCarrusel.map((item, idx) => (
                         <div
                           key={idx}
                           className="w-full h-96 rounded-xl relative overflow-hidden"
                         >
-                          <img
-                            src={`${process.env.NEXT_PUBLIC_API_URL}${item?.url}`}
-                            className="absolute w-full h-full object-cover object-top"
+                          <Image
+                            loader={LoaderImage}
+                            src={`${item?.url}`}
                             alt={item?.alternativeText}
+                            objectFit={"cover"}
+                            objectPosition={"center"}
+                            layout={"fill"}
                           />
+
                           <h3 className="text-white absolute bottom-4 left-4 font-display">
                             {item?.caption}
                           </h3>
                         </div>
                       ))}
                     </Slider>
+                  </>
                 )}
               </div>
               <BlockTags list={PostData?.tags} />
@@ -108,7 +128,16 @@ const Post = ({ PostData }) => {
             {/* <PopularPost /> */}
             <Suscribed />
             <SocialLinks />
-            <img src={"/ads.png"} className="object-contain w-full p-1" />
+            <div>
+              <Image
+                src={"/ads.png"}
+                objectFit={"contain"}
+                objectPosition={"center"}
+                width={"100vw"}
+                height={"100vw"}
+                layout={"responsive"}
+              />
+            </div>
           </aside>
         </section>
       </div>
@@ -119,16 +148,17 @@ const Post = ({ PostData }) => {
 export default Post;
 
 export const getStaticProps = async ({ params }) => {
-  const parametros = {
-    slug: params.slug,
-  };
+ 
   try {
-    const { data } = await api.FetchNews(parametros);
+    console.log("ESTE ES FETCHNEWSS")
+    console.log(params)
+    const { data } = await api.FetchNews(encodeURI(params?.slug));
+    console.log(data)
     return {
       props: {
-        PostData: data[0],
+        PostData: data,
       },
-      revalidate: 10,
+      revalidate: 300,
     };
   } catch (error) {
     console.log(error);
@@ -141,7 +171,8 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export async function getStaticPaths() {
-  const { data } = await api.FetchNews();
+  console.log("ESTE ES FETCHALL")
+  const { data } = await api.FetchAllNews();
 
   return {
     paths: data?.map((item) => {
@@ -198,7 +229,7 @@ const RelatedArticles = () => {
     };
 
     try {
-      const { data } = await api.FetchNews(params);
+      const { data } = await api.FetchAllNews(params);
       setNews(data);
     } catch (error) {
       console.log(error);

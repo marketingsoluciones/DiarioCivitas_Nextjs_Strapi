@@ -7,6 +7,7 @@ import router from 'next/router'
 import { useContext, useEffect } from "react";
 import { SidebarContext } from "../context/SidebarContext.js";
 import { LoadingContext } from "../context/LoadingContext.js";
+import Image from 'next/image'
 
 const Navigation = ({ show, setShow }) => {
     const {setLoading} = useContext(LoadingContext)
@@ -35,11 +36,9 @@ const Navigation = ({ show, setShow }) => {
 
     useEffect(() => {
         const start = () => {
-            console.log("start");
             setLoading(true);
           };
           const end = () => {
-            console.log("findished");
             setLoading(false);
           };
         router.events.on("routeChangeStart", start);
@@ -83,7 +82,7 @@ const Navigation = ({ show, setShow }) => {
                         <MenuIcono className="text-gray-900 h-6 w-6" />
                     </span>
                     <ForecastComponent />
-                    <span className="w-60 md:absolute mx-auto inset-x-0 md:w-96 grid place-items-center">
+                    <span className="w-60 md:absolute mx-auto inset-x-0 md:w-96 grid place-items-center overflow-visible">
                         <img src="/logo.png" className="w-full w-60 object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
                     </span>
 
