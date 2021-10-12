@@ -2,6 +2,7 @@ import dayjs from "dayjs"
 import es from "dayjs/locale/es"
 import { useEffect, useState } from "react"
 import { api } from "../api.js"
+import Image from 'next/image'
 
 const ForecastComponent = () => {
     const [forecast, setForecast] = useState()
@@ -18,10 +19,21 @@ const ForecastComponent = () => {
     useEffect(() => {
         FetchData("Murcia")
     }, [])
+
+    const loaderImage = ({src}) => {
+        return forecast?.icon_url
+    }
     return (
         <div className="hidden md:block w-max col-span-1 flex flex-col items-center justify-center gap-2">
               <span className="flex gap-2 font-display items-center ">
-                  <img src={forecast?.icon_url} className="W-8 h-8" />
+                  <Image 
+                  loader={loaderImage}
+                    src={"/fasf.png"}
+                    width={32}
+                    height={32}
+                    objectFit={"fill"}
+                    objectPosition={"center"}
+                  />
                 <p className="border-r pr-3">Murcia</p>
                 <p className=" font-semibold">{forecast?.avg_temp_c} °C</p>
               </span>

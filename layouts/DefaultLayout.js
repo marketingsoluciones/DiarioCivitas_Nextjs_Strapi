@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import SidebarMobile from "../components/SidebarMobile";
 import Footer from "../components/Footer";
@@ -6,8 +6,10 @@ import Navigation from "../components/Navigation";
 import { useRouter } from "next/router";
 import { Capitalize } from "../utils/Capitalize";
 import { SidebarContextProvider } from "../context/SidebarContext";
-import { LoadingContext, LoadingContextProvider } from "../context/LoadingContext";
+import { LoadingContextProvider } from "../context/LoadingContext";
 import LoadingComponent from "../components/LoadingComponent";
+import ReactGA from 'react-ga';
+import GoogleAnalytics from "../components/GoogleAnalytics";
 
 const DefaultLayout = ({ children }) => {
   const router = useRouter();
@@ -16,13 +18,14 @@ const DefaultLayout = ({ children }) => {
     "/": "Diario Civitas",
   };
 
+  
   return (
     <LoadingContextProvider>
       <SidebarContextProvider>
+        <GoogleAnalytics />
         <div className="bg-gray-200">
           <Head>
             <link rel="shortcut icon" href="/favicon.ico" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link
               href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
               rel="stylesheet"

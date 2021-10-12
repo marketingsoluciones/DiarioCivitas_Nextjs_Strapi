@@ -36,3 +36,6 @@ body {
     margin: 0 !important;
 }
 
+.h-max {
+    height: fit-content;
+}
