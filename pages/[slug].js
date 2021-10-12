@@ -186,23 +186,15 @@ export async function getStaticPaths() {
   };
 }
 
-export const SocialMediaIcons = ({ title, url }) => {
-  const urlFinal = `https://diariocivitas.com/${url}`;
-  // https://wa.me/?text=Me%20interesa%20in%20el%20auto%20que%20vendes
+export const SocialMediaIcons = ({title,url}) => {
+  const urlFinal = `https://diariocivitas.com/${url}`
   return (
     <>
-      <a
-        href={`https://twitter.com/intent/tweet?text=${title}&url=${urlFinal}&via=diariocivitas`}
-        target={"_blank"}
-        className="h-10 w-10 rounded-full bg-blue-700 grid place-items-center transform hover:scale-110 hover:-rotate-6 transition duration-300 cursor-pointer"
-      >
-        <FacebookIcon className="text-white w-5 h-5" />
+      <a className="h-10 w-10 rounded-full bg-blue-500 grid place-items-center" href={`https://twitter.com/intent/tweet?url=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
+      <TwitterIcon className="text-white w-5 h-5" />
       </a>
-      <div
-        onClick={() => window.open("https://wa.me/?text=HolaMundo")}
-        className="h-10 w-10 rounded-full bg-blue-500 grid place-items-center"
-      >
-        <TwitterIcon className="text-white w-5 h-5" />
+      <div className="h-10 w-10 rounded-full bg-blue-700 grid place-items-center">
+        <FacebookIcon className="text-white w-5 h-5" />
       </div>
       <div className="h-10 w-10 rounded-full bg-pink-600 grid place-items-center">
         <InstagramIcon className="text-white w-5 h-5" />
