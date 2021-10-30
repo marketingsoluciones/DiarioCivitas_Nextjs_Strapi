@@ -45,7 +45,7 @@ const Post = ({ PostData }) => {
       <Head>
         <meta name="description" content={PostData?.seoDescription} />
         <title>{PostData?.title?.slice(0, 70)} | Diario Civitas</title>
-	      <meta property="og:image" content={${PostData?.imgPrincipal?.url}}/>
+	      <meta property="og:image" content={PostData?.imgPrincipal}/>
 	      <meta property="og:title" content={PostData?.title}/>
 	      <meta property="og:description" content={PostData?.seoDescription}/>
 	      <meta property="og:image:width" content="1200"/>
@@ -100,7 +100,7 @@ const Post = ({ PostData }) => {
                     <h2 className="text-gray-700 text-xl font-display">
                       Más imagenes
                     </h2>
-                    <Slider {...settings} className="mb-10 my-3 flex">
+                    <Slider {...settings} className="mb-10 my-3 object-cover flex">
                       {PostData?.ImgCarrusel.map((item, idx) => (
                         <div
                           key={idx}

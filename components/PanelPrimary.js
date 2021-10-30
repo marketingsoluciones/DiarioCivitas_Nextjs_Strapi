@@ -5,29 +5,31 @@ import Image from "next/image";
 
 const PanelPrimary = ({ noticias }) => {
   const settings = {
-    speed: 200,
+    speed: 800,
     slidesToShow: 2,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     slidesPerRow: 1,
-    infinite: false,
+    infinite: true,
     centerMode: false,
     pauseOnHover: true,
     lazyLoad: true,
     autoplay: true,
     centerPadding: "1000px",
+    className: "react-slider",
     responsive: [
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesPerRow: 1,
+          slidesToScroll: 1,
         },
       },
     ],
   };
   return (
     <>
-      <div className="w-full gap-4 grid">
+      <div className="w-full space-x-4 gap-4 grid">
         <div className="grid md:grid-cols-2 gap-4">
           <PrincipalNew noticia={noticias[0]} className="h-96" />
           <div className="grid gap-4">
@@ -37,7 +39,7 @@ const PanelPrimary = ({ noticias }) => {
             <SecondaryNews noticia={noticias[4]}  />
           </div>
         </div>
-        <div className="relative grid grid-cols-1 w-full pb-10 overflow-hidden">
+        <div className="relative grid grid-cols-1 w-full pb-0 overflow-hidden">
           <Slider {...settings}>
             {noticias?.slice(5)?.map((item, idx) => (
               <SliderNews key={idx} noticia={item} className="h-80 w-95 " />

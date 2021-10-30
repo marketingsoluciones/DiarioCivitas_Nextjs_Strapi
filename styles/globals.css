@@ -39,3 +39,11 @@ body {
 .h-max {
     height: fit-content;
 }
+
+.slick-slide:nth-child(odd) {
+    padding-right: 8px !important;
+}
+
+.slick-slide:nth-child(even) {
+    padding-left: 8px !important;
+}
