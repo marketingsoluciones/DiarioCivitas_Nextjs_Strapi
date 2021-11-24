@@ -7,6 +7,7 @@ import {
   FacebookIcon,
   InstagramIcon,
   TwitterIcon,
+  WhatsAppIcon,
 } from "../components/icons.js";
 import { News } from "../components/EditorPicks.js";
 import PopularPost from "../components/home/PopularPost.js";
@@ -44,6 +45,11 @@ const Post = ({ PostData }) => {
       <Head>
         <meta name="description" content={PostData?.seoDescription} />
         <title>{PostData?.title?.slice(0, 70)} | Diario Civitas</title>
+	      <meta property="og:image" content={PostData?.imgPrincipal}/>
+	      <meta property="og:title" content={PostData?.title}/>
+	      <meta property="og:description" content={PostData?.seoDescription}/>
+	      <meta property="og:image:width" content="1200"/>
+	      <meta property="og:image:height" content="630"/>
       </Head>
       <div className="w-full md:max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
         <section className="w-full grid md:grid-cols-3 gap-12 ">
@@ -94,7 +100,7 @@ const Post = ({ PostData }) => {
                     <h2 className="text-gray-700 text-xl font-display">
                       Más imagenes
                     </h2>
-                    <Slider {...settings} className="mb-10 my-3 flex">
+                    <Slider {...settings} className="mb-10 my-3 object-cover flex">
                       {PostData?.ImgCarrusel.map((item, idx) => (
                         <div
                           key={idx}
@@ -190,15 +196,18 @@ export const SocialMediaIcons = ({title,url}) => {
   const urlFinal = `https://diariocivitas.com/${url}`
   return (
     <>
-      <a className="h-10 w-10 rounded-full bg-blue-500 grid place-items-center" href={`https://twitter.com/intent/tweet?url=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
+      <a className="h-10 w-10 rounded-full hover:bg-blue-300 bg-blue-500 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://twitter.com/intent/tweet?url=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
       <TwitterIcon className="text-white w-5 h-5" />
       </a>
-      <div className="h-10 w-10 rounded-full bg-blue-700 grid place-items-center">
+      <a className="h-10 w-10 rounded-full hover:bg-blue-500 bg-blue-700 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://www.facebook.com/sharer/sharer.php?u=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
         <FacebookIcon className="text-white w-5 h-5" />
-      </div>
-      <div className="h-10 w-10 rounded-full bg-pink-600 grid place-items-center">
+      </a>
+      {/* <a className="h-10 w-10 rounded-full hover:bg-pink-700 bg-pink-500 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://www.instagram.com/sharer/sharer.php?u=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
         <InstagramIcon className="text-white w-5 h-5" />
-      </div>
+      </a> */}
+       <a className="h-10 w-10 rounded-full hover:bg-green-800 bg-green-600 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://api.whatsapp.com/send?text=${title}&url=${urlFinal}`} target="_blank">
+        <WhatsAppIcon className="text-white w-5 h-5" />
+      </a>
     </>
   );
 };

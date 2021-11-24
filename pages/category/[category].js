@@ -73,7 +73,7 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
             ))}
           </div>
 
-          <div className="md:col-span-2 w-full relative flex flex-col gap-6">
+          <div className="md:col-span-2 w-full relative space-x-4 flex flex-col gap-6">
             <BlockPrincipal noticia={news?.length && news[0]} />
             <BlockTwoNews noticias={news?.slice(9, 11)} />
           </div>

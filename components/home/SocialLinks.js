@@ -7,7 +7,7 @@ import { FacebookIcon, InstagramIcon, TwitterIcon } from "../icons.js"
       { titulo: "Instagram", icono: <InstagramIcon className="h-6 w-6 text-white" />, color: "bg-pink-600" },
     ]
     return (
-      <div className="bg-white shadow-md p-8">
+      <div className="bg-white shadow-md p-8 w-full">
         <h3 className="font-body font-semibold uppercase text-md pb-4">¡Hagamoslo viral!</h3>
         <div className=" grid grid-cols-2 gap-4">
         {arrRedes.map((red, idx) => (
