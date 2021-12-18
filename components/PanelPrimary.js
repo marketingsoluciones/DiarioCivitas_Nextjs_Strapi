@@ -54,6 +54,31 @@ const PanelPrimary = ({ noticias }) => {
 export default PanelPrimary;
 
 export const AutorLine = ({ date, author }) => {
+  
+  const AutorResume = async() => {
+    const url='https://api.diariocivitas.com/posts/authors';
+    const resp =  await fetch(url);
+    const {data} = await resp.json();
+
+    const resume = data.map( img =>{
+      return{
+        id: img.id,
+        autorName: img.autorName,
+        email: img.email,
+        reseña: img.reseña,
+        perfil: img.perfil,
+        redesSociales: {
+          instagram: "@diariocivitas",
+          facebook: "https://www.facebook.com/DiarioCivitas-Murcia-Alicante-100198252008047/",
+          twitter: "@DiarioCivitas"
+    },
+        fotoUrl: "https://st2.depositphotos.com/47577860/46774/v/450/depositphotos_467749108-stock-illustration-avatar-journalist-male-icon-filled.jpg"
+      }
+    } )
+
+    console.log(data);
+  }
+  AutorLine();
   return (
     <p className="capitalize text-xs font-body h-max">
       Por{" "}
