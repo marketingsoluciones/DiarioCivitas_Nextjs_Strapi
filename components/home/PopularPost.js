@@ -21,7 +21,7 @@ const PopularPost = ({ noticias }) => {
   }, [noticias]);
 
   return (
-    <div className="bg-white shadow-md border-gray-100 border p-8 gap-10 grid grid-cols-1 w-full font-body">
+    <div className="bg-white shadow-md border-gray-100 border p-8 gap-5 grid grid-cols-1 w-full font-body">
       {news?.map((item, idx) => (
         <Post key={idx} noticia={item} />
       ))}

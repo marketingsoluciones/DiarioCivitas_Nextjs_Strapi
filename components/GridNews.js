@@ -65,7 +65,7 @@ const CardView = ({ noticia }) => {
                 layout={"responsive"}
             />
            
-            <div className="p-6 flex flex-col gap-3">
+            <div className="p-2 flex flex-col gap-3">
                 <Title size="lg" titulo={noticia?.title} slug={noticia?.slug} />
                 <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
             </div>

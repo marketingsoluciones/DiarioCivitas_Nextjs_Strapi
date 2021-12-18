@@ -29,14 +29,15 @@ const PanelPrimary = ({ noticias }) => {
   };
   return (
     <>
-      <div className="w-full space-x-4 gap-4 grid">
-        <div className="grid md:grid-cols-2 gap-4">
+      {/* <div className="w-full space-x-4 gap-4 grid"> */}
+      <div className="w-full gap-3 grid">
+        <div className="grid md:grid-cols-2 gap-3">
           <PrincipalNew noticia={noticias[0]} className="h-96" />
-          <div className="grid gap-4">
-            <SecondaryNews noticia={noticias[1]}  />
-            <SecondaryNews noticia={noticias[2]}  />
-            <SecondaryNews noticia={noticias[3]}  />
-            <SecondaryNews noticia={noticias[4]}  />
+          <div className="grid gap-3">
+            <SecondaryNews noticia={noticias[1]} />
+            <SecondaryNews noticia={noticias[2]} />
+            <SecondaryNews noticia={noticias[3]} />
+            <SecondaryNews noticia={noticias[4]} />
           </div>
         </div>
         <div className="relative grid grid-cols-1 w-full pb-0 overflow-hidden">
@@ -54,37 +55,12 @@ const PanelPrimary = ({ noticias }) => {
 export default PanelPrimary;
 
 export const AutorLine = ({ date, author }) => {
-  
-  const AutorResume = async() => {
-    const url='https://api.diariocivitas.com/posts/authors';
-    const resp =  await fetch(url);
-    const {data} = await resp.json();
-
-    const resume = data.map( img =>{
-      return{
-        id: img.id,
-        autorName: img.autorName,
-        email: img.email,
-        reseña: img.reseña,
-        perfil: img.perfil,
-        redesSociales: {
-          instagram: "@diariocivitas",
-          facebook: "https://www.facebook.com/DiarioCivitas-Murcia-Alicante-100198252008047/",
-          twitter: "@DiarioCivitas"
-    },
-        fotoUrl: "https://st2.depositphotos.com/47577860/46774/v/450/depositphotos_467749108-stock-illustration-avatar-journalist-male-icon-filled.jpg"
-      }
-    } )
-
-    console.log(data);
-  }
-  AutorLine();
   return (
     <p className="capitalize text-xs font-body h-max">
       Por{" "}
-      <span className="text-blue-500 font-semibold capitalize hover:text-gray-800 transition cursor-pointer">
-        {author ?? "Neybeth Pernía"}
-      </span>{" "}
+      <Link href={`/author/${author ?? "Neybeth Pernía"}`}>
+        <span className="text-blue-500 font-semibold capitalize hover:text-gray-800 transition cursor-pointer">{author ?? "Neybeth Pernía"}</span>
+      </Link>{" "}
       - {date ? dayjs(date).format("DD MMM YYYY") : "00 Ene 2021"}
     </p>
   );
@@ -188,10 +164,9 @@ const SecondaryNews = ({ noticia, className }) => {
   };
   return (
     <>
-      <div
-        className={`grid grid-cols-3 gap-2`}
-      >
-        <div className="h-20 w-auto overflow-hidden rounded relative">
+      <div className={`grid grid-cols-3 gap-2`}>
+        {/* <div className="h-20 w-auto overflow-hidden rounded relative"> */}
+        <div className="h-auto w-auto overflow-hidden rounded relative">
           <Image
             loader={LoaderImage}
             src={`${noticia?.imgPrincipal?.url}`}
@@ -202,10 +177,10 @@ const SecondaryNews = ({ noticia, className }) => {
           />
         </div>
 
-          <div className="col-span-2 gap-2 flex flex-col text-gray-700 h-max">
-            <Title titulo={noticia?.title} slug={noticia?.slug} />
-            <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
-          </div>
+        <div className="col-span-2 gap-2 flex flex-col text-gray-700 h-max">
+          <Title titulo={noticia?.title} slug={noticia?.slug} />
+          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+        </div>
       </div>
       <style jsx>
         {`
@@ -228,7 +203,8 @@ const SliderNews = ({ noticia, className }) => {
   return (
     <>
       <div
-        className={`... w-full p-4 relative flex items-end overflow-hidden cursor-pointer hover:opacity-95 transition grid ${className}`}
+        // className={`... w-full p-4 relative flex items-end overflow-hidden cursor-pointer hover:opacity-95 transition grid ${className}`}
+        className={`... w-full p-4 relative items-end overflow-hidden cursor-pointer hover:opacity-95 transition grid ${className}`}
       >
         <Image
           loader={LoaderImage}

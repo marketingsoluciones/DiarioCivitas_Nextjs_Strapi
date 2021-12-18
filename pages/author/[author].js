@@ -1,31 +1,55 @@
-import React from 'react'
-import Pagination from '../../components/Pagination';
-import { NewsList } from '../category/[category]';
+import React, { useEffect, useState } from "react";
+import { api } from "../../api";
+import { useRouter } from "next/router";
 
+// const Author = ({ author }) => {
 const Author = () => {
-    return (
-        <section className="xl:max-w-screen-lg mx-auto inset-x-0 py-10 font-display flex flex-col gap-10 bg-white p-5">
-            <Pagination />
-        </section>
-    )
-}
+  const router = useRouter();
+  const author = router.query?.author;
+  useEffect(() => {
+    const getAuthorData = async () => {
+      const { data } = await (await fetch('https://api.diariocivitas.com/posts/authors')).json();
+      console.log(data);
 
-export default Author
+    //   const resume = data.map((img) => {
+    //     return {
+    //       id: img.id,
+    //       autorName: img.autorName,
+    //       email: img.email,
+    //       reseña: img.reseña,
+    //       perfil: img.perfil,
+    //       redesSociales: {
+    //         instagram: "@diariocivitas",
+    //         facebook:
+    //           "https://www.facebook.com/DiarioCivitas-Murcia-Alicante-100198252008047/",
+    //         twitter: "@DiarioCivitas",
+    //       },
+    //       fotoUrl:
+    //         "https://st2.depositphotos.com/47577860/46774/v/450/depositphotos_467749108-stock-illustration-avatar-journalist-male-icon-filled.jpg",
+    //     };
+    //   });
+      getAuthorData();
 
+      console.log(data);
+    };
+  }, []);
 
-
-export const getStaticProps = async ({ params }) => {
-    return {
-        props: {params}
-    }
-
+  console.log(author);
+  return <div>Soy {author}</div>;
 };
 
-export async function getStaticPaths() {
-    return {
-        paths: [{params: {author: "hola"}}],
-        fallback: false
-    }
+export default Author;
 
+// export const getStaticProps = async ({ params }) => {
+//   console.log(params);
+//   return {
+//     props: { author: params },
+//   };
+// };
 
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [{ params: { author: "hola" } }],
+//     fallback: false,
+//   };
+// }
