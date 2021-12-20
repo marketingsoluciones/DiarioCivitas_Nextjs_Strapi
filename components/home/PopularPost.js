@@ -21,7 +21,7 @@ const PopularPost = ({ noticias }) => {
   }, [noticias]);
 
   return (
-    <div className="bg-white shadow-md border-gray-100 border p-8 gap-5 grid grid-cols-1 w-full font-body">
+    <div className="bg-white shadow-md border-gray-100 border p-2 gap-4 grid grid-cols-1 w-full font-body">
       {news?.map((item, idx) => (
         <Post key={idx} noticia={item} />
       ))}
@@ -38,7 +38,7 @@ const Post = ({ noticia }) => {
   };
   return (
     <div className="grid grid-cols-3 items-center justify-start">
-      <span className="w-14 h-14 rounded-full relative overflow-hidden">
+      <span className="w-16 h-16 rounded-full relative overflow-hidden">
         <Image
           loader={LoaderImage}
           src={`${noticia?.imgPrincipal?.url}`}
@@ -48,10 +48,10 @@ const Post = ({ noticia }) => {
           layout={"fill"}
         />
       </span>
-      <span className="col-span-2 block flex flex-col items-start justify-center">
+      <span className="col-span-2 flex flex-col items-start justify-center">
         <Title
           titulo={noticia?.title}
-          size={"sm"}
+          size={"md"}
           font={"body"}
           slug={noticia?.slug}
         />

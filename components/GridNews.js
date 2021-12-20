@@ -16,7 +16,7 @@ const GridNews = memo(({noticias}) => {
         setCategories(state)
     }, [])
     return (
-        <div className="md:col-span-2 w-full flex flex-col gap-10 border-t-2 pt-2 border-gray-200">
+        <div className="md:col-span-2 w-full flex flex-col gap-4 border-t-2 pt-2 border-gray-200">
             <div className="w-full flex justify-between items-center md:flex-row flex-col ">
                 <h3 className="font-display font-semibold text-xl uppercase py-2 text-primary md:text-left text-center w-full">
                     Más noticias
@@ -65,7 +65,7 @@ const CardView = ({ noticia }) => {
                 layout={"responsive"}
             />
            
-            <div className="p-2 flex flex-col gap-3">
+            <div className="p-1 flex flex-col gap-3">
                 <Title size="lg" titulo={noticia?.title} slug={noticia?.slug} />
                 <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
             </div>
@@ -76,7 +76,7 @@ const CardView = ({ noticia }) => {
 
 const NewsByCategory = ({category}) => {
     return (
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-4">
             {category?.news?.map((item,idx) => (
                 <CardView key={idx} noticia={item} />
             ))}

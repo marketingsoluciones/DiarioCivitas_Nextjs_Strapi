@@ -21,7 +21,7 @@ const Home = (props) => {
       <h1 className="hidden">Diario Civitas</h1>
       {/* <HeaderNews titulos={noticias?.map((noticia) => noticia.titulo)} /> */}
       <PanelPrimary noticias={props?.ultimasNoticias} />
-      <div className="w-full grid md:grid-cols-3 gap-10">
+      <div className="w-full grid md:grid-cols-3 gap-4">
         <GridNews noticias={props?.categorias} />
         <PanelSidebar noticiasOpinion={props?.categorias} />
       </div>
@@ -35,7 +35,7 @@ const Home = (props) => {
         />
       </div>
       <EditorPicks noticias={props?.ultimasNoticias} />
-      <div className="hidden md:grid grid-cols-2 gap-10 -mt-10">
+      <div className="hidden md:grid grid-cols-2 gap-4 -mt-10">
         <CategoryBlock
           title={"Murcia"}
           noticias={props?.categorias["Locales Murcia"]}
