@@ -3,7 +3,7 @@ import router from 'next/router'
 
 const EditorPicks = ({noticias}) => {
     return (
-        <div className="w-full border-t-2 border-gray-200 grid grid-cols-1 md:grid-cols-4 gap-8 py-12">
+        <div className="w-full border-t-2 border-gray-200 grid grid-cols-1 md:grid-cols-4 gap-4 py-4">
             {noticias.slice(0,4).map((item,idx) => (
                 <News key={idx} noticia={item}/>
             ))}
