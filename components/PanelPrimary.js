@@ -93,9 +93,8 @@ export const Title = ({
   return (
     <Link href={slug ? `/${slug}` : "/"}>
       <h2
-        className={`${fonts[font]} ${sizes[size]} ${
-          justify && "text-justify"
-        } font-semibold cursor-pointer hover:text-blue-500 transition`}
+        className={`${fonts[font]} ${sizes[size]} ${justify && "text-justify"
+          } font-semibold cursor-pointer hover:text-blue-500 transition`}
         {...rest}
       >
         {titulo}
@@ -106,7 +105,7 @@ export const Title = ({
 
 const PrincipalNew = ({ noticia, className }) => {
   const LoaderImage = ({ src, width, quality }) => {
-    const domain = process.env.NEXT_PUBLIC_API_URL;
+    const domain = "https://api.bodasdehoy.com";
     return `${domain}${src}`;
   };
   return (
@@ -116,7 +115,7 @@ const PrincipalNew = ({ noticia, className }) => {
       >
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}
@@ -131,7 +130,7 @@ const PrincipalNew = ({ noticia, className }) => {
               justify={true}
               size="3xl"
             />
-            <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+            <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
           </span>
         </div>
       </div>
@@ -159,7 +158,7 @@ const PrincipalNew = ({ noticia, className }) => {
 
 const SecondaryNews = ({ noticia, className }) => {
   const LoaderImage = ({ src }) => {
-    const domain = process.env.NEXT_PUBLIC_API_URL;
+    const domain = "https://api.bodasdehoy.com";
     return `${domain}${src}`;
   };
   return (
@@ -169,7 +168,7 @@ const SecondaryNews = ({ noticia, className }) => {
         <div className="h-auto w-auto overflow-hidden rounded relative">
           <Image
             loader={LoaderImage}
-            src={`${noticia?.imgPrincipal?.url}`}
+            src={`${noticia?.imgMiniatura?.i640}`}
             alt={noticia?.title}
             objectFit={"cover"}
             objectPosition={"center"}
@@ -179,7 +178,7 @@ const SecondaryNews = ({ noticia, className }) => {
 
         <div className="col-span-2 gap-2 flex flex-col text-gray-700 h-max">
           <Title titulo={noticia?.title} slug={noticia?.slug} />
-          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+          <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
         </div>
       </div>
       <style jsx>
@@ -197,7 +196,7 @@ const SecondaryNews = ({ noticia, className }) => {
 
 const SliderNews = ({ noticia, className }) => {
   const LoaderImage = ({ src, width, quality }) => {
-    const domain = process.env.NEXT_PUBLIC_API_URL;
+    const domain = "https://api.bodasdehoy.com";
     return `${domain}${src}`;
   };
   return (
@@ -208,7 +207,7 @@ const SliderNews = ({ noticia, className }) => {
       >
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}
@@ -223,7 +222,7 @@ const SliderNews = ({ noticia, className }) => {
               justify={true}
               size="2xl"
             />
-            <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+            <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
           </span>
         </div>
       </div>

@@ -2,16 +2,16 @@ import { memo, useEffect, useState } from "react";
 import { AutorLine, Title } from "./PanelPrimary.js";
 import Image from 'next/image'
 
-const GridNews = memo(({noticias}) => {
+const GridNews = memo(({ lastPost }) => {
     const [selected, setSelect] = useState(0)
     const [categories, setCategories] = useState([])
-  
+
     useEffect(() => {
         const state = [
-            {category: "Actualidad", news: Object.values(noticias?.Actualidad)},
-            {category: "Deportes", news: Object.values(noticias?.Deportes)},
-            {category: "Politica", news: Object.values(noticias?.Política)},
-            {category: "Sucesos", news: Object.values(noticias?.Sucesos)}
+            { category: "Actualidad", news: lastPost.filter(elem => elem.title == "actualidad")[0]?.post },
+            { category: "Deportes", news: lastPost.filter(elem => elem.title == "deportes")[0]?.post },
+            { category: "Politica", news: lastPost.filter(elem => elem.title == "política")[0]?.post },
+            { category: "Sucesos", news: lastPost.filter(elem => elem.title == "sucesos")[0]?.post }
         ]
         setCategories(state)
     }, [])
@@ -49,14 +49,15 @@ export default GridNews
 
 const CardView = ({ noticia }) => {
     const LoaderImage = ({ src, width, quality }) => {
-        const domain = process.env.NEXT_PUBLIC_API_URL
+        //const domain = process.env.NEXT_PUBLIC_API_URL
+        const domain = "https://api.bodasdehoy.com";
         return `${domain}${src}`
-      }
+    }
     return (
         <div className="w-full h-full bg-white shadow rounded overflow-hidden border border-gray-100">
-            <Image 
+            <Image
                 loader={LoaderImage}
-                src={`${noticia?.imgPrincipal?.url}`}
+                src={`${noticia?.imgMiniatura?.i640}`}
                 alt={noticia?.title}
                 objectFit={"cover"}
                 objectPosition={"center"}
@@ -64,7 +65,7 @@ const CardView = ({ noticia }) => {
                 width={"auto"}
                 layout={"responsive"}
             />
-           
+
             <div className="p-1 flex flex-col gap-3">
                 <Title size="lg" titulo={noticia?.title} slug={noticia?.slug} />
                 <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
@@ -74,10 +75,10 @@ const CardView = ({ noticia }) => {
 };
 
 
-const NewsByCategory = ({category}) => {
+const NewsByCategory = ({ category }) => {
     return (
         <div className="grid md:grid-cols-2 gap-4">
-            {category?.news?.map((item,idx) => (
+            {category?.news?.map((item, idx) => (
                 <CardView key={idx} noticia={item} />
             ))}
         </div>

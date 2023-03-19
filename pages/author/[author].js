@@ -9,7 +9,7 @@ const Author = () => {
   useEffect(() => {
     const getAuthorData = async () => {
       const { data } = await (await fetch('https://api.diariocivitas.com/posts/authors')).json();
-      console.log(data);
+      console.log(2007,data);
 
     //   const resume = data.map((img) => {
     //     return {
@@ -30,11 +30,11 @@ const Author = () => {
     //   });
       getAuthorData();
 
-      console.log(data);
+      console.log(2008,data);
     };
   }, []);
 
-  console.log(author);
+  console.log(2009,author);
   return <div>Soy {author}</div>;
 };
 

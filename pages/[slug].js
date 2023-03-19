@@ -19,6 +19,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import { fetchApi, queries } from "../utils/Fetching.js";
+
 
 const Post = ({ PostData }) => {
 
@@ -45,11 +47,11 @@ const Post = ({ PostData }) => {
       <Head>
         <meta name="description" content={PostData?.seoDescription} />
         <title>{PostData?.title?.slice(0, 70)} | Diario Civitas</title>
-	      <meta property="og:image" content={PostData?.imgPrincipal}/>
-	      <meta property="og:title" content={PostData?.title}/>
-	      <meta property="og:description" content={PostData?.seoDescription}/>
-	      <meta property="og:image:width" content="1200"/>
-	      <meta property="og:image:height" content="630"/>
+        <meta property="og:image" content={PostData?.imgPrincipal} />
+        <meta property="og:title" content={PostData?.title} />
+        <meta property="og:description" content={PostData?.seoDescription} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Head>
       <div className="w-full md:max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
         <section className="w-full grid md:grid-cols-3 gap-12 ">
@@ -89,8 +91,8 @@ const Post = ({ PostData }) => {
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup
                   content={PostData?.content
-                    ?.replace(/src=\"https:\/\/diarioCivitas.com\/uploads\//g,"src=\"https://api.diarioCivitas.com/uploads/")
-                    ?.replace(/src=\"\/uploads\//g,"src=\"https://api.diarioCivitas.com/uploads/")}
+                    ?.replace(/src=\"https:\/\/diarioCivitas.com\/uploads\//g, "src=\"https://api.diarioCivitas.com/uploads/")
+                    ?.replace(/src=\"\/uploads\//g, "src=\"https://api.diarioCivitas.com/uploads/")}
                   containerTagName="article"
                   allowAttributes={true}
                   allowElements={true}
@@ -154,12 +156,21 @@ const Post = ({ PostData }) => {
 export default Post;
 
 export const getStaticProps = async ({ params }) => {
- 
+
   try {
-    console.log("ESTE ES FETCHNEWSS")
-    console.log(params)
+    console.log(2001, "ESTE ES FETCHNEWSS")
+    console.log(2002, params)
+    try {
+      const asd = await fetchApi({
+        query: queries.getAllCategoryPost,
+        variables: { development: "diariocivitas" }
+      })
+      //console.log(5001, asd)
+    } catch (error) {
+      console.log(9001, error)
+    }
     const { data } = await api.FetchNews(encodeURI(params?.slug));
-    console.log(data)
+    //console.log(2003, data)
     return {
       props: {
         PostData: data,
@@ -167,7 +178,7 @@ export const getStaticProps = async ({ params }) => {
       revalidate: 300,
     };
   } catch (error) {
-    console.log(error);
+    console.log(10051, "he aqui un error");
     return {
       props: {
         PostData: {},
@@ -177,7 +188,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export async function getStaticPaths() {
-  console.log("ESTE ES FETCHALL")
+  console.log(2005, "ESTE ES FETCHALL1")
   const { data } = await api.FetchAllNews();
 
   return {
@@ -192,12 +203,12 @@ export async function getStaticPaths() {
   };
 }
 
-export const SocialMediaIcons = ({title,url}) => {
+export const SocialMediaIcons = ({ title, url }) => {
   const urlFinal = `https://diariocivitas.com/${url}`
   return (
     <>
       <a className="h-10 w-10 rounded-full hover:bg-blue-300 bg-blue-500 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://twitter.com/intent/tweet?url=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
-      <TwitterIcon className="text-white w-5 h-5" />
+        <TwitterIcon className="text-white w-5 h-5" />
       </a>
       <a className="h-10 w-10 rounded-full hover:bg-blue-500 bg-blue-700 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://www.facebook.com/sharer/sharer.php?u=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
         <FacebookIcon className="text-white w-5 h-5" />
@@ -205,7 +216,7 @@ export const SocialMediaIcons = ({title,url}) => {
       {/* <a className="h-10 w-10 rounded-full hover:bg-pink-700 bg-pink-500 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://www.instagram.com/sharer/sharer.php?u=${urlFinal}&text=${title}&via=diariocivitas`} target="_blank">
         <InstagramIcon className="text-white w-5 h-5" />
       </a> */}
-       <a className="h-10 w-10 rounded-full hover:bg-green-800 bg-green-600 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://api.whatsapp.com/send?text=${title}&url=${urlFinal}`} target="_blank">
+      <a className="h-10 w-10 rounded-full hover:bg-green-800 bg-green-600 grid duration-300 transition hover:scale-110 hover:rotute-6 place-items-center" href={`https://api.whatsapp.com/send?text=${title}&url=${urlFinal}`} target="_blank">
         <WhatsAppIcon className="text-white w-5 h-5" />
       </a>
     </>
@@ -241,7 +252,7 @@ const RelatedArticles = () => {
       const { data } = await api.FetchAllNews(params);
       setNews(data);
     } catch (error) {
-      console.log(error);
+      console.log(1006, error);
     }
   };
   useEffect(() => {

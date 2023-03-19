@@ -9,6 +9,7 @@ import { Capitalize } from "../../utils/Capitalize.js";
 import Pagination from "../../components/Pagination.js";
 import { LoadingContext } from "../../context/LoadingContext.js";
 import Image from "next/image";
+import { fetchApi, queries } from "../../utils/Fetching.js";
 
 const LoaderImage = ({ src, width, quality }) => {
   const domain = process.env.NEXT_PUBLIC_API_URL;
@@ -22,7 +23,7 @@ const Category = (props) => {
   //     return res?.quantity
   // })
 
-  console.log(props)
+  //console.log(3001, props)
 
   useEffect(() => {
     setNews(props.news);
@@ -33,7 +34,7 @@ const Category = (props) => {
         <meta name="description" content={""} />
         <title>{Capitalize(props?.category)} | Diario Civitas</title>
       </Head>
-      {news.length >= 30 ? (
+      {news?.length >= 30 ? (
         <CategoryPrincipal news={news} category={props?.category} />
       ) : (
         <CategorySecondary news={news} category={props?.category} />
@@ -188,15 +189,20 @@ const CategorySecondary = ({ news: noticias, category }) => {
 export const getServerSideProps = async ({ params }) => {
   try {
     const { data: res } = await api.FetchCategory(params?.category);
-    const data = Object.values(res?.lastPost);
-    return {
-      props: { category: params?.category, news: data },
-    };
-  } catch (error) {
-    console.log(error);
+    console.log(9002, res)
+    console.log(9002.1, res.lastPost.length)
+    if (res != "no data") {
+      //console.log(9003, res.lastPost?.length)
+      const data = Object.values(res?.lastPost);
+      return {
+        props: { category: params?.category, news: data },
+      };
+    }
     return {
       props: {},
     };
+  } catch (error) {
+    console.log(1008, error);
   }
 };
 
@@ -233,7 +239,7 @@ const BlockPrincipal = ({ noticia }) => {
   return (
     <div className="relative">
       <div className="w-full h-96 imagen relative rounded-lg overflow-hidden">
-      <Image
+        <Image
           loader={LoaderImage}
           src={`${noticia?.imgPrincipal?.url}`}
           alt={noticia?.title}
@@ -274,18 +280,18 @@ const BlockPrincipal = ({ noticia }) => {
 const NewsListSecondary = ({ noticia }) => {
   return (
     <div className="py-4 border-b grid grid-cols-3 gap-6">
-        <div className="w-14 h-14 block relative rounded-lg  overflow-hidden">
-        <Image 
-                loader={LoaderImage}
-                src={`${noticia?.imgPrincipal?.url}`}
-                alt={noticia?.title}
-                objectFit={"cover"}
-                objectPosition={"center"}
-                layout={"fill"}
-            />
+      <div className="w-14 h-14 block relative rounded-lg  overflow-hidden">
+        <Image
+          loader={LoaderImage}
+          src={`${noticia?.imgPrincipal?.url}`}
+          alt={noticia?.title}
+          objectFit={"cover"}
+          objectPosition={"center"}
+          layout={"fill"}
+        />
 
-        </div>
-      
+      </div>
+
       <span className="col-span-2">
         <Title titulo={noticia?.title} slug={noticia?.slug} size={"sm"} />
       </span>
@@ -297,17 +303,17 @@ const BlockTwoNews = ({ noticias }) => {
   const News = ({ noticia }) => {
     return (
       <div className="w-full flex-col flex gap-1">
-          <Image 
-                loader={LoaderImage}
-                src={`${noticia?.imgPrincipal?.url}`}
-                alt={noticia?.title}
-                objectFit={"cover"}
-                objectPosition={"center"}
-                layout={"responsive"}
-                height={60}
-                width={"auto"}
-                className="rounded-lg"
-            />
+        <Image
+          loader={LoaderImage}
+          src={`${noticia?.imgPrincipal?.url}`}
+          alt={noticia?.title}
+          objectFit={"cover"}
+          objectPosition={"center"}
+          layout={"responsive"}
+          height={60}
+          width={"auto"}
+          className="rounded-lg"
+        />
         <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
         <Title titulo={noticia?.title} slug={noticia?.slug} />
       </div>
@@ -326,17 +332,17 @@ const NewsBlock = ({ noticias }) => {
   const News = ({ noticia }) => {
     return (
       <div className="w-full ... flex flex-col gap-1">
-          <Image 
-                loader={LoaderImage}
-                src={`${noticia?.imgPrincipal?.url}`}
-                alt={noticia?.title}
-                objectFit={"cover"}
-                objectPosition={"center"}
-                layout={"responsive"}
-                height={60}
-                width={"auto"}
-                className="rounded-lg"
-            />
+        <Image
+          loader={LoaderImage}
+          src={`${noticia?.imgPrincipal?.url}`}
+          alt={noticia?.title}
+          objectFit={"cover"}
+          objectPosition={"center"}
+          layout={"responsive"}
+          height={60}
+          width={"auto"}
+          className="rounded-lg"
+        />
         <h3 className="text-sm font-semibold text-yellow-500">
           {noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}
         </h3>
@@ -367,18 +373,18 @@ const BlockInlineX4 = ({ noticias, color }) => {
   const News = ({ noticia }) => {
     return (
       <div className="w-full flex flex-col gap-0.5">
-           <Image 
-                loader={LoaderImage}
-                src={`${noticia?.imgPrincipal?.url}`}
-                alt={noticia?.title}
-                objectFit={"cover"}
-                objectPosition={"center"}
-                layout={"responsive"}
-                height={60}
-                width={"auto"}
-                className="rounded-lg"
-            />
-       
+        <Image
+          loader={LoaderImage}
+          src={`${noticia?.imgPrincipal?.url}`}
+          alt={noticia?.title}
+          objectFit={"cover"}
+          objectPosition={"center"}
+          layout={"responsive"}
+          height={60}
+          width={"auto"}
+          className="rounded-lg"
+        />
+
         <div className="pt-2">
           <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
           <Title size={"sm"} slug={noticia?.slug} titulo={noticia?.title} />
@@ -402,17 +408,17 @@ const Block3ColsAds = ({ noticias, color }) => {
     return (
       <div className="w-full flex items-center gap-6 grid md:grid-cols-5">
         <div className="w-full h-28 rounded overflow-hidden md:col-span-2">
-        <Image 
-                loader={LoaderImage}
-                src={`${noticia?.imgPrincipal?.url}`}
-                alt={noticia?.title}
-                objectFit={"cover"}
-                objectPosition={"center"}
-                layout={"responsive"}
-                height={"auto"}
-                width={"auto"}
-                className="rounded-lg"
-            />
+          <Image
+            loader={LoaderImage}
+            src={`${noticia?.imgPrincipal?.url}`}
+            alt={noticia?.title}
+            objectFit={"cover"}
+            objectPosition={"center"}
+            layout={"responsive"}
+            height={"auto"}
+            width={"auto"}
+            className="rounded-lg"
+          />
         </div>
         <div className="md:col-span-3 flex flex-col gap-1">
           <Title titulo={noticia?.title} size="lg" />
@@ -432,13 +438,13 @@ const Block3ColsAds = ({ noticias, color }) => {
         ))}
       </div>
       <div>
-      <Image
-            src="/ads.png"
-            objectFit={"contain"}
-            height={"100vw"}
-            width={"100vw"}
-            layout={"responsive"}
-          />
+        <Image
+          src="/ads.png"
+          objectFit={"contain"}
+          height={"100vw"}
+          width={"100vw"}
+          layout={"responsive"}
+        />
       </div>
     </div>
   );

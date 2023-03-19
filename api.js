@@ -1,19 +1,28 @@
 import axios from 'axios'
 
 let instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
+let instanceNew = axios.create({ baseURL: "http://api.bodasdehoy.com/" });
 
 const api = {
+  graphql: async (data) => {
+    return await instanceNew.post("/graphql", data, {
+      headers: {
+        Development: "diariocivitas"
+      }
+    })
+  },
+
   FetchAllNews: async (params) => {
     return await instance.get('/posts', {
       params: params
     });
   },
-  
+
   FetchNews: async (slug) => {
     return await instance.get(`/posts/slug/${slug}`);
   },
 
-  FetchSiteMap : async () => {
+  FetchSiteMap: async () => {
     return await instance.get('/topslug')
   },
 

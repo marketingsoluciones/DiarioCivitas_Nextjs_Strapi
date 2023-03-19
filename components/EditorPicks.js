@@ -1,11 +1,11 @@
 import { Title } from "./PanelPrimary.js"
 import router from 'next/router'
 
-const EditorPicks = ({noticias}) => {
+const EditorPicks = ({ noticias }) => {
     return (
         <div className="w-full border-t-2 border-gray-200 grid grid-cols-1 md:grid-cols-4 gap-4 py-4">
-            {noticias.slice(0,4).map((item,idx) => (
-                <News key={idx} noticia={item}/>
+            {noticias.slice(0, 4).map((item, idx) => (
+                <News key={idx} noticia={item} />
             ))}
 
         </div>
@@ -14,19 +14,19 @@ const EditorPicks = ({noticias}) => {
 
 export default EditorPicks
 
-export const News = ({noticia}) => {
-    const { imgPrincipal, title, slug } = noticia
+export const News = ({ noticia }) => {
+    const { imgMiniatura, title, slug } = noticia
     return (
         <>
-        <div className="font-display text-white h-48 rounded bg-gray-700 w-full card-image relative p-6 hover:scale-105 transform duration-1000 transition cursor-pointer" onClick={() => router.push(slug)}>
-            <span className="block text-center h-full flex items-end justify-center z-20 relative">
-            <Title size="sm" titulo={title} slug={slug} font="body" />
-            </span>
-        </div>
-        <style jsx>
-            {`
+            <div className="font-display text-white h-48 rounded bg-gray-700 w-full card-image relative p-6 hover:scale-105 transform duration-1000 transition cursor-pointer" onClick={() => router.push(slug)}>
+                <span className="block text-center h-full flex items-end justify-center z-20 relative">
+                    <Title size="sm" titulo={title} slug={slug} font="body" />
+                </span>
+            </div>
+            <style jsx>
+                {`
             .card-image {
-                background-image: url("${`${process.env.NEXT_PUBLIC_API_URL}${imgPrincipal?.url}`}");
+                background-image: url("${`${"https://api.bodasdehoy.com"}${imgMiniatura?.i320}`}");
                 background-position: center top;
                 background-size: cover;
                 overflow:hidden
@@ -42,7 +42,7 @@ export const News = ({noticia}) => {
                 left:0;
             }
             `}
-        </style>
+            </style>
         </>
 
     )

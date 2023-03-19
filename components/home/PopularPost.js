@@ -3,7 +3,7 @@ import { api } from "../../api.js";
 import { AutorLine, Title } from "../PanelPrimary.js";
 import Image from "next/image";
 
-const PopularPost = ({ noticias }) => {
+const PopularPost = ({ lastPost }) => {
   const [news, setNews] = useState([]);
   const fetchNews = async () => {
     const { data } = await api.FetchAllNews({
@@ -13,15 +13,15 @@ const PopularPost = ({ noticias }) => {
     setNews(data);
   };
   useEffect(() => {
-    if (noticias) {
-      setNews(Object.values(noticias?.Opinión));
+    if (lastPost) {
+      setNews(lastPost.filter(elem => elem.title == "opinión")[0]?.post);
     } else {
       fetchNews();
     }
-  }, [noticias]);
+  }, [lastPost]);
 
   return (
-    <div className="bg-white shadow-md border-gray-100 border p-2 gap-4 grid grid-cols-1 w-full font-body">
+    <div className="shadow-md border-gray-100 border p-2 gap-4 grid grid-cols-1 w-full font-body">
       {news?.map((item, idx) => (
         <Post key={idx} noticia={item} />
       ))}
@@ -33,7 +33,8 @@ export default PopularPost;
 
 const Post = ({ noticia }) => {
   const LoaderImage = ({ src, width, quality }) => {
-    const domain = process.env.NEXT_PUBLIC_API_URL;
+    //const domain = process.env.NEXT_PUBLIC_API_URL;
+    const domain = "https://api.bodasdehoy.com";
     return `${domain}${src}`;
   };
   return (
@@ -41,7 +42,7 @@ const Post = ({ noticia }) => {
       <span className="w-16 h-16 rounded-full relative overflow-hidden">
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}

@@ -17,7 +17,7 @@ export const getServerSideProps = async (ctx) => {
         return getServerSideSitemap(ctx, fields)
         
     } catch (error) {
-        console.log(error)
+        console.log(1009,error)
         return getServerSideSitemap(ctx, [])
     }
 }

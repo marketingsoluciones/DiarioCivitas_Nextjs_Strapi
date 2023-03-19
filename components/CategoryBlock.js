@@ -3,17 +3,17 @@ import { FlechaIcon } from "./icons.js"
 import { Title } from "./PanelPrimary.js"
 import Image from 'next/image'
 
-const CategoryBlock = ({ noticias, title }) => {
+const CategoryBlock = ({ lastPost, title }) => {
     const [news, setNews] = useState([])
 
     useEffect(() => {
-        setNews(Object.values(noticias))
-    }, [noticias])
+        setNews(lastPost)
+    }, [lastPost])
     const colors = {
-        murcia : "bg-gradient-to-r from-red-500 to-pink-500",
-        "puerto lumbreras" : "bg-gradient-to-r from-blue-500 to-green-500",
-        lorca : "bg-gradient-to-r from-indigo-500 to-purple-500",
-        pulpí : "bg-gradient-to-r from-yellow-500 to-yellow-300",
+        murcia: "bg-gradient-to-r from-red-500 to-pink-500",
+        "puerto lumbreras": "bg-gradient-to-r from-blue-500 to-green-500",
+        lorca: "bg-gradient-to-r from-indigo-500 to-purple-500",
+        pulpí: "bg-gradient-to-r from-yellow-500 to-yellow-300",
     }
     return (
         <div className="font-display flex flex-col gap-4 border-t-2 border-gray-200 pt-10 ">
@@ -21,8 +21,8 @@ const CategoryBlock = ({ noticias, title }) => {
             <div className="grid grid-cols-2 gap-4">
                 <BlockNews noticia={news[0]} />
                 <div className="grid grid-cols-1 grid-rows-4">
-                    {news?.slice(1,5)?.map((item,idx) => (
-                        <ListNews key={idx} noticia={item}/>
+                    {news?.slice(1, 5)?.map((item, idx) => (
+                        <ListNews key={idx} noticia={item} />
                     ))}
                 </div>
             </div>
@@ -34,22 +34,23 @@ export default CategoryBlock
 
 const BlockNews = ({ noticia }) => {
     const LoaderImage = ({ src, width, quality }) => {
-        const domain = process.env.NEXT_PUBLIC_API_URL
+        //const domain = process.env.NEXT_PUBLIC_API_URL
+        const domain = "https://api.bodasdehoy.com";
         return `${domain}${src}`
-      }
+    }
 
     return (
         <>
             <div className="block relative h-full w-full bg-black rounded overflow-hidden image-card text-white">
-                <Image 
+                <Image
                     loader={LoaderImage}
-                    src={`${noticia?.imgPrincipal?.url}`}
+                    src={`${noticia?.imgMiniatura?.i320}`}
                     alt={noticia?.title}
                     objectFit={"cover"}
                     objectPosition={"left"}
                     layout={"fill"}
-                    />
-                
+                />
+
                 <span className="block text-center h-full flex items-end justify-center z-20 relative p-4">
                     <Title size="sm" titulo={noticia?.title} slug={noticia?.slug} />
                 </span>
@@ -72,7 +73,7 @@ const BlockNews = ({ noticia }) => {
     )
 }
 
-const ListNews = ({noticia}) => {
+const ListNews = ({ noticia }) => {
     return (
         <div className="w-full p-3 border flex items-start justify-start gap-1 text-gray-700">
             <FlechaIcon className="w-6 h-6 transform -rotate-90 text-blue-500" />
