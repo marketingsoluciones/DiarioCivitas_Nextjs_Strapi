@@ -12,7 +12,8 @@ import Image from "next/image";
 import { fetchApi, queries } from "../../utils/Fetching.js";
 
 const LoaderImage = ({ src, width, quality }) => {
-  const domain = process.env.NEXT_PUBLIC_API_URL;
+  //const domain = process.env.NEXT_PUBLIC_API_URL;
+  const domain = "https://api.bodasdehoy.com";
   return `${domain}${src}`;
 };
 
@@ -26,6 +27,7 @@ const Category = (props) => {
   //console.log(3001, props)
 
   useEffect(() => {
+    console.log(456, props.news)
     setNews(props.news);
   }, [props]);
   return (
@@ -135,7 +137,7 @@ export const NewsList = ({ noticia }) => {
       <div className="w-full h-28 rounded overflow-hidden">
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}
@@ -188,44 +190,52 @@ const CategorySecondary = ({ news: noticias, category }) => {
 
 export const getServerSideProps = async ({ params }) => {
   try {
-    const { data: res } = await api.FetchCategory(params?.category);
-    console.log(9002, res)
-    console.log(9002.1, res.lastPost.length)
-    if (res != "no data") {
-      //console.log(9003, res.lastPost?.length)
-      const data = Object.values(res?.lastPost);
-      return {
-        props: { category: params?.category, news: data },
-      };
-    }
+
+    const categorie = await fetchApi({
+      query: `query($slug:String) {
+          getOneSubCategoryPost(slug:$slug){
+            _id
+            title
+          }
+        }`,
+      variables: { slug: params?.category }
+    })
+
+    const { results } = await fetchApi({
+      query: `query($criteria : searchCriteriaPost, $sort: sortCriteriaPost, $limit : Int, $skip : Int, $development: String!) {
+          getAllPost(searchCriteria:$criteria, limit : $limit, skip: $skip, sort:$sort, development:$development ){
+            results{
+              _id
+              title
+              subTitle
+              slug
+              postFormat
+              authorUsername
+              createdAt
+              imgMiniatura{
+                i640
+                i320
+              }
+            }
+          }
+        }`,
+      variables: {
+        criteria: { subCategories: categorie?._id },
+        skip: 0,
+        limit: 30,
+        sort: { createdAt: -1 },
+        development: "diariocivitas"
+      }
+    })
     return {
-      props: {},
+      props: {
+        category: params?.category, news: results
+      }
     };
   } catch (error) {
     console.log(1008, error);
   }
 };
-
-// export async function getStaticPaths() {
-//     try {
-//         const {data} = await api.FetchCategories()
-
-//         return {
-//             paths: data?.map((item) => {
-//                 return {
-//                     params: {category : item?.slug}
-//                 }
-//             }),
-//             fallback: 'blocking'
-//         }
-//     } catch (error) {
-//         console.log(error)
-//         return {
-//             paths: [{ params: {} }], fallback: 'blocking'
-//         }
-//     }
-
-// }
 
 const NewsListPrimary = ({ noticia }) => {
   return (
@@ -241,7 +251,7 @@ const BlockPrincipal = ({ noticia }) => {
       <div className="w-full h-96 imagen relative rounded-lg overflow-hidden">
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}
@@ -283,7 +293,7 @@ const NewsListSecondary = ({ noticia }) => {
       <div className="w-14 h-14 block relative rounded-lg  overflow-hidden">
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}
@@ -305,7 +315,7 @@ const BlockTwoNews = ({ noticias }) => {
       <div className="w-full flex-col flex gap-1">
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}
@@ -334,7 +344,7 @@ const NewsBlock = ({ noticias }) => {
       <div className="w-full ... flex flex-col gap-1">
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}
@@ -375,7 +385,7 @@ const BlockInlineX4 = ({ noticias, color }) => {
       <div className="w-full flex flex-col gap-0.5">
         <Image
           loader={LoaderImage}
-          src={`${noticia?.imgPrincipal?.url}`}
+          src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
           objectPosition={"center"}
@@ -410,7 +420,7 @@ const Block3ColsAds = ({ noticias, color }) => {
         <div className="w-full h-28 rounded overflow-hidden md:col-span-2">
           <Image
             loader={LoaderImage}
-            src={`${noticia?.imgPrincipal?.url}`}
+            src={`${noticia?.imgMiniatura?.i640}`}
             alt={noticia?.title}
             objectFit={"cover"}
             objectPosition={"center"}
