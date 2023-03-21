@@ -131,6 +131,7 @@ const Post = ({ PostData }) => {
             <SocialLinks />
             <div>
               <Image
+                alt="ads"
                 src={"/ads.png"}
                 objectFit={"contain"}
                 objectPosition={"center"}

@@ -27,6 +27,7 @@ const ForecastComponent = () => {
         <div className="hidden md:block w-max col-span-1 flex flex-col items-center justify-center gap-2">
             <span className="flex gap-2 font-display items-center ">
                 <Image
+                    alt="Fast.png"
                     loader={loaderImage}
                     src={"/fasf.png"}
                     width={32}

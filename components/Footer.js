@@ -22,6 +22,7 @@ const Footer = () => {
     <footer className="max-w-screen-lg flex items-center gap-40 justify-center mx-auto inset-x-0 bg-primary p-6">
       <div className="flex items-start gap-3 flex-col">
         <Image
+          alt="Logo blanco de diario civitas"
           src={"/LogoBlanco.png"}
           width={240}
           height={40}

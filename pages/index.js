@@ -27,6 +27,7 @@ const Home = (props) => {
         </div>
         <div className="w-full h-max py-6 block">
           <Image
+            alt="civitas.com"
             src="/ad.png"
             objectFit={"contain"}
             height={10}

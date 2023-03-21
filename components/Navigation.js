@@ -80,7 +80,7 @@ const Navigation = ({ show, setShow }) => {
                 </span>
                 <ForecastComponent />
                 <span className="w-60 md:absolute mx-auto inset-x-0 md:w-96 grid place-items-center overflow-visible">
-                    <img src="/logo.png" className="w-full w-60 object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
+                    <img alt="Logo civitas.com" src="/logo.png" className="w-full w-60 object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
                 </span>
 
                 <div className="flex gap-4 items-center">

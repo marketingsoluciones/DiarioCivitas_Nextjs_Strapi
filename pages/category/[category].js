@@ -94,6 +94,7 @@ const CategoryPrincipal = ({ news: noticias, category }) => {
         </div>
         <div className="w-full h-max py-6 block">
           <Image
+            alt="Civitas.com"
             src="/ad.png"
             objectFit={"contain"}
             height={10}
@@ -449,6 +450,7 @@ const Block3ColsAds = ({ noticias, color }) => {
       </div>
       <div>
         <Image
+          alt="civitas.com"
           src="/ads.png"
           objectFit={"contain"}
           height={"100vw"}
