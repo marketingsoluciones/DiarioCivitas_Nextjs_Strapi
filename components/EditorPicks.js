@@ -19,14 +19,14 @@ export const News = ({ noticia }) => {
     return (
         <>
             <div className="font-display text-white h-48 rounded bg-gray-700 w-full card-image relative p-6 hover:scale-105 transform duration-1000 transition cursor-pointer" onClick={() => router.push(slug)}>
-                <span className="block text-center h-full flex items-end justify-center z-20 relative">
+                <span className="text-center h-full flex items-end justify-center z-20 relative">
                     <Title size="sm" titulo={title} slug={slug} font="body" />
                 </span>
             </div>
             <style jsx>
                 {`
             .card-image {
-                background-image: url("${`${"https://api.bodasdehoy.com"}${imgMiniatura?.i320}`}");
+                background-image: url("${`${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura?.i320}`}");
                 background-position: center top;
                 background-size: cover;
                 overflow:hidden

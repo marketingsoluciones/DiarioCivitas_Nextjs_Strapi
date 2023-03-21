@@ -13,7 +13,7 @@ import { fetchApi, queries } from "../../utils/Fetching.js";
 
 const LoaderImage = ({ src, width, quality }) => {
   //const domain = process.env.NEXT_PUBLIC_API_URL;
-  const domain = "https://api.bodasdehoy.com";
+  const domain = process.env.NEXT_PUBLIC_API_URL_new;
   return `${domain}${src}`;
 };
 

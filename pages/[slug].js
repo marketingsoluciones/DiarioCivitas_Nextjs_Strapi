@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { api } from "../api";
 import { Markup } from "interweave";
 import DisqusComments from "../components/DisqusComments.js";
 import TagCategory from "../components/news/TagCategory.js";
@@ -10,7 +9,6 @@ import {
   WhatsAppIcon,
 } from "../components/icons.js";
 import { News } from "../components/EditorPicks.js";
-import PopularPost from "../components/home/PopularPost.js";
 import Suscribed from "../components/home/Suscribed.js";
 import SocialLinks from "../components/home/SocialLinks.js";
 import { AutorLine } from "../components/PanelPrimary.js";
@@ -19,11 +17,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-import { fetchApi, queries } from "../utils/Fetching.js";
+import { fetchApi } from "../utils/Fetching.js";
 
 
 const Post = ({ PostData }) => {
-
   const settings = {
     dots: true,
     infinite: true,
@@ -38,7 +35,8 @@ const Post = ({ PostData }) => {
   };
 
   const LoaderImage = ({ src }) => {
-    const domain = process.env.NEXT_PUBLIC_API_URL;
+    //const domain = process.env.NEXT_PUBLIC_API_URL;
+    const domain = process.env.NEXT_PUBLIC_API_URL_new;
     return `${domain}${src}`;
   };
 
@@ -47,7 +45,7 @@ const Post = ({ PostData }) => {
       <Head>
         <meta name="description" content={PostData?.seoDescription} />
         <title>{PostData?.title?.slice(0, 70)} | Diario Civitas</title>
-        <meta property="og:image" content={PostData?.imgPrincipal} />
+        <meta property="og:image" content={PostData?.imgMiniatura?.i320} />
         <meta property="og:title" content={PostData?.title} />
         <meta property="og:description" content={PostData?.seoDescription} />
         <meta property="og:image:width" content="1200" />
@@ -60,11 +58,11 @@ const Post = ({ PostData }) => {
               {PostData?.title}
             </h1>
             {/* <h2 className="font-display text-gray-400 font-light text-md md:text-lg text-justify ">Aqui va el subtitulo</h2> */}
-            <TagCategory categories={PostData?.postcategorias} />
+            <TagCategory categories={PostData?.subCategories} />
             <Image
               loader={LoaderImage}
-              src={`${PostData?.imgPrincipal?.url}`}
-              alt={PostData?.imgPrincipal?.alternativeText}
+              src={`${PostData?.imgMiniatura?.i640}`}
+              alt={PostData?.title}
               objectFit={"cover"}
               objectPosition={"center"}
               width={100}
@@ -74,12 +72,8 @@ const Post = ({ PostData }) => {
             />
             <p className="text-xs font-light text-gray-900">Cortesía/Fuente</p>
             <AutorLine
-              author={PostData?.autorName}
-              date={
-                PostData?.dateCreated <= PostData?.createdAt
-                  ? PostData?.dateCreated
-                  : PostData.createdAt
-              }
+              author={PostData?.authorUsername}
+              date={PostData?.createdAt}
             />
             <article className="grid md:grid-cols-8 py-2 gap-6 w-full">
               <div className="flex md:col-span-1 w-full md:flex-col gap-2 items-center justify-start">
@@ -133,7 +127,6 @@ const Post = ({ PostData }) => {
             <DisqusComments post={PostData} />
           </div>
           <aside className="hidden ... md:flex flex-col gap-6 ">
-            {/* <PopularPost /> */}
             <Suscribed />
             <SocialLinks />
             <div>
@@ -158,27 +151,55 @@ export default Post;
 export const getStaticProps = async ({ params }) => {
 
   try {
-    console.log(2001, "ESTE ES FETCHNEWSS")
-    console.log(2002, params)
-    try {
-      const asd = await fetchApi({
-        query: queries.getAllCategoryPost,
-        variables: { development: "diariocivitas" }
-      })
-      //console.log(5001, asd)
-    } catch (error) {
-      console.log(9001, error)
-    }
-    const { data } = await api.FetchNews(encodeURI(params?.slug));
-    //console.log(2003, data)
+    const post = await fetchApi({
+      query: `query($slug:String) {
+          getOnePost(slug:$slug ){
+            _id
+            title
+            seoDescription
+            content
+            subTitle
+            slug
+            postFormat
+            authorUsername
+            createdAt
+            seoDescription
+            postFormat
+            tags
+            imgMiniatura{
+              i800
+              i640
+              i320
+            }
+            imgCarrusel{
+              i800
+              i640
+              i320
+            }
+            categories{
+              _id
+              title
+            }
+            subCategories{
+              _id
+              title
+            }
+          }
+        }`,
+      variables: {
+        slug: params?.slug,
+        development: "diariocivitas"
+      }
+    })
     return {
       props: {
-        PostData: data,
+        PostData: post,
       },
       revalidate: 300,
     };
   } catch (error) {
     console.log(10051, "he aqui un error");
+    console.log(10052, error);
     return {
       props: {
         PostData: {},
@@ -188,17 +209,29 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export async function getStaticPaths() {
-  console.log(2005, "ESTE ES FETCHALL1")
-  const { data } = await api.FetchAllNews();
+  const resp = await fetchApi({
+    query: `query($limit:Int, $development: String!) {
+          getAllPost(limit:$limit, development:$development ){
+            results{
+              slug
+            }
+          }
+        }`,
+    variables: {
+      //limit: 5,
+      development: "diariocivitas"
+    }
+  })
 
+  const paths = resp?.results?.map((item, idx) => {
+    return {
+      params: {
+        slug: item?.slug,
+      },
+    };
+  })
   return {
-    paths: data?.map((item) => {
-      return {
-        params: {
-          slug: item?.slug,
-        },
-      };
-    }),
+    paths: paths,
     fallback: "blocking",
   };
 }
@@ -223,19 +256,20 @@ export const SocialMediaIcons = ({ title, url }) => {
   );
 };
 
+const ItemTag = ({ data }) => {
+  return (
+    <div className="font-body text-xs text-white w-max bg-gray-700 px-2 py-1 rounded-md capitalize ">
+      {data}
+    </div>
+  );
+};
+
 const BlockTags = ({ list }) => {
-  const ItemTag = ({ data }) => {
-    return (
-      <div className="font-body text-xs text-white w-max bg-gray-700 px-2 py-1 rounded-md capitalize ">
-        {data}
-      </div>
-    );
-  };
   return (
     <div className="flex gap-2 items-center w-full flex-wrap md:flex-nowrap ">
       <p className="font-body text-sm text-gray-900">Etiquetas</p>
       {list?.map((item, idx) => {
-        return <ItemTag key={idx} data={item.tag} />;
+        return <ItemTag key={idx} data={item} />;
       })}
     </div>
   );
@@ -244,13 +278,34 @@ const BlockTags = ({ list }) => {
 const RelatedArticles = () => {
   const [news, setNews] = useState();
   const FetchNews = async () => {
-    const params = {
-      _limit: 3,
-    };
-
     try {
-      const { data } = await api.FetchAllNews(params);
-      setNews(data);
+      const resp = await fetchApi({
+        query: `query($sort: sortCriteriaPost, $limit : Int, $skip : Int, $development: String!) {
+          getAllPost( limit : $limit, skip: $skip, sort:$sort, development:$development ){
+            results{
+              _id
+              title
+              subTitle
+              slug
+              postFormat
+              authorUsername
+              createdAt
+              imgMiniatura{
+                i640
+                i320
+              }
+            }
+          }
+        }`,
+        variables: {
+          skip: 0,
+          limit: 3,
+          sort: { createdAt: -1 },
+          development: "diariocivitas"
+        }
+      })
+
+      setNews(resp?.results);
     } catch (error) {
       console.log(1006, error);
     }

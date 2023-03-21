@@ -125,24 +125,4 @@ const ItemNav = ({ title, menu, ref, route }) => {
 }
 
 
-const BlockNavbar = () => {
-    return (
-        <div className="w-full top-9 absolute left-0 h-max bg-gray-400 p-8 grid grid-cols-5 gap-4 ">
-            <div className="col-span-1 bg-black h-40 w-full">
-
-            </div>
-            <div className="col-span-4 grid grid-cols-3 gap-4 h-40 w-full">
-                <div className="bg-green-500">
-                    Hola
-                </div>
-                <div className="bg-green-500">
-                    Hola
-                </div>
-                <div className="bg-green-500">
-                    Hola
-                </div>
-            </div>
-        </div>
-    )
-}
 

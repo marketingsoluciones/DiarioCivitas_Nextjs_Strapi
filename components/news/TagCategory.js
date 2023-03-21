@@ -1,9 +1,12 @@
-const TagCategory = ({categories}) => {
+const TagCategory = ({ categories }) => {
+
     return (
         <div className="flex items-center gap-3">
-            {categories?.map((item, idx) => (
-                <Category key={idx} categoryData={item} />
-            ))}
+            {categories?.map((item, idx) => {
+                return (
+                    <Category key={idx} categoryData={item} />
+                )
+            })}
         </div>
     )
 }
@@ -11,10 +14,10 @@ const TagCategory = ({categories}) => {
 export default TagCategory
 
 
-const Category = ({categoryData}) => {
+const Category = ({ categoryData }) => {
     return (
         <div className="bg-green-500 rounded-lg font-body text-xs w-max text-white px-4 py-1 cursor-pointer hover:opacity-90 transition">
-            {categoryData?.categorie}
+            {`${categoryData?.title?.charAt(0)?.toUpperCase()}${categoryData?.title?.slice(1)}`}
         </div>
     )
 }

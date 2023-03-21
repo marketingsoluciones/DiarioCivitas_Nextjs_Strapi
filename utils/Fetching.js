@@ -72,29 +72,29 @@ export const fetchApi = async ({ query = ``, variables = {}, type = "json" }) =>
   }
 };
 
-export const queries = {
-  getAllCategoryPost: `query($development: String!) {
-    getCategoryPost(development:$development){
-      total
-      results{
-        _id
-        title
-        slug
-        subCategories{
-          _id
-          title
-          slug
-        }
-        icon{
-          _id
-          i1024
-          i800
-          i640
-          i320
-        }
-      }
-    }
-  }`,
-};
+// export const queries = {
+//   getAllCategoryPost: `query($development: String!) {
+//     getCategoryPost(development:$development){
+//       total
+//       results{
+//         _id
+//         title
+//         slug
+//         subCategories{
+//           _id
+//           title
+//           slug
+//         }
+//         icon{
+//           _id
+//           i1024
+//           i800
+//           i640
+//           i320
+//         }
+//       }
+//     }
+//   }`,
+// };
 
 

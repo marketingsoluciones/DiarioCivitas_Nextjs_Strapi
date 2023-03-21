@@ -105,7 +105,7 @@ export const Title = ({
 
 const PrincipalNew = ({ noticia, className }) => {
   const LoaderImage = ({ src, width, quality }) => {
-    const domain = "https://api.bodasdehoy.com";
+    const domain = process.env.NEXT_PUBLIC_API_URL_new;
     return `${domain}${src}`;
   };
   return (
@@ -158,7 +158,7 @@ const PrincipalNew = ({ noticia, className }) => {
 
 const SecondaryNews = ({ noticia, className }) => {
   const LoaderImage = ({ src }) => {
-    const domain = "https://api.bodasdehoy.com";
+    const domain = process.env.NEXT_PUBLIC_API_URL_new;
     return `${domain}${src}`;
   };
   return (
@@ -196,7 +196,7 @@ const SecondaryNews = ({ noticia, className }) => {
 
 const SliderNews = ({ noticia, className }) => {
   const LoaderImage = ({ src, width, quality }) => {
-    const domain = "https://api.bodasdehoy.com";
+    const domain = process.env.NEXT_PUBLIC_API_URL_new;
     return `${domain}${src}`;
   };
   return (

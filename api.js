@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
-let instanceNew = axios.create({ baseURL: "http://api.bodasdehoy.com/" });
+let instanceNew = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL_new });
 
 const api = {
   graphql: async (data) => {

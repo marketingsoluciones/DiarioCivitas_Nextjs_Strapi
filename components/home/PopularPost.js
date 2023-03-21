@@ -1,24 +1,16 @@
 import { useEffect, useState } from "react";
-import { api } from "../../api.js";
-import { AutorLine, Title } from "../PanelPrimary.js";
+import { Title } from "../PanelPrimary.js";
 import Image from "next/image";
 
 const PopularPost = ({ lastPost }) => {
   const [news, setNews] = useState([]);
-  const fetchNews = async () => {
-    const { data } = await api.FetchAllNews({
-      _limit: 6,
-      _sort: "createdAt:DESC",
-    });
-    setNews(data);
-  };
+
   useEffect(() => {
     if (lastPost) {
       setNews(lastPost.filter(elem => elem.title == "opinión")[0]?.post);
-    } else {
-      fetchNews();
     }
   }, [lastPost]);
+
 
   return (
     <div className="shadow-md border-gray-100 border p-2 gap-4 grid grid-cols-1 w-full font-body">
@@ -34,7 +26,7 @@ export default PopularPost;
 const Post = ({ noticia }) => {
   const LoaderImage = ({ src, width, quality }) => {
     //const domain = process.env.NEXT_PUBLIC_API_URL;
-    const domain = "https://api.bodasdehoy.com";
+    const domain = process.env.NEXT_PUBLIC_API_URL_new;
     return `${domain}${src}`;
   };
   return (
