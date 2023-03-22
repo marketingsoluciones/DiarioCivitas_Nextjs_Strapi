@@ -27,7 +27,7 @@ const Footer = () => {
           width={240}
           height={40}
           objectFit="contain"
-          />
+        />
         <p className="text-xs font-display text-white text-center w-full md:text-left">
           © {date.getFullYear()} Diario Civitas | Sede Alicante
         </p>
@@ -67,11 +67,13 @@ export const ListBlock = ({ titulo, lista }) => {
         {titulo}
       </h3>
       <ul className="flex flex-col gap-1 pt-4">
-        {lista.map((item, idx) => (
-          <Link href={item.route}>
-            <li key={idx} className="font-body text-white text-xs">{item.title}</li>
-          </Link>
-        ))}
+        {lista.map((item, idx) => {
+          return (
+            <Link href={item.route} key={idx}>
+              <li  className="font-body text-white text-xs">{item.title}</li>
+            </Link>
+          )
+        })}
       </ul>
     </div>
   )
