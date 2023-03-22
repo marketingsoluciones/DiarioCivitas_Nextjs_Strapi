@@ -16,6 +16,7 @@ const Home = (props) => {
     <>
       <Head>
         <meta name="description" content={"El periodico digital más grande de Murcia, Lorca, Alicante y Puerto Lumbreras | Noticias más destacadas del acontecer local, regional y nacional"} />
+        <meta name="keywords" content="periodico digital, periodico digital mas grande de murcia, lorca, noticias mas destacadas, acontecer local, ultima hora en noticias de murcia, que sudece en murcia, politica, deporte, cultura, noticias de la region de murcia, opinion" />
       </Head>
       <section className="max-w-screen-lg mx-auto inset-x-0 md:py-8 flex flex-col gap-10 px-5 bg-white">
         <h1 className="hidden">Diario Civitas</h1>

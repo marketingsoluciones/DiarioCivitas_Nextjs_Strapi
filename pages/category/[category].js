@@ -10,6 +10,7 @@ import Pagination from "../../components/Pagination.js";
 import { LoadingContext } from "../../context/LoadingContext.js";
 import Image from "next/image";
 import { fetchApi, queries } from "../../utils/Fetching.js";
+import { useRouter } from "next/router";
 
 const LoaderImage = ({ src, width, quality }) => {
   //const domain = process.env.NEXT_PUBLIC_API_URL;
@@ -26,6 +27,10 @@ const Category = (props) => {
 
   //console.log(3001, props)
 
+  const {query} = useRouter()
+  const category = query.category
+  
+
   useEffect(() => {
     console.log(456, props.news)
     setNews(props.news);
@@ -34,6 +39,7 @@ const Category = (props) => {
     <>
       <Head>
         <meta name="description" content={""} />
+        <meta name="keywords" content={`ultimas noticias en ${category}, novedades en ${category}, porque en ${category}, que pasa con ${category},que hay de nuevo en ${category}, ${category}`} />
         <title>{Capitalize(props?.category)} | Diario Civitas</title>
       </Head>
       {news?.length >= 30 ? (

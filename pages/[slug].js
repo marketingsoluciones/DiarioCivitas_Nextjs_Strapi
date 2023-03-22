@@ -18,6 +18,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import { fetchApi } from "../utils/Fetching.js";
+import { useRouter } from "next/router.js";
 
 
 const Post = ({ PostData }) => {
@@ -40,6 +41,10 @@ const Post = ({ PostData }) => {
     return `${domain}${src}`;
   };
 
+  const {query} = useRouter()
+  const noticia = query.slug
+
+
   return (
     <>
       <Head>
@@ -50,6 +55,7 @@ const Post = ({ PostData }) => {
         <meta property="og:description" content={PostData?.seoDescription} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta name="keywords" content={`noticia, novedad, actualidad, que sucede, ${noticia}, que pasa con ${noticia}, que sucede en ${noticia}`}/>
       </Head>
       <div className="w-full md:max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
         <section className="w-full grid md:grid-cols-3 gap-12 ">
