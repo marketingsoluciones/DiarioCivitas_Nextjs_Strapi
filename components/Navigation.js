@@ -94,7 +94,7 @@ const Navigation = ({ show, setShow }) => {
                 <ul className="flex w-full xl:max-w-screen-lg font-body py-2 justify-between px-5">
                     {mainMenu.map(({ title, route, menu }, idx) => {
                         return (
-                            <ItemNav key={idx} ref={hoverRef} title={title} menu={menu} route={route} />
+                            <ItemNav key={idx} refe={hoverRef} title={title} menu={menu} route={route} />
                         );
                     })}
                 </ul>
@@ -107,12 +107,12 @@ const Navigation = ({ show, setShow }) => {
 export default Navigation
 
 
-const ItemNav = ({ title, menu, ref, route }) => {
+const ItemNav = ({ title, menu, refe, route }) => {
     const [hoverRef, isHovered] = useHover()
     return (
         <Link href={route} replace={true} >
             <li ref={hoverRef} className="h-full cursor-pointer">
-                <h2 ref={ref} className="text-sm px-1 flex items-center gap-1 font-semibold subpixel-antialiased uppercase ">
+                <h2 ref={refe} className="text-sm px-1 flex items-center gap-1 font-semibold subpixel-antialiased uppercase ">
                     {title}
                     {menu ? (
                         <FlechaIcon className="w-2 h-2" />
