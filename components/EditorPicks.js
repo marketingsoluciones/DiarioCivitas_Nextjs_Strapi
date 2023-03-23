@@ -18,7 +18,7 @@ export const News = ({ noticia }) => {
     const { imgMiniatura, title, slug } = noticia
     return (
         <>
-            <div className="font-display text-white h-48 rounded bg-gray-700 w-full card-image relative p-6 hover:scale-105 transform duration-1000 transition cursor-pointer" onClick={() => router.push(slug)}>
+            <div className="font-display text-white h-48 rounded bg-gray-700 w-full card-image relative p-6 hover:scale-105 transform duration-1000 transition cursor-pointer" onClick={() => router.push(`/${slug}`)}>
                 <span className="text-center h-full flex items-end justify-center z-20 relative">
                     <Title size="sm" titulo={title} slug={slug} font="body" />
                 </span>

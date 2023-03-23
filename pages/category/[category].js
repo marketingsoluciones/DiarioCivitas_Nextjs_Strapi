@@ -29,7 +29,7 @@ const Category = (props) => {
 
   const {query} = useRouter()
   const category = query.category
-  
+
 
   useEffect(() => {
     console.log(456, props.news)
@@ -186,8 +186,8 @@ const CategorySecondary = ({ news: noticias, category }) => {
         ))}
       </div>
       <div className="w-full grid grid-cols-1 gap-12 p-6">
-        {news?.slice(5)?.map((item, idx) => (
-          <NewsList key={idx} noticia={item} />
+        {news?.slice(4)?.map((item, idx) => (
+            <NewsList key={idx} noticia={item} />
         ))}
       </div>
       <Pagination />
