@@ -1,6 +1,11 @@
 {
   "dependencies": {
+    "@ckeditor/ckeditor5-basic-styles": "^33.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^36.0.1",
+    "@ckeditor/ckeditor5-react": "^5.1.0",
+    "@ckeditor/ckeditor5-upload": "^31.1.0",
     "axios": "^0.21.1",
+    "ckeditor5-custom-build": "^0.0.6",
     "cross-env": "^7.0.3",
     "dayjs": "^1.10.6",
     "disqus-react": "^1.1.1",
