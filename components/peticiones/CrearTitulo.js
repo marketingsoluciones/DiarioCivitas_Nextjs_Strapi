@@ -25,7 +25,7 @@ export const CrearTitulo = ({ title, setTitle, onClick, data }) => {
                         className="focus:outline-none w-full border-2 border-gray-300 rounded-md py-2 px-3"
                         required
                     />
-                    <span className={`${data?"ml-4 text-red-500 block":"hidden"} `} >fas</span>
+                    <span className={`${data?"ml-4 text-red-500 block":"hidden"} `} >*Escribe un titulo que describa tu peticion*</span>
 
                 <button type="submit" onClick={() => onClick()} className="bg-blueFull py-2 rounded-lg mt-2  text-center text-white w-1/4 items-end justify-self-end font-bold">Continuar</button>
             </div>

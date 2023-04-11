@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import CKeditor from "../forms/inputs/CKEditor";
 
 
-export const ExplicaProblema = ({ onClick, problema, setProblema }) => {
+export const ExplicaProblema = ({ onClick, problema, setProblema, dataa }) => {
     const [editorLoaded, setEditorLoaded] = useState(false);
     const [data, setData] = useState("");
     useEffect(() => {
@@ -33,6 +33,8 @@ export const ExplicaProblema = ({ onClick, problema, setProblema }) => {
                     />
             
                 </div>
+                <span className={`${dataa?"ml-4 text-red-500 block":"hidden"} `} >*Explica el Problema de tu peticion*</span>
+
                 <button onClick={() => onClick()} className="bg-blueFull py-2 rounded-lg mt-2 text-center text-white w-1/4 items-end justify-self-end font-bold">Continuar</button>
             </div>
 

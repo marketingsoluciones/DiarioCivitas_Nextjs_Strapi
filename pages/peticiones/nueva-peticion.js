@@ -12,44 +12,51 @@ const CrearPeticion = () => {
 
     const [step, setStep] = useState(0)
     const [title, setTitle] = useState("")
-    const [destinatario,setDestinatario] = useState("")
+    const [destinatario, setDestinatario] = useState("")
     const [problema, setProblema] = useState("")
     const [imgen, setImagen] = useState([])
-    const [ data, setData] = useState(false)
+    const [data, setData] = useState(false)
 
-    console.log(title,destinatario,problema,imgen)
+    console.log("esta imagen", imgen.length)
 
     const onClick = () => {
-        setStep(step + 1)
-    }
-
-    function handleSubmit () {
         if (step === 0) {
             if (title === '' || title.length <= 1) {
-                setData("true")
-              } else {
-                setData("false")
-                setStep(step + 1);
-              }
+                setData(true)
+            } else {
+                setStep(step + 1)
+                setData(false)
+            }
         } else if (step === 1) {
             if (destinatario === '' || destinatario.length <= 1) {
-                setData("true")
-
-              } else {
-                setData("false")
-
-                setStep(step + 1);
-                
-              }
+                setData(true)
+            } else {
+                setStep(step + 1)
+                setData(false)
+            }
         } else if (step === 2) {
             if (problema === '' || problema.length <= 1) {
-                setData("Este campo esta vacio, llena el cuadro que dara a entender tu problema")
-              } else {
+                setData(true)
+            } else {
                 setStep(step + 1);
-                
-              }
-        } ;
-      }
+                setData(false)
+            }
+        }else if (step === 3) {
+            if (imgen === '' || imgen.length < 1) {
+                setData(true)
+            } else {
+                setStep(step + 1);
+                setData(false)
+            }
+        }
+        else {
+            setStep(step + 1)
+        }
+    }
+
+    function handleSubmit() {
+       
+    }
 
 
     const conditionalComponent = () => {
@@ -73,16 +80,16 @@ const CrearPeticion = () => {
                     onClick={onClick}
                     problema={problema}
                     setProblema={setProblema}
-                    data={data}
+                    dataa={data}
                 />;
             case 3:
                 return <CargarImg
                     onClick={onClick}
-                    imagen= {imgen}
+                    imagen={imgen}
                     setImagen={setImagen}
                     data={data}
                 />;
-            case 4 :
+            case 4:
                 return <ResumenPeticion
                     title={title}
                     destinatario={destinatario}
@@ -98,56 +105,13 @@ const CrearPeticion = () => {
                 />;
         }
     };
-
-
+    
     return (
         <>
-            <div className="max-w-screen-lg  mx-auto  inset-x-0 flex  flex-col items-center mt-6 ">
-                <Steps
-                    step={step}
-                />
-                {/* {(() => {
-                    if (step === 0) {
-                        return (
-                            <>
-                                <CrearTitulo
-                                    onClick={onClick}
-                                    setTitle={setTitle}
-                                />
-                            </>
-                        )
-                    } else if (step === 1) {
-                        return (
-                            <>
-                                <EscogeDestinatario
-                                    onClick={onClick}
-                                />
-                            </>
-                        )
-                    } else if (step === 2) {
-                        return (
-                            <>
-                                <ExplicaProblema
-                                    onClick={onClick}
-                                />
-                            </>
-                        )
-                    } else if (step === 3) {
-                        return (
-                            <>
-                                <CargarImg
-                                    onClick={onClick}
-                                    image={image}
-                                    setImage={setImage}
-                                />
-                            </>
-                        )
-                    }
-                })()} */}
+            <div className="bg-white max-w-screen-lg  mx-auto  inset-x-0 flex  flex-col items-center pt-6 ">
+                <Steps  step={step} />
 
                 {conditionalComponent()}
-
-
 
             </div>
 

@@ -25,9 +25,19 @@ module.exports = {
         '40px':'40px',
         '215px':'215px',
         '15px':'15px',
-        '20px':'20px'
+        '20px':'20px',
+        '56px':'56px'
       }
     },
+    borderWidth: {
+      
+      '1': '1px',
+      '2': '2px',
+      '3': '3px',
+      '4': '4px',
+      '6': '6px',
+      '8': '8px',
+    }
   },
   variants: {
     extend: {},
