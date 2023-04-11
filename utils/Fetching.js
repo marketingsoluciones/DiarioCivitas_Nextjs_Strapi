@@ -72,29 +72,26 @@ export const fetchApi = async ({ query = ``, variables = {}, type = "json" }) =>
   }
 };
 
-// export const queries = {
-//   getAllCategoryPost: `query($development: String!) {
-//     getCategoryPost(development:$development){
-//       total
-//       results{
-//         _id
-//         title
-//         slug
-//         subCategories{
-//           _id
-//           title
-//           slug
-//         }
-//         icon{
-//           _id
-//           i1024
-//           i800
-//           i640
-//           i320
-//         }
-//       }
-//     }
-//   }`,
-// };
+export const queries = {
+  authStatus: `mutation ($sessionCookie : String){
+    status(sessionCookie: $sessionCookie){
+      customToken
+    }
+  }`,
+  getUser: `query ($uid: ID) {
+    getUser(uid:$uid){
+      phoneNumber
+      role
+      typeRole
+      city
+      country
+      weddingDate
+      signUpProgress
+      status
+      createdAt
+      updatedAt
+    }
+  }`,
+};
 
 
