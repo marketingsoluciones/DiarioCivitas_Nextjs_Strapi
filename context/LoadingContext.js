@@ -1,20 +1,29 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from 'react';
+import dynamic from 'next/dynamic';
+const DynamicLoading = dynamic(() => import('../components/Loading'))
+
+
 
 const initialContext = {
-    isLoading: false,
-    setLoading: () => null,
-}
+  loading: false,
+  setLoading: (loading) => { },
+};
 
 const LoadingContext = createContext(initialContext);
 
-const LoadingContextProvider = ({ children }) => {
-    const [isLoading, setLoading] = useState(false);
-  
-    return (
-      <LoadingContext.Provider value={{ isLoading, setLoading }}>
-        {children}
-      </LoadingContext.Provider>
-    );
-  };
+const LoadingProvider = ({ children }) => {
+  const [loading, setLoading] = useState(initialContext.loading);
 
-  export { LoadingContext, LoadingContextProvider };
+
+
+  return (
+    <LoadingContext.Provider value={{ loading, setLoading }}>
+      {loading && <DynamicLoading />}
+      {children}
+    </LoadingContext.Provider>
+  );
+};
+
+const LoadingContextProvider = () => useContext(LoadingContext)
+
+export { LoadingProvider, LoadingContextProvider };

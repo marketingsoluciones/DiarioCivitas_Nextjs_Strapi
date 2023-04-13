@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import React, { useContext } from 'react'
-import { SidebarContext } from '../context/SidebarContext.js';
+import { SidebarContextProvider } from '../context';
 import { ArrowNarrowIcon, FlechaIcon } from './icons.js'
 
 const SidebarMobile = () => {
@@ -17,7 +16,7 @@ const SidebarMobile = () => {
 
     ];
 
-    const { isVisible, setSidebar } = useContext(SidebarContext)
+    const { isVisible, setSidebar } = SidebarContextProvider()
     return (
         <div className={`${isVisible ? "translate-x-0" : " -translate-x-full"} transition fixed bg-gradient-to-r transform duration-700 from-gray-50 via-gray-100 to-gray-200 w-full h-screen z-50 top-0 left-0`}>
             <div className="cursor-pointer flex gap-2 items-center justify-start w-full py-4 text-gray-400 px-5" onClick={() => setSidebar(!isVisible)}>

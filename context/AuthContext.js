@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext, } from "react";
-import { auth } from "../utils/firebase";
+import { auth } from "../firebase";
 import { fetchApi, queries } from "../utils/Fetching";
 import Cookies from 'js-cookie'
 import { signInWithCustomToken } from "firebase/auth";
@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       setTimeout(async () => {
-        const sessionCookie = Cookies.get("sessionBodas");
+        const sessionCookie = Cookies.get("sessionCivitas");
         console.info("Verificando cookie", sessionCookie);
         if (sessionCookie) {
           console.info("Tengo cookie de sesion");

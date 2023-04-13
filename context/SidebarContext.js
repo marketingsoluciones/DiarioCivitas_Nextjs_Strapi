@@ -1,20 +1,22 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const initialContext = {
-    isVisible: false,
-    setSidebar: () => null,
+  isVisible: false,
+  setSidebar: () => null,
 }
 
-const SidebarContext = createContext(initialContext);
+const SidebarContext = createContext(initialContext.isVisible);
 
-const SidebarContextProvider = ({ children }) => {
-    const [isVisible, setSidebar] = useState(false);
-  
-    return (
-      <SidebarContext.Provider value={{ isVisible, setSidebar }}>
-        {children}
-      </SidebarContext.Provider>
-    );
-  };
+const SidebarProvider = ({ children }) => {
+  const [isVisible, setSidebar] = useState(false);
 
-  export { SidebarContext, SidebarContextProvider };
+  return (
+    <SidebarContext.Provider value={{ isVisible, setSidebar }}>
+      {children}
+    </SidebarContext.Provider>
+  );
+};
+
+const SidebarContextProvider = () => useContext(SidebarContext)
+export { SidebarProvider, SidebarContextProvider };
+

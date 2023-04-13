@@ -4,13 +4,11 @@ import ForecastComponent from "./ForecastComponent.js";
 import { FacebookIcon, FlechaIcon, InstagramIcon, MenuIcono, TwitterIcon } from "./icons.js";
 import Search from "./Search.js";
 import router from 'next/router'
-import { useContext, useEffect } from "react";
-import { SidebarContext } from "../context/SidebarContext.js";
-import { LoadingContext } from "../context/LoadingContext.js";
-import Image from 'next/image'
+import { useEffect } from "react";
+import { LoadingContextProvider, SidebarContextProvider } from "../context";
 
 const Navigation = ({ show, setShow }) => {
-    const { setLoading } = useContext(LoadingContext)
+    const { setLoading } = LoadingContextProvider()
     const [hoverRef, isHovered] = useHover()
     const topMenu = [
         { title: "Noticias", route: "" },
@@ -29,7 +27,7 @@ const Navigation = ({ show, setShow }) => {
 
     ];
 
-    const { isVisible, setSidebar } = useContext(SidebarContext)
+    const { isVisible, setSidebar } = SidebarContextProvider()
 
     useEffect(() => {
         const start = () => {
@@ -80,7 +78,7 @@ const Navigation = ({ show, setShow }) => {
                 </span>
                 <ForecastComponent />
                 <span className="w-60 md:absolute mx-auto inset-x-0 md:w-96 grid place-items-center overflow-visible">
-                    <img alt="Logo civitas.com" src="/logo.png" className="w-full w-60 object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
+                    <img alt="Logo civitas.com" src="/logo.png" className="w-60 object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
                 </span>
 
                 <div className="flex gap-4 items-center">

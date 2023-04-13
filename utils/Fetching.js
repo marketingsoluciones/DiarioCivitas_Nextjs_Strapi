@@ -92,6 +92,20 @@ export const queries = {
       updatedAt
     }
   }`,
+  createUser: `mutation  ($uid : ID, $city: String, $country : String, $weddingDate : String, $phoneNumber : String, $role : [String]) {
+    createUser(uid: $uid, city : $city, country : $country, weddingDate : $weddingDate, phoneNumber : $phoneNumber, role: $role){
+          city
+          country
+          weddingDate
+          phoneNumber
+          role
+        }
+      }`,
+  auth: `mutation ($idToken : String){
+    auth(idToken: $idToken){
+      sessionCookie
+    }
+  }`,
 };
 
 

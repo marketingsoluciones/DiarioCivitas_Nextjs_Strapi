@@ -6,9 +6,8 @@ import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { useRouter } from "next/router";
 import { Capitalize } from "../utils/Capitalize";
-import { SidebarContextProvider } from "../context/SidebarContext";
-import { LoadingContextProvider } from "../context/LoadingContext";
-import LoadingComponent from "../components/LoadingComponent";
+import { SidebarProvider } from "../context/SidebarContext";
+import { LoadingProvider } from "../context";
 import ReactGA from 'react-ga';
 import GoogleAnalytics from "../components/GoogleAnalytics";
 
@@ -26,8 +25,8 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <DynamicAuthProvider>
-      <LoadingContextProvider>
-        <SidebarContextProvider>
+      <LoadingProvider>
+        <SidebarProvider>
           <GoogleAnalytics />
           <div className="bg-gray-200">
             <Head>
@@ -41,12 +40,10 @@ const DefaultLayout = ({ children }) => {
             <SidebarMobile />
             <Navigation />
             <main className="w-full ">{children}</main>
-
             <Footer />
           </div>
-          <LoadingComponent />
-        </SidebarContextProvider>
-      </LoadingContextProvider>
+        </SidebarProvider>
+      </LoadingProvider>
     </DynamicAuthProvider>
   );
 };
