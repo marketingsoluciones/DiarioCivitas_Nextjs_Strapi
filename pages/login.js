@@ -32,23 +32,9 @@ const PageLogin = () => {
 
   useEffect(() => {
     /////// REDIRECIONES ///////
-    if (r?.query?.d === "app") {
-      setRedirect(process.env.NEXT_PUBLIC_EVENTSAPP ?? "")
-    }
-    if (r?.query?.d === "info-empresa") {
-      setRedirect(`${process.env.NEXT_PUBLIC_DIRECTORY}/${r?.query?.d}` ?? "")
-      if (r?.query?.f === "register") {
-        setStage("register")
-        setFStageRegister(1)
-      }
-    }
-    if (r?.query?.d !== "app" && r?.query?.d !== "info-empresa" && r?.query?.d !== "") {
-      setRedirect(`${process.env.NEXT_PUBLIC_DIRECTORY}/${r?.query?.d}` ?? "")
-    }
+    setRedirect(r.query.d.slice(1))
     ///////////////////////////    
   }, [r, setRedirect]);
-
-
 
   const Stages = {
     login: <Login setStage={setStage} />,

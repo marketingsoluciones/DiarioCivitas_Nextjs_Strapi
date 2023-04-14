@@ -84,28 +84,8 @@ export const useAuthentication = () => {
             setUser({ ...res.user, ...moreInfo });
 
             /////// REDIRECIONES ///////
-            if (redirect?.split("/")[3] == "info-empresa" && moreInfo.role.includes("empresa")) {
-              await router.push(`${process.env.NEXT_PUBLIC_DIRECTORY}/empresa` ?? "")
-              toast("success", `Inicio de sesión de empresa con exito `)
-            }
-            if (redirect?.split("/")[3] !== "info-empresa" && moreInfo.role.includes("empresa")) {
-              await router.push(redirect ? redirect : `${process.env.NEXT_PUBLIC_DIRECTORY}/empresa` ?? "")
-              toast("success", `Inicio sesión con exito`)
-            }
-
-            if (redirect?.split("/")[3] == "info-empresa" && !moreInfo.role.includes("empresa")) {
-              await router.push(redirect)
-              toast("warning", `Inicio sesión con una cuenta que no es de empresa`)
-            }
-            if (redirect?.split("/")[3] !== "info-empresa" && !moreInfo.role.includes("empresa")) {
-              await router.push(redirect ? redirect : process.env.NEXT_PUBLIC_EVENTSAPP ?? "")
-              toast("success", `Inicio sesión con exito`)
-            }
+            await router.push(!redirect ? "/" : redirect)
             ///////////////////////////
-
-            // else {
-            //   await router.push(!redirect ? process.env.NEXT_PUBLIC_EVENTSAPP ?? "" : redirect);
-            // }
           } else {
             toast("error", "aun no está registrado");
             //verificar que firebase me devuelva un correo del usuario
@@ -135,8 +115,6 @@ export const useAuthentication = () => {
     await router.push("/");
     toast("success", "Gracias por visitarnos, te esperamos luego 😀");
   }, [router, setUser, toast])
-
-
 
 
   const resetPassword = async (values, setStage) => {// funcion para conectar con con firebase para enviar el correo 

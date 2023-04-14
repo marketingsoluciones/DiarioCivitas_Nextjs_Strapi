@@ -73,7 +73,11 @@ export const fetchApi = async ({ query = ``, variables = {}, type = "json" }) =>
 };
 
 export const queries = {
-  authStatus: `mutation ($sessionCookie : String){
+  signOut: `mutation ($sessionCookie :String){
+    signOut(sessionCookie:$sessionCookie)
+  }`,
+  authStatus: `mutation ($session
+    Cookie : String){
     status(sessionCookie: $sessionCookie){
       customToken
     }

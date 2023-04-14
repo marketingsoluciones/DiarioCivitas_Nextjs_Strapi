@@ -79,7 +79,9 @@ const FormRegister = ({ whoYouAre = "lector" }) => {
       setUser({ ...UserFirebase, ...moreInfo });
 
 
+      /////// REDIRECIONES ///////
       await router.push(`/`)
+
       toast("success", "Registro realizado con exito")
     } catch (error) {
       console.log(error);

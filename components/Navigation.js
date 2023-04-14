@@ -3,12 +3,22 @@ import useHover from "../hooks/useHover.js";
 import ForecastComponent from "./ForecastComponent.js";
 import { FacebookIcon, FlechaIcon, InstagramIcon, MenuIcono, TwitterIcon } from "./icons.js";
 import Search from "./Search.js";
-import router from 'next/router'
+import router, { useRouter } from 'next/router'
 import { useEffect } from "react";
-import { LoadingContextProvider, SidebarContextProvider } from "../context";
+import { LoadingContextProvider, SidebarContextProvider, AuthContextProvider } from "../context";
+import { route } from "next/dist/next-server/server/router.js";
+import { useAuthentication } from "../utils/Authentication.js";
 
 const Navigation = ({ show, setShow }) => {
+    const { _signOut } = useAuthentication()
+    const { user } = AuthContextProvider()
+    useEffect(() => {
+        console.log(8001, user)
+    }, [user])
+
+
     const { setLoading } = LoadingContextProvider()
+    //const router = useRouter()
     const [hoverRef, isHovered] = useHover()
     const topMenu = [
         { title: "Noticias", route: "" },
@@ -30,6 +40,7 @@ const Navigation = ({ show, setShow }) => {
     const { isVisible, setSidebar } = SidebarContextProvider()
 
     useEffect(() => {
+
         const start = () => {
             setLoading(true);
         };
@@ -45,6 +56,16 @@ const Navigation = ({ show, setShow }) => {
             router.events.off("routeChangeError", end);
         };
     }, [router])
+
+    const handleClick = () => {
+        //console.log(50002, router.asPath)
+        if (!user) {
+            router.push(`/login/?d=${router.asPath}`)
+        } else {
+            setLoading(true);
+            _signOut()
+        }
+    }
     return (
         <header>
             {/*             
@@ -72,15 +93,21 @@ const Navigation = ({ show, setShow }) => {
                 </div> */}
 
 
-            <div className="max-w-screen-lg bg-white w-full mx-auto inset-x-0 flex items-center justify-between gap-4 py-7 px-4">
-                <span className="md:hidden cursor-pointer" onClick={() => setSidebar(!isVisible)}>
-                    <MenuIcono className="text-gray-900 h-6 w-6" />
-                </span>
-                <ForecastComponent />
+            <div className="bg-white max-w-screen-lg w-full mx-auto inset-x-0 flex items-center justify-between gap-4 py-7 px-4">
+                <div className="flex ">
+                    <span className="md:hidden cursor-pointer" onClick={() => setSidebar(!isVisible)}>
+                        <MenuIcono className="text-gray-900 h-6 w-6" />
+                    </span>
+                    <ForecastComponent />
+                    <span className="ml-6 mt-1 text-xs md:text-lg md:mt-3 cursor-pointer hover:text-gray-300 "
+                        onClick={handleClick}
+                    >
+                        {!user ? "Iniciar sesión" : "Cerrar sesión"}
+                    </span>
+                </div>
                 <span className="w-60 md:absolute mx-auto inset-x-0 md:w-96 grid place-items-center overflow-visible">
                     <img alt="Logo civitas.com" src="/logo.png" className="w-60 object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
                 </span>
-
                 <div className="flex gap-4 items-center">
                     <Search />
                 </div>

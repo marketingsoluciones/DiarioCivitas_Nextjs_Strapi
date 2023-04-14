@@ -24,7 +24,7 @@ const ForecastComponent = () => {
         return forecast?.icon_url
     }
     return (
-        <div className="hidden md:block w-max col-span-1 flex flex-col items-center justify-center gap-2">
+        <div className="md:block w-max col-span-1 flex flex-col items-center justify-center gap-2">
             <span className="flex gap-2 font-display items-center ">
                 <Image
                     alt="Fast.png"
