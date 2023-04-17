@@ -1,12 +1,19 @@
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 let instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
 let instanceNew = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL_new });
 
 const api = {
   graphql: async (data) => {
+    const sessionCivitas = Cookies.get("sessionCivitas")
+    let tokenFinal = undefined
+    if (sessionCivitas) {
+      tokenFinal = Cookies.get("idToken")
+    }
     return await instanceNew.post("/graphql", data, {
       headers: {
+        Authorization: `Bearer ${tokenFinal}`,
         Development: "diariocivitas"
       }
     })

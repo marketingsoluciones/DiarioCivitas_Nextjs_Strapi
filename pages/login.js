@@ -32,7 +32,7 @@ const PageLogin = () => {
 
   useEffect(() => {
     /////// REDIRECIONES ///////
-    setRedirect(r.query.d.slice(1))
+    setRedirect(r.query.d?.slice(1))
     ///////////////////////////    
   }, [r, setRedirect]);
 

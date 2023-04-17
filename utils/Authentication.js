@@ -76,7 +76,7 @@ export const useAuthentication = () => {
             query: queries.getUser,
             variables: { uid: res.user.uid },
           });
-          if (moreInfo && res?.user?.email) {
+          if (moreInfo?.status && res?.user?.email) {
             const token = (await res?.user?.getIdTokenResult())?.token;
             const sessionCookie = await getSessionCookie(token)
             if (sessionCookie) { }
@@ -87,6 +87,7 @@ export const useAuthentication = () => {
             await router.push(!redirect ? "/" : redirect)
             ///////////////////////////
           } else {
+            console.log("error", "aun no está registrado")
             toast("error", "aun no está registrado");
             //verificar que firebase me devuelva un correo del usuario
             if (res?.user?.email) {

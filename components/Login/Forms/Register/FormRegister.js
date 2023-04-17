@@ -24,8 +24,8 @@ yup.setLocale({
 });
 
 
-const FormRegister = ({ whoYouAre = "lector" }) => {
-  const { setUser, user } = AuthContextProvider();
+const FormRegister = ({ whoYouAre = ["lector", "editor"] }) => {
+  const { setUser, user, setUserTemp, userTemp, redirect } = AuthContextProvider();
   const { setLoading } = LoadingContextProvider();
   const { getSessionCookie } = useAuthentication();
   const toast = useToast()
@@ -41,21 +41,36 @@ const FormRegister = ({ whoYouAre = "lector" }) => {
     role: whoYouAre || "",
   };
 
+  const userInitialValuesPartial = {
+    fullName: "",
+    email: "",
+    //Envio a la api
+    phoneNumber: "",
+    role: whoYouAre || "",
+
+  };
+
   // Funcion a ejecutar para el submit del formulario
   const handleSubmit = async (values, actions) => {
+    console.log(values)
     try {
       setLoading(true);
       let UserFirebase = user ?? {};
 
-      // Autenticacion con firebase
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      );
-      UserFirebase = res.user;
-      // Almacenamiento en values del UID de firebase
-      values.uid = res.user.uid;
+      if (!user?.uid && !userTemp?.uid) {
+        // Autenticacion con firebase
+        const res = await createUserWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+        );
+        UserFirebase = res.user;
+        // Almacenamiento en values del UID de firebase
+        values.uid = res.user.uid;
+      } else {
+        // Si existe usuario firebase pero faltan datos de ciudad, etc.
+        values.uid = userTemp?.uid;
+      }
 
       // Actualizar displayName
       auth?.onAuthStateChanged(async (usuario) => {
@@ -94,12 +109,31 @@ const FormRegister = ({ whoYouAre = "lector" }) => {
     <>
       <FormikStepper handleSubmit={handleSubmit}>
         <Form className="w-full text-gray-200 md:grid md:grid-cols-2 md:gap-6 space-y-5 md:space-y-0 flex flex-col">
-          <UserWithEmailAndPassword
-            initialValues={userInitialValuesTotal}
-            validationSchema={
-              ValidationSchemaRegister.businessValidationTotal
+          {(() => {
+            if (!user?.uid && !userTemp?.uid) {
+              return (
+                <UserWithEmailAndPassword
+                  initialValues={userInitialValuesTotal}
+                  validationSchema={
+                    ValidationSchemaRegister.userValidationTotal
+                  }
+                />
+              )
+            } else {
+              {
+                userInitialValuesPartial.fullName = !userTemp?.displayName ? "" : userTemp.displayName
+                userInitialValuesPartial.email = !userTemp?.email ? "" : userTemp.email
+              }
+              return (
+                <UserDataAPI
+                  initialValues={userInitialValuesPartial}
+                  validationSchema={
+                    ValidationSchemaRegister.userValidationPartial
+                  }
+                />
+              );
             }
-          />
+          })()}
           <div className="flex items-center w-fit col-span-2 gap-6 mx-auto inset-x-0 ">
             <button
               type={"submit"}
@@ -146,6 +180,7 @@ export const FormikStepper = memo(
 
 
 const UserWithEmailAndPassword = () => {
+  const { userTemp } = AuthContextProvider();
   const [passwordView, setPasswordView] = useState(false)
   return (
     <>
@@ -171,7 +206,7 @@ const UserWithEmailAndPassword = () => {
 
       </div>
 
-      <div className="w-full relative ">
+      {!userTemp && <div className="w-full relative ">
         <InputField
           name="password"
           type={!passwordView ? "password" : "text"}
@@ -182,7 +217,7 @@ const UserWithEmailAndPassword = () => {
         <div onClick={() => { setPasswordView(!passwordView) }} className="absolute cursor-pointer inset-y-0 top-5 right-4 m-auto w-4 h-4 text-gray-500" >
           {!passwordView ? <Eye /> : <EyeSlash />}
         </div>
-      </div>
+      </div>}
 
       <div className="w-full relative ">
         <InputField
@@ -190,6 +225,45 @@ const UserWithEmailAndPassword = () => {
           type="number"
           autoComplete="off"
           icon={<PhoneMobile className="absolute w-4 h-4 inset-y-0 left-4 m-auto  text-gray-500" />}
+          label={"Número de telefono"}
+        />
+      </div>
+    </>
+  );
+};
+
+const UserDataAPI = () => {
+  return (
+    <>
+      <div className="w-full col-span-2">
+        <InputField
+          name="fullName"
+          placeholder="Jhon Doe"
+          type="text"
+          autoComplete="off"
+          icon={<UserForm className="absolute w-4 h-4 inset-y-0 left-4 m-auto" />}
+          label={"Nombre y apellidos"}
+          disabled
+        />
+      </div>
+
+      <div className="w-full col-span-2">
+        <InputField
+          name="email"
+          placeholder="jhondoe@gmail.com"
+          type="email"
+          autoComplete="off"
+          icon={<EmailIcon className="absolute w-4 h-4 inset-y-0 left-4 m-auto  text-gray-500" />}
+          label={"Correo electronico"}
+          disabled
+        />
+      </div>
+
+      <div className="w-full relative ">
+        <InputField
+          name="phoneNumber"
+          type="number"
+          autoComplete="off"
           label={"Número de telefono"}
         />
       </div>

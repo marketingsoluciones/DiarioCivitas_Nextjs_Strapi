@@ -6,6 +6,7 @@ import FormResetPassword from "./Forms/FormResetPassword";
 import { FirstStep, SecondStep } from "./Forms/Register/Steps";
 import router from 'next/router'
 import FormRegister from "./Forms/Register/FormRegister";
+import { AuthContextProvider } from "../../context";
 
 
 
@@ -32,15 +33,21 @@ export const Login = ({ setStage }) => {
 };
 
 export const Register = ({ setStage }) => {
+  const { userTemp } = AuthContextProvider();
   return (
     <div className="gap-4 flex flex-col justify-center items-center w-full mb-4">
       <img alt="Logo civitas.com" src="/logo.png" className="w-80 object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
 
       <FormRegister setStage={setStage} />
-      <h2 className={`font-light text-tertiary flex gap-2 items-center text-md mt-2`}>
-        Ó
-      </h2>
-      <Providers setStage={setStage} />
+      {
+        !userTemp &&
+        <>
+          <h2 className={`font-light text-tertiary flex gap-2 items-center text-md mt-2`}>
+            Ó
+          </h2>
+          <Providers setStage={setStage} />
+        </>
+      }
       <h2
         className={`font-light text-tertiary flex gap-2 items-center text-sm `}
       >
