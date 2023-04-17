@@ -18,7 +18,8 @@ module.exports = {
         textBlack:"#212B36",
         blueFull:"#3361FF",
         bgCuadroAyudas:"#EBEFFF",
-        blueClaro:"#7D8FB3"
+        blueClaro:"#7D8FB3",
+        "color-base": "#F2F2F2",
       },
       spacing:{
         '250px':'250px',
