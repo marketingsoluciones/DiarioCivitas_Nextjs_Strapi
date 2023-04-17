@@ -10,6 +10,7 @@ import { SidebarProvider } from "../context/SidebarContext";
 import { LoadingProvider } from "../context";
 import ReactGA from 'react-ga';
 import GoogleAnalytics from "../components/GoogleAnalytics";
+import { ToastProvider } from "../context";
 
 const DynamicAuthProvider = dynamic(() =>
   import("../context/AuthContext").then((mod) => mod.AuthProvider)
@@ -27,6 +28,7 @@ const DefaultLayout = ({ children }) => {
     <DynamicAuthProvider>
       <LoadingProvider>
         <SidebarProvider>
+          <ToastProvider>
           <GoogleAnalytics />
           <div className="bg-gray-200">
             <Head>
@@ -42,6 +44,7 @@ const DefaultLayout = ({ children }) => {
             <main className="w-full ">{children}</main>
             <Footer />
           </div>
+          </ToastProvider>
         </SidebarProvider>
       </LoadingProvider>
     </DynamicAuthProvider>

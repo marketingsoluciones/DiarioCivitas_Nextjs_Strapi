@@ -1,6 +1,6 @@
 import { ToastContextProvider } from "../context"
 
-export const useToast = (delay = 4000) => {
+export const useToast = (delay = 2000) => {
     const { dispatch } = ToastContextProvider()
 
 

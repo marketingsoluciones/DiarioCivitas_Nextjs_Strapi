@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { ToastContextProvider } from "../../context/ToastContext";
-//import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { capitalize } from "../../utils/Capitalize";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { capitalizeToast } from "../../utils/Capitalize";
 
 const ToastContainer = ({ toasts }) => {
   return (
     <div className="fixed bottom-0 w-full z-[1000]">
-      {/* <TransitionGroup
+      <TransitionGroup
         component="div"
         className={"max-w-xl transition"}
       >
@@ -15,7 +15,7 @@ const ToastContainer = ({ toasts }) => {
             <Toast id={toast.id} type={toast.type} message={toast.message} />
           </CSSTransition>
         ))}
-      </TransitionGroup> */}
+      </TransitionGroup>
     </div>
   );
 };
@@ -37,7 +37,7 @@ const Toast = ({ message, type, id }) => {
         <div className="flex-shrink-0">{types[type].icon}</div>
         <div className="ml-3">
           <p className={`text-sm font-medium`}>
-            {message && capitalize(message)}
+            {message /* && capitalizeToast(message) */}
           </p>
         </div>
         <div className="ml-auto pl-3">
