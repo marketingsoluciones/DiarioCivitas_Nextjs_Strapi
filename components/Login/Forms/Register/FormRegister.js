@@ -52,7 +52,6 @@ const FormRegister = ({ whoYouAre = ["lector", "editor"] }) => {
 
   // Funcion a ejecutar para el submit del formulario
   const handleSubmit = async (values, actions) => {
-    console.log(values)
     try {
       setLoading(true);
       let UserFirebase = user ?? {};
@@ -74,7 +73,6 @@ const FormRegister = ({ whoYouAre = ["lector", "editor"] }) => {
 
       // Actualizar displayName
       auth?.onAuthStateChanged(async (usuario) => {
-        console.log(600155, "--------------------------------------------")
         if (usuario) {
           updateProfile(usuario, { displayName: values.fullName });
           // Almacenar token en localStorage

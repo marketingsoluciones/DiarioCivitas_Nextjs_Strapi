@@ -87,7 +87,7 @@ export const useAuthentication = () => {
             await router.push(!redirect ? "/" : redirect)
             ///////////////////////////
           } else {
-            console.log("error", "aun no está registrado")
+            console.log(60056, "error", "aun no está registrado")
             toast("error", "aun no está registrado");
             //verificar que firebase me devuelva un correo del usuario
             if (res?.user?.email) {
@@ -126,7 +126,7 @@ export const useAuthentication = () => {
         toast("success", "Email enviado correctamente")
       } catch (error) {
         toast("error", "Error, email no encontrado")
-        console.log(error);
+        console.log(1201, error);
       }
     } else {
       toast("error", "introduce un correo")

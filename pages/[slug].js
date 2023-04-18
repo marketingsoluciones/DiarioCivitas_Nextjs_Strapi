@@ -205,7 +205,6 @@ export const getStaticProps = async ({ params }) => {
       revalidate: 300,
     };
   } catch (error) {
-    console.log(10051, "he aqui un error");
     console.log(10052, error);
     return {
       props: {

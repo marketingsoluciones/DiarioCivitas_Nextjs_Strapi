@@ -20,19 +20,10 @@ const LoaderImage = ({ src, width, quality }) => {
 
 const Category = (props) => {
   const [news, setNews] = useState([]);
-  // const [count, setCount] = useState(() => {
-  //     const res = props?.news[0]?.postcategorias?.find(item => item?.slug == props?.category)
-  //     return res?.quantity
-  // })
-
-  //console.log(3001, props)
-
   const {query} = useRouter()
   const category = query.category
 
-
   useEffect(() => {
-    console.log(456, props.news)
     setNews(props.news);
   }, [props]);
   return (

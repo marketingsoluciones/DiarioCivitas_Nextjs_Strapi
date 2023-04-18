@@ -12,10 +12,6 @@ import { useAuthentication } from "../utils/Authentication.js";
 const Navigation = ({ show, setShow }) => {
     const { _signOut } = useAuthentication()
     const { user } = AuthContextProvider()
-    useEffect(() => {
-        console.log(8001, user)
-    }, [user])
-
 
     const { setLoading } = LoadingContextProvider()
     //const router = useRouter()
@@ -58,7 +54,6 @@ const Navigation = ({ show, setShow }) => {
     }, [router])
 
     const handleClick = () => {
-        //console.log(50002, router.asPath)
         if (!user) {
             router.push(`/login/?d=${router.asPath}`)
         } else {
