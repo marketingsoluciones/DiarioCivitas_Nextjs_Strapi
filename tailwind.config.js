@@ -20,6 +20,8 @@ module.exports = {
         bgCuadroAyudas:"#EBEFFF",
         blueClaro:"#7D8FB3",
         "color-base": "#F2F2F2",
+        redBottomPeticion:"#E8312A",
+        redTextoEncabezado:"#FF0000"
       },
       spacing:{
         '250px':'250px',
