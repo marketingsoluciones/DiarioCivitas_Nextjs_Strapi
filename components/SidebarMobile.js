@@ -1,10 +1,17 @@
 import Link from 'next/link'
-import { SidebarContextProvider, AuthContextProvider } from '../context';
+import { SidebarContextProvider, AuthContextProvider, LoadingContextProvider } from '../context';
 import { ArrowNarrowIcon, FlechaIcon } from './icons.js'
-import router, { useRouter } from 'next/router'
+import router from 'next/router'
+import { useAuthentication } from '../utils/Authentication';
+import { UserConected } from './userConected';
 
 
 const SidebarMobile = () => {
+    const { setLoading } = LoadingContextProvider()
+    const { user } = AuthContextProvider()
+    const { _signOut } = useAuthentication()
+    const { isVisible, setSidebar } = SidebarContextProvider()
+
     const menu = [
         { title: "Inicio", route: "/", menu: false },
         { title: "Region Murcia", route: "/category/murcia", menu: true },
@@ -19,8 +26,7 @@ const SidebarMobile = () => {
         { title: "Hazte socio", route: "/suscripcion/hazte-Socio", menu: false },
 
     ];
-    const { user } = AuthContextProvider()
-    const { isVisible, setSidebar } = SidebarContextProvider()
+
 
     const handleClick = () => {
         if (!user) {
@@ -38,6 +44,9 @@ const SidebarMobile = () => {
                 <p className="font-body text-sm uppercase">Vover a atras</p>
             </div>
             <ul className="list-none">
+                <li className="font-body cursor-pointer pl-3 border-b hover:bg-gray-400 hover:text-white py-2 w-full text-primary flex " onClick={() => { handleClick(), setSidebar(false) }}>
+                    <UserConected />
+                </li>
                 {menu?.map((item, idx) => {
                     return (
                         <Link key={idx} href={item?.route}>
@@ -50,9 +59,6 @@ const SidebarMobile = () => {
 
                     )
                 })}
-                <li className="font-body cursor-pointer pl-3 border-b hover:bg-gray-400 hover:text-white py-2 w-full text-primary flex justify-between items-center"  onClick={()=>{handleClick(),setSidebar(false) }}>
-                    {!user ? "Login" : "Cerrar sesión"}
-                </li>
 
             </ul>
 

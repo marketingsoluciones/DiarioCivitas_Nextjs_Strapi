@@ -1,14 +1,13 @@
 import Link from "next/link";
 import useHover from "../hooks/useHover.js";
-import ForecastComponent from "./ForecastComponent.js";
-import { FacebookIcon, FlechaIcon, InstagramIcon, MenuIcono, TwitterIcon } from "./icons.js";
+import { FlechaIcon, MenuIcono } from "./icons.js";
 import Search from "./Search.js";
-import router, { useRouter } from 'next/router'
+import router from 'next/router'
 import { useEffect } from "react";
 import { LoadingContextProvider, SidebarContextProvider, AuthContextProvider } from "../context";
-import { route } from "next/dist/next-server/server/router.js";
+
 import { useAuthentication } from "../utils/Authentication.js";
-import { UserForm } from "./icons.js";
+import { UserConected } from "./userConected.js";
 
 const Navigation = ({ show, setShow }) => {
     const { _signOut } = useAuthentication()
@@ -64,7 +63,7 @@ const Navigation = ({ show, setShow }) => {
     }
     return (
         <header>
-                {/*             
+            {/*             
                 <div className="bg-primary py-2 px-4 max-w-screen-lg w-full mx-auto inset-x-0 text-white flex items-center justify-center md:justify-between">
                 <ul className="md:flex gap-4 w-max hidden ">
                 {topMenu.map(({ title, route }, idx) => {
@@ -93,12 +92,12 @@ const Navigation = ({ show, setShow }) => {
             <div className="bg-white relative max-w-screen-lg w-full mx-auto inset-x-0 flex flex-col justify-start gap-8* pt-11* px-4">
                 <div className=" flex items-center justify-between mt-4 ">
 
-                    <div className="flex hidden md:block" >
+                    <div className="hidden md:block" >
                         <label className="text-redTextoEncabezado font-semibold mr-3" >Ultima hora</label>
                         <label className="font-semibold">El gobierno aprueba una ley Especial</label>
                     </div>
 
-                    <div className="hidden md:block flex gap-4 items-center w-max">
+                    <div className="md:block flex gap-4 items-center w-max">
                         <Search />
                     </div>
 
@@ -107,11 +106,9 @@ const Navigation = ({ show, setShow }) => {
                         className="  hidden md:block  font-semibold text-sm items-center hover:text-gray-300 "
                         onClick={handleClick}
                     >
-
-                        <label className="flex items-center cursor-pointer">
-                            <UserForm />
-                            {!user ? "Login" : "Cerrar sesión"}
-                        </label>
+                        <div className="flex w-40 h-10 items-center cursor-pointer">
+                            <UserConected />
+                        </div>
                     </div>
                 </div>
 
@@ -127,12 +124,18 @@ const Navigation = ({ show, setShow }) => {
                     <div className="absolute* flex pt-2  ">
                         <button
                             className=" hover:underline bg-blue-800 text-white font-semibold text-sm pb-2 px-3 w-78* py-4 rounded-t-3xl hidden md:block"
-                            onClick={() => router.push("/peticiones/nueva-peticion")}
+                            onClick={() => {
+                                setLoading(true)
+                                router.push("/peticiones/nueva-peticion")
+                            }}
                         >
-                            Creat tu peticion
+                            Crea tu peticion
                         </button>
                         <button
-                            onClick={() => router.push("/suscripcion/hazte-Socio")}
+                            onClick={() => {
+                                setLoading(true)
+                                router.push("/suscripcion/hazte-Socio")
+                            }}
                             className="hover:underline bg-redBottomPeticion text-white font-semibold text-sm pb-1 px-3 py-4 rounded-t-3xl hidden md:block"
                         >
                             Hazte socio
