@@ -116,7 +116,7 @@ export const Steps = ({ step }) => {
                     })()}
 
                     <span className={`${step >= 3 ? "text-blueFull" : "text-blueClaro"} font-bold`}>
-                        Imagenes
+                    Recursos
                     </span>
                 </div>
 
