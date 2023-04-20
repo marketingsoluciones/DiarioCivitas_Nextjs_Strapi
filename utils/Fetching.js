@@ -1,6 +1,6 @@
 import { api } from "../api";
 
-export const fetchApi = async ({ query = ``, variables = {}, type = "json" }) => {
+export const fetchApi = async ({ query = ``, variables = {}, type = "json", token }) => {
   try {
     if (type === "json") {
       const {
@@ -110,6 +110,86 @@ export const queries = {
       sessionCookie
     }
   }`,
+
+  lastPost: `query($development: String!) {
+    getHome(development:$development){
+      post{
+        _id
+        title
+        subTitle
+        slug
+        postFormat
+        authorUsername
+        createdAt
+        imgMiniatura{
+          i640
+          i320
+        }
+      }     
+    }
+  }`,
+
+  lastPostForCategorie: `query($development: String!) {
+    getLastPostForCategorie(development:$development){
+      _id
+      title
+      post{
+        _id
+        title
+        subTitle
+        slug
+        postFormat
+        authorUsername
+        createdAt
+        imgMiniatura{
+          i640
+          i320
+        }
+      }     
+    }
+  }`,
+
+  createPost:
+    `mutation (
+      $title: String,
+      $subTitle :String,
+      $content: String,
+      $slug : String,
+      $seoDescription : String,
+      $subCategories: [ID],
+      $tags :[String],
+      $authorUsername :String,
+      $imgCarrusel : [Upload],
+      $imgMiniatura : Upload,
+      $development: String!
+    ){
+      createPost (args:{
+        title: $title,
+        subTitle:$subTitle,
+        content: $content,
+        slug:$slug,
+        seoDescription: $seoDescription,
+        subCategories :$subCategories,
+        tags: $tags,
+        authorUsername :$authorUsername,
+        imgCarrusel: $imgCarrusel,
+        imgMiniatura : $imgMiniatura,
+      },
+      development: $development){
+        _id
+      }
+    }`,
+
+  getOneSubCategoryPost:
+    `query (
+      $slug : String,
+    ){
+      getOneSubCategoryPost (
+        slug:$slug
+      ){
+        _id
+      }
+    }`
 };
 
 
