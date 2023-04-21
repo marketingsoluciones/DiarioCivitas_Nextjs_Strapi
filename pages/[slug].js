@@ -17,7 +17,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-import { fetchApi } from "../utils/Fetching.js";
+import { fetchApi, queries } from "../utils/Fetching.js";
 import { useRouter } from "next/router.js";
 
 
@@ -41,7 +41,7 @@ const Post = ({ PostData }) => {
     return `${domain}${src}`;
   };
 
-  const {query} = useRouter()
+  const { query } = useRouter()
   const noticia = query.slug
 
 
@@ -55,7 +55,7 @@ const Post = ({ PostData }) => {
         <meta property="og:description" content={PostData?.seoDescription} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta name="keywords" content={`noticia, novedad, actualidad, que sucede, ${noticia}, que pasa con ${noticia}, que sucede en ${noticia}`}/>
+        <meta name="keywords" content={`noticia, novedad, actualidad, que sucede, ${noticia}, que pasa con ${noticia}, que sucede en ${noticia}`} />
       </Head>
       <div className="w-full md:max-w-screen-lg py-10 flex flex-col gap-8 mx-auto inset-x-0 px-5 bg-white">
         <section className="w-full grid md:grid-cols-3 gap-12 ">
@@ -215,26 +215,40 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export async function getStaticPaths() {
-  const resp = await fetchApi({
-    query: `query($limit:Int, $development: String!) {
-          getAllPost(limit:$limit, development:$development ){
-            results{
-              slug
-            }
-          }
-        }`,
+  const { total } = await fetchApi({
+    query: queries.getAllPost,
     variables: {
-      //limit: 5,
+      limit: 1,
       development: "diariocivitas"
     }
   })
-
-  const paths = resp?.results?.map((item, idx) => {
-    return {
-      params: {
-        slug: item?.slug,
-      },
-    };
+  const resp = async () => {
+    let result = []
+    for (let i = 0; i < 100; i = i + 50) {
+      console.log("i: ", i)
+      const data = await fetchApi({
+        query: queries.getAllPost,
+        variables: {
+          skip: i,
+          limit: 50,
+          development: "diariocivitas"
+        }
+      })
+      result = [...result, ...data.results]
+      console.log("result.length: ", result.length)
+    }
+    return result
+  }
+  const paths = await resp().then((asd) => {
+    console.log(60001, asd.length)
+    const paths = asd?.map((item, idx) => {
+      return {
+        params: {
+          slug: item?.slug,
+        },
+      };
+    })
+    return paths
   })
   return {
     paths: paths,
