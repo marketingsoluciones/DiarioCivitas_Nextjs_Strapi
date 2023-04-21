@@ -16,7 +16,6 @@ const CrearPeticion = () => {
 
     const [step, setStep] = useState(0)
     const [problema, setProblema] = useState("")
-    const [slug, setSlug] = useState("")
     const [imgen, setImagen] = useState([])
     const toast = useToast()
 
@@ -49,16 +48,6 @@ const CrearPeticion = () => {
         }
     }
 
-    const stringToSlug = (str) => {
-        return str
-            .trim()
-            .toLowerCase()
-            .replace(/[\W_]+/g, '-')
-            .replace(/^-+|-+$/g, '');
-    };
-
-    const Slug = stringToSlug(slug)
-
     const initialValue = {
         title: " ",
         subTitle: "",
@@ -89,8 +78,6 @@ const CrearPeticion = () => {
                                         <>
                                             <CrearTitulo
                                                 onClick={onClick}
-                                                slug={slug}
-                                                setSlug={setSlug}
                                             />;
                                         </>
                                     )
@@ -137,8 +124,6 @@ const CrearPeticion = () => {
             </div >
         </>
     )
-
-
 }
 
 export default CrearPeticion
