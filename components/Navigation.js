@@ -1,13 +1,13 @@
 import Link from "next/link";
 import useHover from "../hooks/useHover.js";
-import ForecastComponent from "./ForecastComponent.js";
-import { FacebookIcon, FlechaIcon, InstagramIcon, MenuIcono, TwitterIcon } from "./icons.js";
+import { FlechaIcon, MenuIcono } from "./icons.js";
 import Search from "./Search.js";
-import router, { useRouter } from 'next/router'
+import router from 'next/router'
 import { useEffect } from "react";
 import { LoadingContextProvider, SidebarContextProvider, AuthContextProvider } from "../context";
-import { route } from "next/dist/next-server/server/router.js";
+
 import { useAuthentication } from "../utils/Authentication.js";
+import { UserConected } from "./userConected.js";
 
 const Navigation = ({ show, setShow }) => {
     const { _signOut } = useAuthentication()
@@ -65,60 +65,94 @@ const Navigation = ({ show, setShow }) => {
         <header>
             {/*             
                 <div className="bg-primary py-2 px-4 max-w-screen-lg w-full mx-auto inset-x-0 text-white flex items-center justify-center md:justify-between">
-                    <ul className="md:flex gap-4 w-max hidden ">
-                        {topMenu.map(({ title, route }, idx) => {
-                            return (
-                                <Link key={idx} href={route}>
-                                    <li className="font-body text-xs cursor-pointer hover:text-gray-400">
-                                        {title}
-                                    </li>
-                                </Link>
-                            );
-                        })}
+                <ul className="md:flex gap-4 w-max hidden ">
+                {topMenu.map(({ title, route }, idx) => {
+                    return (
+                        <Link key={idx} href={route}>
+                        <li className="font-body text-xs cursor-pointer hover:text-gray-400">
+                        {title}
+                        </li>
+                        </Link>
+                        );
+                    })}
                     </ul>
-
+                    
                     <div className="flex gap-4 items-center w-max">
-                        <Link href={"/login"}>
-                        <p className="text-xs cursor-pointer hover:text-gray-300 text-white ">Iniciar sesión</p>
+                    <Link href={"/login"}>
+                    <p className="text-xs cursor-pointer hover:text-gray-300 text-white ">Iniciar sesión</p>
                         </Link>
                         <FacebookIcon className="text-white w-4 h-4" />
                         <TwitterIcon className="text-white w-4 h-4" />
                         <InstagramIcon className="text-white w-4 h-4" />
+                        </div>
+                    </div> */}
+
+
+
+            <div className="bg-white relative max-w-screen-lg w-full mx-auto inset-x-0 flex flex-col justify-start gap-8* pt-11* px-4">
+                <div className=" flex items-center justify-between mt-4 ">
+
+                    <div className="hidden md:block" >
+                        <label className="text-redTextoEncabezado font-semibold mr-3" >Ultima hora</label>
+                        <label className="font-semibold">El gobierno aprueba una ley Especial</label>
                     </div>
-                </div> */}
 
+                    <div className="md:block flex gap-4 items-center w-max">
+                        <Search />
+                    </div>
 
-            <div className="bg-white max-w-screen-lg w-full mx-auto inset-x-0 flex items-center justify-between gap-4 py-7 px-4">
-                <div className="flex ">
-                    <span className="md:hidden cursor-pointer" onClick={() => setSidebar(!isVisible)}>
-                        <MenuIcono className="text-gray-900 h-6 w-6" />
-                    </span>
-                    <ForecastComponent />
-                    <span className="ml-6 mt-1 text-xs md:text-lg md:mt-3 cursor-pointer hover:text-gray-300 "
+                    {/* <ForecastComponent /> */}
+                    <div
+                        className="  hidden md:block  font-semibold text-sm items-center hover:text-gray-300 "
                         onClick={handleClick}
                     >
-                        {!user ? "Iniciar sesión" : "Cerrar sesión"}
-                    </span>
+                        <div className="flex w-40 h-10 items-center cursor-pointer">
+                            <UserConected />
+                        </div>
+                    </div>
                 </div>
-                <span className="w-60 md:absolute mx-auto inset-x-0 md:w-96 grid place-items-center overflow-visible">
-                    <img alt="Logo civitas.com" src="/logo.png" className="w-60 object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
-                </span>
-                <div className="flex gap-4 items-center">
-                    <Search />
+
+                <div className="flex justify-between items-center ">
+                    <span className="md:hidden cursor-pointer mb-2 " onClick={() => setSidebar(!isVisible)}>
+                        <MenuIcono className="text-gray-900 h-8 w-10" />
+                    </span>
+
+                    <span className="overflow-visible w-3/4 mb-3 md:mb-0 ">
+                        <img alt="Logo civitas.com" src="/logo.png" className="sm:w-1/2  *object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
+                    </span>
+
+                    <div className="absolute* flex pt-2  ">
+                        <button
+                            className=" hover:underline bg-blue-800 text-white font-semibold text-sm pb-2 px-3 w-78* py-4 rounded-t-3xl hidden md:block"
+                            onClick={() => {
+                                setLoading(true)
+                                router.push("/peticiones/nueva-peticion")
+                            }}
+                        >
+                            Crea tu peticion
+                        </button>
+                        <button
+                            onClick={() => {
+                                setLoading(true)
+                                router.push("/suscripcion/hazte-Socio")
+                            }}
+                            className="hover:underline bg-redBottomPeticion text-white font-semibold text-sm pb-1 px-3 py-4 rounded-t-3xl hidden md:block"
+                        >
+                            Hazte socio
+                        </button>
+                    </div>
                 </div>
             </div>
 
-
-            <div className="hidden w-full bg-blue-800 
-            max-w-screen-lg mx-auto inset-x-0 text-white h-max md:grid md:place-items-center shadow relative ">
-                <ul className="flex w-full xl:max-w-screen-lg font-body py-2 justify-between px-5">
+            <div
+                className="hidden w-full bg-blue-800 max-w-screen-lg mx-auto inset-x-0 text-white h-max md:grid md:place-items-center shadow relative ">
+                <ul className="flex w-full xl:max-w-screen-lg font-body py-1 justify-start itemes-center px-5">
                     {mainMenu.map(({ title, route, menu }, idx) => {
                         return (
                             <ItemNav key={idx} refe={hoverRef} title={title} menu={menu} route={route} />
                         );
                     })}
                 </ul>
-
             </div>
         </header>
     )
@@ -131,8 +165,8 @@ const ItemNav = ({ title, menu, refe, route }) => {
     const [hoverRef, isHovered] = useHover()
     return (
         <Link href={route} replace={true} >
-            <li ref={hoverRef} className="h-full cursor-pointer">
-                <h2 ref={refe} className="text-sm px-1 flex items-center gap-1 font-semibold subpixel-antialiased uppercase ">
+            <li ref={hoverRef} className="h-full cursor-pointer mr-9">
+                <h2 ref={refe} className="text-sm  flex items-center gap-1 font-semibold subpixel-antialiased uppercase ">
                     {title}
                     {menu ? (
                         <FlechaIcon className="w-2 h-2" />

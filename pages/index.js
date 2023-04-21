@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { api } from "../api";
+import React from "react";
 import GridNews from "../components/GridNews.js";
 import PopularPost from "../components/home/PopularPost.js";
 import SocialLinks from "../components/home/SocialLinks.js";
@@ -9,7 +8,7 @@ import CategoryBlock from "../components/CategoryBlock.js";
 import EditorPicks from "../components/EditorPicks.js";
 import Image from "next/image";
 import Head from 'next/head'
-import { fetchApi } from "../utils/Fetching";
+import { fetchApi, queries } from "../utils/Fetching";
 
 const Home = (props) => {
   return (
@@ -72,58 +71,26 @@ export const PanelSidebar = ({ lastPost }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   try {
     const lastPost = await fetchApi({
-      query: `query($development: String!) {
-    getHome(development:$development){
-      post{
-        _id
-        title
-        subTitle
-        slug
-        postFormat
-        authorUsername
-        createdAt
-        imgMiniatura{
-          i640
-          i320
-        }
-      }     
-    }
-  }`,
+      query: queries.lastPost,
       variables: { development: "diariocivitas" }
-    })
+    });
     const lastPostForCategorie = await fetchApi({
-      query: `query($development: String!) {
-    getLastPostForCategorie(development:$development){
-      _id
-      title
-      post{
-        _id
-        title
-        subTitle
-        slug
-        postFormat
-        authorUsername
-        createdAt
-        imgMiniatura{
-          i640
-          i320
-        }
-      }     
-    }
-  }`,
+      query: queries.lastPostForCategorie,
       variables: { development: "diariocivitas" }
-    })
+    });
     return {
       props: {
         ultimasNoticias: lastPost?.post,
         lastPost: lastPostForCategorie,
-      },
+      }
     };
   } catch (error) {
-    console.log(1007, error);
-    return { props: {} };
+    console.log(error);
+    return {
+      props: {},
+    };
   }
 }

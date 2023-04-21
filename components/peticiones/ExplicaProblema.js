@@ -1,9 +1,15 @@
 import { CuadroAyudaBig } from "./CuadrosAyudas"
 import { useEffect, useState } from "react";
-import CKeditor from "../forms/inputs/CKEditor";
+import dynamic from "next/dynamic"
+const CKEditorComponent = dynamic(
+    () =>
+      import("../../components/forms/inputs/CKEditor").then(
+        (mod) => mod.CKEditorComponent
+      ),
+    { ssr: false }
+  );
 
-
-export const ExplicaProblema = ({ onClick, problema, setProblema, dataa }) => {
+export const ExplicaProblema = ({ onClick, problema, setProblema}) => {
     const [editorLoaded, setEditorLoaded] = useState(false);
     const [data, setData] = useState("");
     useEffect(() => {
@@ -24,16 +30,11 @@ export const ExplicaProblema = ({ onClick, problema, setProblema, dataa }) => {
             <div className="w-3/4 my-4 grid justify-items-stretch ">
                
                 <div className="max-w-3xl ">
-                    <CKeditor
-                        name="description"
-                        onChange={(data) => {
-                            setProblema(data);
-                        }}
-                        editorLoaded={editorLoaded}
+                    <CKEditorComponent
+                        name="content"
                     />
             
                 </div>
-                <span className={`${dataa?"ml-4 text-red-500 block":"hidden"} `} >*Explica el Problema de tu peticion*</span>
 
                 <button onClick={() => onClick()} className="bg-blueFull py-2 rounded-lg mt-2 text-center text-white w-1/4 items-end justify-self-end font-bold">Continuar</button>
             </div>

@@ -1,6 +1,8 @@
 import { CuadroAyudaMedium } from "./CuadrosAyudas"
+import { FieldArrayField } from "../forms/inputs/FieldArrayField"
+import { InputField } from "../forms/inputs/InputField"
 
-export const EscogeDestinatario = ({data, destinatario, setDestinatario ,onClick}) => {
+export const EscogeDestinatario = ({ onClick }) => {
     return (
         <>
             <h3 className="text-2xl font-bold ">
@@ -12,18 +14,20 @@ export const EscogeDestinatario = ({data, destinatario, setDestinatario ,onClick
             </p>
 
             <div className="w-3/4 my-4 grid justify-items-stretch ">
-                <input
-                    value={destinatario}
-                    onChange={e => setDestinatario( e.target.value )}
-                    placeholder="¿ Que puede lograr este cambio ?"
-                    type="input"
+
+                {/* <FieldArrayField
+                    label="tags"
+                    className="focus:outline-none w-full border-2 border-gray-300 rounded-md py-2 px-3"
+                    name="tags"
+                    schema={"string"}
+                /> */}
+
+                <InputField
+                    name="subTitle"
                     className="focus:outline-none w-full border-2 border-gray-300 rounded-md py-2 px-3"
                 />
-                
-                <span className={`${data?"ml-4 text-red-500 block":"hidden"} `} >*Escribe un destinatario para tu peticion*</span>
 
                 <button onClick={() => onClick()} className="bg-blueFull py-2 rounded-lg mt-2 text-center text-white w-1/4 items-end justify-self-end font-bold">Continuar</button>
-
             </div>
 
             <CuadroAyudaMedium
