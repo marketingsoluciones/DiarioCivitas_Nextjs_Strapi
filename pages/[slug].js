@@ -222,33 +222,24 @@ export async function getStaticPaths() {
       development: "diariocivitas"
     }
   })
-  const resp = async () => {
-    let result = []
-    for (let i = 0; i < 100; i = i + 50) {
-      console.log("i: ", i)
-      const data = await fetchApi({
-        query: queries.getAllPost,
-        variables: {
-          skip: i,
-          limit: 50,
-          development: "diariocivitas"
-        }
-      })
-      result = [...result, ...data.results]
-      console.log("result.length: ", result.length)
-    }
-    return result
-  }
-  const paths = await resp().then((asd) => {
-    console.log(60001, asd.length)
-    const paths = asd?.map((item, idx) => {
-      return {
-        params: {
-          slug: item?.slug,
-        },
-      };
+  let resp = []
+  for (let i = 0; i < total; i = i + 100) {
+    const data = await fetchApi({
+      query: queries.getAllPost,
+      variables: {
+        skip: i,
+        limit: 100,
+        development: "diariocivitas"
+      }
     })
-    return paths
+    resp.push(...data.results)
+  }
+  const paths = resp?.map((item) => {
+    return {
+      params: {
+        slug: item?.slug,
+      },
+    };
   })
   return {
     paths: paths,

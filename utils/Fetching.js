@@ -73,14 +73,14 @@ export const fetchApi = async ({ query = ``, variables = {}, type = "json", toke
 };
 
 export const queries = {
-  getAllPost: `query($limit:Int, $development: String!) {
-          getAllPost(limit:$limit, development:$development ){
-            total
-            results{
-              slug
-            }
-          }
-        }`,
+  getAllPost: `query($limit:Int, $skip:Int, $development: String!) {
+    getAllPost(limit:$limit, skip:$skip, development:$development ){
+      total
+      results{
+        slug
+      }
+    }
+  }`,
   signOut: `mutation ($sessionCookie :String){
     signOut(sessionCookie:$sessionCookie)
   }`,
