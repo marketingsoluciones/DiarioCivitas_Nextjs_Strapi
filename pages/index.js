@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GridNews from "../components/GridNews.js";
 import PopularPost from "../components/home/PopularPost.js";
 import SocialLinks from "../components/home/SocialLinks.js";
@@ -9,8 +9,15 @@ import EditorPicks from "../components/EditorPicks.js";
 import Image from "next/image";
 import Head from 'next/head'
 import { fetchApi, queries } from "../utils/Fetching";
+import { SidebarContextProvider } from "../context/SidebarContext.js";
 
 const Home = (props) => {
+  const {home, setHome} = SidebarContextProvider()
+
+  useEffect(()=>{
+    setHome(props)
+  },[props])
+  
   return (
     <>
       <Head>

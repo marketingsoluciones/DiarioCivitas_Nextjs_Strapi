@@ -9,9 +9,10 @@ const SidebarContext = createContext(initialContext.isVisible);
 
 const SidebarProvider = ({ children }) => {
   const [isVisible, setSidebar] = useState(false);
+  const [home, setHome] = useState([])
 
   return (
-    <SidebarContext.Provider value={{ isVisible, setSidebar }}>
+    <SidebarContext.Provider value={{ home,setHome, isVisible, setSidebar }}>
       {children}
     </SidebarContext.Provider>
   );
