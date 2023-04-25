@@ -111,7 +111,7 @@ const Navigation = ({ show, setShow }) => {
                                 <Search />
                             </div>
 
-                            <div  className=" hover:border-gray-400 border-gray-600 cursor-pointer border-2 rounded-md py-0.5 px-1 " onClick={() => router.push("https://cms.diariocivitas.com")} >
+                            <div className=" hover:border-gray-400 border-gray-600 cursor-pointer border-2 rounded-md py-0.5 px-1 " onClick={() => router.push("https://cms.diariocivitas.com")} >
                                 <div className="flex items-center justify-content-center w-full">
                                     <img className="h-5 w-5" src="/-publica.png" />
                                     <span className="text-xs pl-0.5 font-semibold">Publicar articulo</span>
@@ -134,7 +134,7 @@ const Navigation = ({ show, setShow }) => {
 
                             </div>
 
-                            <div  onClick={() => handleClick()} className=" border-gray-600 hover:border-gray-400 border-2 rounded-md p-0.5 pt-1.5* mr-2 h-10*  cursor-pointer font-semibold text-xs ">
+                            <div onClick={() => handleClick()} className=" border-gray-600 hover:border-gray-400 border-2 rounded-md p-0.5 pt-1.5* mr-2 h-10*  cursor-pointer font-semibold text-xs ">
                                 <UserConected />
                                 {/* <div className={`h-0.5 bg-black w-full transform ${isHovered3 ? "scale-115" : "scale-0"} transition`} /> */}
                             </div>
@@ -175,14 +175,17 @@ const Navigation = ({ show, setShow }) => {
                     </div>
 
                     {/* div del boton rojo para nuevas peticiones */}
-                    <div onClick={() => {
-                        setLoading(true)
-                        router.push("/peticiones/nueva-peticion")
-                    }} className=" text-white md:text-sm lg:text-base flex bg-redBottomPeticion hover:bg-red-500 rounded-2xl py-0.5 pl-0.5 md:pr-2  lg:pr-3 md:space-x-1 lg:space-x-2 items-center cursor-pointer ">
-                        <img
-                            src="/Plusicon.png"
-                        />
-                        <span>Nueva petición</span>
+                    <div className=" hidden md:block">
+
+                        <div onClick={() => {
+                            setLoading(true)
+                            router.push("/peticiones/nueva-peticion")
+                        }} className="text-white md:text-xs lg:text-base flex bg-redBottomPeticion hover:bg-red-500 rounded-2xl py-0.5 pl-0.5 md:pr-2  lg:pr-3 md:space-x-1 lg:space-x-2 items-center cursor-pointer ">
+                            <img
+                                src="/Plusicon.png"
+                            />
+                            <span>Nueva petición</span>
+                        </div>
                     </div>
                 </div>
 
@@ -253,8 +256,8 @@ const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt, content }) =
                         {title}
                     </div>
                     <div className=" truncate w-48 h-5 font-normal  text-sm truncate">
-                    {/*     {content} */}
-                        <Markup noHtml={true}  content={content} />
+                        {/*     {content} */}
+                        <Markup noHtml={true} content={content} />
                     </div>
 
                     <div className="flex justify-between">
