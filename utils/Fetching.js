@@ -126,6 +126,7 @@ export const queries = {
         title
         subTitle
         slug
+        content
         postFormat
         authorUsername
         createdAt

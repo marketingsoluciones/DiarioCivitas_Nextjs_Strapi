@@ -11,7 +11,9 @@ export const UserConected = () => {
 
         <img
           src="/account-circle.png"
+          className="h-5 w-5"
         />
+
         <div className="ml-1">
           <div className="truncate w-20">
             {!user ? "Login" : Capitalize(user.displayName)}

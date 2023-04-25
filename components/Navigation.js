@@ -3,6 +3,7 @@ import { FlechaIcon, MenuIcono, UserVews } from "./icons.js";
 import { UserConected } from "./userConected.js";
 import { useEffect, useState } from "react";
 import { useAuthentication } from "../utils/Authentication.js";
+import { Markup } from "interweave";
 import Link from "next/link";
 import useHover from "../hooks/useHover.js";
 import Search from "./Search.js";
@@ -18,11 +19,9 @@ const Navigation = ({ show, setShow }) => {
     const { _signOut } = useAuthentication()
     const { user } = AuthContextProvider()
     const [hoverRef, isHovered] = useHover()
-    const [hoverRef3, isHovered3] = useHover()
-    const [hoverRef2, isHovered2] = useHover()
-    const [hoverRef1, isHovered1] = useHover()
     const [menu, setMenu] = useState(true)
     const dataHome = home.ultimasNoticias
+
 
     const settings = {
         arrows: false,
@@ -97,32 +96,30 @@ const Navigation = ({ show, setShow }) => {
 
     return (
         <header>
-            <div className="bg-white relative max-w-screen-lg w-full mx-auto inset-x-0 flex flex-col justify-start realtive   pl-2">
-
-                <div className=" flex items-center justify-between mt-4 ">
+            <div className="bg-white relative max-w-screen-lg w-full mx-auto inset-x-0 flex flex-col justify-start realtive pl-2">
+                {/* primera fila del header */}
+                <div className=" flex items-center justify-between mt-2">
 
                     <div className="hidden md:block" >
-                        <label className="text-redTextoEncabezado font-semibold mr-3" >Ultima hora</label>
-                        <label className="font-semibold">El gobierno aprueba una ley Especial</label>
+                        <label className="md:text-xs lg:text-base  text-redTextoEncabezado font-semibold mr-1" >Ultima hora</label>
+                        <label className="md:text-xs lg:text-base  font-semibold">El gobierno aprueba una ley Especial</label>
                     </div>
 
-                    <div className="md:block flex gap-4 items-center w-max">
-                        <Search />
-                    </div>
-
-                    {/* <ForecastComponent /> */}
                     <div className="hidden md:block">
                         <div className="flex gap-2 justify-center items-center justify-content-center ">
+                            <div className="  *flex *gap-4 *items-center ">
+                                <Search />
+                            </div>
 
-                            <div ref={hoverRef1} className=" cursor-pointer  " onClick={() => router.push("https://cms.diariocivitas.com")} >
+                            <div  className=" hover:border-gray-400 border-gray-600 cursor-pointer border-2 rounded-md py-0.5 px-1 " onClick={() => router.push("https://cms.diariocivitas.com")} >
                                 <div className="flex items-center justify-content-center w-full">
                                     <img className="h-5 w-5" src="/-publica.png" />
                                     <span className="text-xs pl-0.5 font-semibold">Publicar articulo</span>
                                 </div>
-                                <div className={`h-0.5 bg-black w-full transform ${isHovered1 ? "scale-115" : "scale-0"} transition`} />
+                                {/* <div className={`h-0.5 bg-black w-full transform ${isHovered1 ? "scale-115" : "scale-0"} transition`} /> */}
                             </div>
 
-                            <div ref={hoverRef2} className=" items-center cursor-pointer"
+                            <div className=" items-center cursor-pointer border-2 rounded-md py-0.5 px-1 border-gray-600 hover:border-gray-400"
                                 onClick={() => {
                                     setLoading(true)
                                     router.push("/suscripcion/hazte-Socio")
@@ -132,38 +129,44 @@ const Navigation = ({ show, setShow }) => {
                                     <img className="h-5 w-5" src="/business-card.png" />
                                     <span className="text-xs pl-0.5 font-semibold ">Hazte Socio/a</span>
                                 </div>
-                                <div className={`h-0.5 bg-black w-full transform ${isHovered2 ? "scale-115" : "scale-0"} transition`} />
+                                {/*  <div className={`h-0.5 bg-black w-full transform ${isHovered2 ? "scale-115" : "scale-0"} transition`} /> */}
 
 
                             </div>
 
-                            <div ref={hoverRef3} onClick={() => handleClick()} className=" pt-1.5 mr-2 h-10  cursor-pointer font-semibold text-sm ">
+                            <div  onClick={() => handleClick()} className=" border-gray-600 hover:border-gray-400 border-2 rounded-md p-0.5 pt-1.5* mr-2 h-10*  cursor-pointer font-semibold text-xs ">
                                 <UserConected />
-                                <div className={`h-0.5 bg-black w-full transform ${isHovered3 ? "scale-115" : "scale-0"} transition`} />
+                                {/* <div className={`h-0.5 bg-black w-full transform ${isHovered3 ? "scale-115" : "scale-0"} transition`} /> */}
                             </div>
                         </div>
                     </div>
                 </div>
 
+                {/* menu desplegable para las opciones del usuario */}
                 <div className={`${menu ? "hidden" : "block absolute right-2 top-12"} `}>
                     <OpcionesMenu SignOutClick={onChange} />
                 </div>
 
-                <div className="flex justify-between* items-center h-14 ">
+                {/* segunda fila del header */}
+                <div className="flex justify-between* w-full items-center h-14 ">
+
+                    {/* burguer menu movil */}
                     <span className="md:hidden cursor-pointer mb-2 " onClick={() => setSidebar(!isVisible)}>
                         <MenuIcono className="text-gray-900 h-8 w-10" />
                     </span>
 
-                    <span className="overflow-visible w-3/4 mb-3 md:mb-0 ">
+                    {/* Logo */}
+                    <span className="overflow-visible w-2/4 mb-3 md:mb-0 lg:mr-14 ">
                         <img alt="Logo civitas.com" src="/logo.png" className="sm:w-1/2  *object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
                     </span>
 
+                    {/* div donde esta el carrucel  */}
                     <div className="w-80  mr-[-2rem]  transform scale-75 hidden md:block ">
                         <Slider {...settings}>
-                            {dataHome?.map(({ title, imgMiniatura, authorUsername, createdAt }, idx) => {
+                            {dataHome?.map(({ title, imgMiniatura, authorUsername, createdAt, content }, idx) => {
                                 return (
                                     <>
-                                        <Carrusel title={title} imgMiniatura={imgMiniatura} key={idx} authorUsername={authorUsername} createdAt={createdAt} />
+                                        <Carrusel title={title} imgMiniatura={imgMiniatura} key={idx} authorUsername={authorUsername} createdAt={createdAt} content={content} />
                                     </>
                                 )
                             })}
@@ -171,16 +174,15 @@ const Navigation = ({ show, setShow }) => {
                         </Slider>
                     </div>
 
-                    <div className=" flex   ">
-                        <button
-                            onClick={() => {
-                                setLoading(true)
-                                router.push("/peticiones/nueva-peticion")
-                            }}
-                            className="hover:underline bg-redBottomPeticion text-white font-semibold text-sm pb-2 px-3 py-2 rounded-tl-3xl hidden md:block"
-                        >
-                            Crea tu peticion
-                        </button>
+                    {/* div del boton rojo para nuevas peticiones */}
+                    <div onClick={() => {
+                        setLoading(true)
+                        router.push("/peticiones/nueva-peticion")
+                    }} className=" text-white md:text-sm lg:text-base flex bg-redBottomPeticion hover:bg-red-500 rounded-2xl py-0.5 pl-0.5 md:pr-2  lg:pr-3 md:space-x-1 lg:space-x-2 items-center cursor-pointer ">
+                        <img
+                            src="/Plusicon.png"
+                        />
+                        <span>Nueva petición</span>
                     </div>
                 </div>
 
@@ -228,7 +230,7 @@ const ItemNav = ({ title, menu, refe, route }) => {
     )
 }
 
-const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt }) => {
+const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt, content }) => {
 
 
     return (
@@ -245,9 +247,15 @@ const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt }) => {
                     />
                 </div>
 
-                <div className=" flex flex-col justify-center pl-2  bg-red-200* w-48 *space-y-4">
+                <div className=" flex flex-col *justify-center pl-2  w-48">
 
-                    <div className=" truncate w-48  text-sm w-3">{title}</div>
+                    <div className=" truncate w-48 font-semibold   ">
+                        {title}
+                    </div>
+                    <div className=" truncate w-48 h-5 font-normal  text-sm truncate">
+                    {/*     {content} */}
+                        <Markup noHtml={true}  content={content} />
+                    </div>
 
                     <div className="flex justify-between">
 
