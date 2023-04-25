@@ -223,7 +223,7 @@ export async function getStaticPaths() {
     }
   })
   let resp = []
-  for (let i = 0; i < total; i = i + 100) {
+  for (let i = 0; i < total - 4500; i = i + 100) {
     const data = await fetchApi({
       query: queries.getAllPost,
       variables: {

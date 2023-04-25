@@ -114,7 +114,7 @@ const Navigation = ({ show, setShow }) => {
                     <div className="hidden md:block">
                         <div className="flex gap-2 justify-center items-center justify-content-center ">
 
-                            <div ref={hoverRef1} className=" cursor-pointer  " onClick={()=>router.push("/")} >
+                            <div ref={hoverRef1} className=" cursor-pointer  " onClick={() => router.push("https://cms.diariocivitas.com")} >
                                 <div className="flex items-center justify-content-center w-full">
                                     <img className="h-5 w-5" src="/-publica.png" />
                                     <span className="text-xs pl-0.5 font-semibold">Publicar articulo</span>
@@ -250,7 +250,7 @@ const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt }) => {
                     <div className=" truncate w-48  text-sm w-3">{title}</div>
 
                     <div className="flex justify-between">
-                        
+
                         <span className="text-xs">
                             {authorUsername ? authorUsername : "Anonimo"}
                         </span>
