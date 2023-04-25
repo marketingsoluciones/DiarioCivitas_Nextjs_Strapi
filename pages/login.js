@@ -25,14 +25,15 @@ const PageLogin = () => {
   const { redirect, setRedirect } = AuthContextProvider();
   const { user, userTemp, setUserTemp } = AuthContextProvider();
   const [stage, setStage] = useState("login");
-
   useEffect(() => {
     setRedirect(null)
   }, []);
 
   useEffect(() => {
     /////// REDIRECIONES ///////
-    setRedirect(r.query.d?.slice(1))
+    if (r?.query?.d === "cms") {
+      setRedirect(process.env.NEXT_PUBLIC_CMS_URL ?? "")
+    }
     ///////////////////////////    
   }, [r, setRedirect]);
 
