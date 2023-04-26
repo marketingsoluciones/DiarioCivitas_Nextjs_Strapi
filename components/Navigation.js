@@ -110,14 +110,17 @@ const Navigation = ({ show, setShow }) => {
                             <div className="  *flex *gap-4 *items-center ">
                                 <Search />
                             </div>
-
-                            <div className=" hover:border-gray-400 border-gray-600 cursor-pointer border-2 rounded-md py-0.5 px-1 " onClick={() => router.push("https://cms.diariocivitas.com")} >
-                                <div className="flex items-center justify-content-center w-full">
-                                    <img className="h-5 w-5" src="/-publica.png" />
-                                    <span className="text-xs pl-0.5 font-semibold">Publicar articulo</span>
-                                </div>
-                                {/* <div className={`h-0.5 bg-black w-full transform ${isHovered1 ? "scale-115" : "scale-0"} transition`} /> */}
-                            </div>
+                            <Link href={"https://cms.diariocivitas.com"}>
+                                <a target="_blank">
+                                    <div className=" hover:border-gray-400 border-gray-600  border-2 rounded-md py-0.5 px-1 "  >
+                                        <div className="flex items-center justify-content-center w-full">
+                                            <img className="h-5 w-5" src="/-publica.png" />
+                                            <span className="text-xs pl-0.5 font-semibold">Publicar artículo</span>
+                                        </div>
+                                        {/* <div className={`h-0.5 bg-black w-full transform ${isHovered1 ? "scale-115" : "scale-0"} transition`} /> */}
+                                    </div>
+                                </a>
+                            </Link>
 
                             <div className=" items-center cursor-pointer border-2 rounded-md py-0.5 px-1 border-gray-600 hover:border-gray-400"
                                 onClick={() => {
