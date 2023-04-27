@@ -24,6 +24,8 @@ const SidebarMobile = () => {
         { title: "Opinión", route: "/category/opinion", menu: false },
         { title: "Crea tu petición", route: "/peticiones/nueva-peticion", menu: false },
         { title: "Hazte socio", route: "/suscripcion/hazte-Socio", menu: false },
+        { title: "Publicar articulo", route: "https://cms.diariocivitas.com", menu: false },
+        
 
     ];
 

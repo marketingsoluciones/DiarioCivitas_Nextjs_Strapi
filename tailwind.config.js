@@ -21,7 +21,8 @@ module.exports = {
         blueClaro:"#7D8FB3",
         "color-base": "#F2F2F2",
         redBottomPeticion:"#E8312A",
-        redTextoEncabezado:"#FF0000"
+        redTextoEncabezado:"#FF0000",
+        textBlueg:"#1C2256"
       },
       spacing:{
         '250px':'250px',
