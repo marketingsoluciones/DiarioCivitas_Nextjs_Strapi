@@ -24,7 +24,7 @@ yup.setLocale({
 });
 
 
-const FormRegister = ({ whoYouAre = ["lector", "editor"] }) => {
+const FormRegister = ({ whoYouAre = ["reader", "author"] }) => {
   const { setUser, user, setUserTemp, userTemp, redirect } = AuthContextProvider();
   const { setLoading } = LoadingContextProvider();
   const { getSessionCookie } = useAuthentication();

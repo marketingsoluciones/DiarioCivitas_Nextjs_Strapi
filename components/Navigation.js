@@ -108,15 +108,19 @@ const Navigation = ({ show, setShow }) => {
 
                     <div className="hidden md:block  transform md:scale-75 lg:scale-100  ">
                         <div className="flex gap-2 justify-center items-center justify-content-center  ">
-                            
+
                             <Search />
+                            <Link href={"https://cms.diariocivitas.com"}>
 
-                            <div className=" hover:border-gray-400 border-gray-600 cursor-pointer border-1 rounded-lg py-0.5 px-1 flex items-center justify-content-center w-full* " onClick={() => router.push("https://cms.diariocivitas.com")} >
-                                <img className="h-5 w-5" src="/-publica.png" />
-                                <span className="text-xs pl-0.5  font-semibold md:font-normal">Publicar articulo</span>
-                            </div>
+                                <a target="_blank">
+                                    <div className=" hover:border-gray-400 border-gray-600 cursor-pointer border-1 rounded-lg py-0.5 px-1 flex items-center justify-content-center w-full* " >
+                                        <img className="h-5 w-5" src="/-publica.png" />
+                                        <span className="text-xs pl-0.5 font-display">Publicar articulo</span>
+                                    </div>
+                                </a>
+                            </Link>
 
-                            <div className="flex items-center cursor-pointer border-1 rounded-lg py-0.5 px-1 border-gray-600 hover:border-gray-400 w-full*"
+                            <div className=" flex items-center cursor-pointer border-1 rounded-md py-0.5 px-1 border-gray-600 hover:border-gray-400"
                                 onClick={() => {
                                     setLoading(true)
                                     router.push("/suscripcion/hazte-Socio")
