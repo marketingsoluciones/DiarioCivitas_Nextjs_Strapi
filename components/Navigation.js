@@ -27,8 +27,9 @@ const Navigation = ({ show, setShow }) => {
         arrows: false,
         infinite: true,
         autoplay: true,
+        spaceBetween: 0,
         speed: 900,
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1,
         responsive: [
             {
@@ -98,60 +99,52 @@ const Navigation = ({ show, setShow }) => {
         <header>
             <div className="bg-white relative max-w-screen-lg w-full mx-auto inset-x-0 flex flex-col justify-start realtive pl-2">
                 {/* primera fila del header */}
-                <div className=" flex items-center justify-between mt-2">
+                <div className={` flex md:w-screen lg:w-full items-center justify-between ${user ? "md:space-x-*" : "md:space-x-10 lg:space-x-40"} mt-1`}>
 
-                    <div className="hidden md:block" >
-                        <label className="md:text-xs lg:text-base  text-redTextoEncabezado font-semibold mr-1" >Ultima hora</label>
-                        <label className="md:text-xs lg:text-base  font-semibold">El gobierno aprueba una ley Especial</label>
+                    <div className="hidden md:block md:w-2/4* transform md:scale-90    " >
+                        <label className="md:text-xs lg:text-base  text-redTextoEncabezado font-display mr-1" >Ultima hora</label>
+                        <label className="md:text-xs lg:text-base  font-display md:truncate">El gobierno aprueba una ley Especial</label>
                     </div>
 
-                    <div className="hidden md:block">
-                        <div className="flex gap-2 justify-center items-center justify-content-center ">
-                            <div className="  *flex *gap-4 *items-center ">
-                                <Search />
-                            </div>
+                    <div className="hidden md:block  transform md:scale-75 lg:scale-100  ">
+                        <div className="flex gap-2 justify-center items-center justify-content-center  ">
+
+                            <Search />
                             <Link href={"https://cms.diariocivitas.com"}>
+
                                 <a target="_blank">
-                                    <div className=" hover:border-gray-400 border-gray-600  border-2 rounded-md py-0.5 px-1 "  >
-                                        <div className="flex items-center justify-content-center w-full">
-                                            <img className="h-5 w-5" src="/-publica.png" />
-                                            <span className="text-xs pl-0.5 font-semibold">Publicar artículo</span>
-                                        </div>
-                                        {/* <div className={`h-0.5 bg-black w-full transform ${isHovered1 ? "scale-115" : "scale-0"} transition`} /> */}
+                                    <div className=" hover:border-gray-400 border-gray-600 cursor-pointer border-1 rounded-lg py-0.5 px-1 flex items-center justify-content-center w-full* " >
+                                        <img className="h-5 w-5" src="/-publica.png" />
+                                        <span className="text-xs pl-0.5 font-display">Publicar articulo</span>
                                     </div>
                                 </a>
                             </Link>
 
-                            <div className=" items-center cursor-pointer border-2 rounded-md py-0.5 px-1 border-gray-600 hover:border-gray-400"
+                            <div className=" flex items-center cursor-pointer border-1 rounded-md py-0.5 px-1 border-gray-600 hover:border-gray-400"
                                 onClick={() => {
                                     setLoading(true)
                                     router.push("/suscripcion/hazte-Socio")
                                 }}
                             >
-                                <div className="flex items-center ">
-                                    <img className="h-5 w-5" src="/business-card.png" />
-                                    <span className="text-xs pl-0.5 font-semibold ">Hazte Socio/a</span>
-                                </div>
-                                {/*  <div className={`h-0.5 bg-black w-full transform ${isHovered2 ? "scale-115" : "scale-0"} transition`} /> */}
-
+                                <img className="h-5 w-5" src="/business-card.png" />
+                                <span className="text-xs pl-0.5 font-semibold md:font-normal">Hazte Socio/a</span>
 
                             </div>
 
-                            <div onClick={() => handleClick()} className=" border-gray-600 hover:border-gray-400 border-2 rounded-md p-0.5 pt-1.5* mr-2 h-10*  cursor-pointer font-semibold text-xs ">
+                            <div onClick={() => handleClick()} className=" border-gray-600 hover:border-gray-400 border-1 rounded-lg p-0.5 pt-1.5* mr-2 h-10*  cursor-pointer font-semibold text-xs w-full* ">
                                 <UserConected />
-                                {/* <div className={`h-0.5 bg-black w-full transform ${isHovered3 ? "scale-115" : "scale-0"} transition`} /> */}
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* menu desplegable para las opciones del usuario */}
-                <div className={`${menu ? "hidden" : "block absolute right-2 top-12"} `}>
+                <div className={`${menu ? "hidden" : "block absolute md:right-7 lg:right-2 md:top-3 lg:top-8 z-30"} `}>
                     <OpcionesMenu SignOutClick={onChange} />
                 </div>
 
                 {/* segunda fila del header */}
-                <div className="flex justify-between* w-full items-center h-14 ">
+                <div className="flex  w-full items-center  h-14 ">
 
                     {/* burguer menu movil */}
                     <span className="md:hidden cursor-pointer mb-2 " onClick={() => setSidebar(!isVisible)}>
@@ -159,12 +152,12 @@ const Navigation = ({ show, setShow }) => {
                     </span>
 
                     {/* Logo */}
-                    <span className="overflow-visible w-2/4 mb-3 md:mb-0 lg:mr-14 ">
-                        <img alt="Logo civitas.com" src="/logo.png" className="sm:w-1/2  *object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
+                    <span className="overflow-visible w-3/5 md:w-1/4 lg:w-1/4  mb-3 md:mb-0 lg:mr-36 ">
+                        <img alt="Logo civitas.com" src="/logo.png" className="sm:w-1/2*  *object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
                     </span>
 
                     {/* div donde esta el carrucel  */}
-                    <div className="w-80  mr-[-2rem]  transform scale-75 hidden md:block ">
+                    <div className="lg:w-1/2 md:w-3/5 md:mr-[-6rem] lg:mr-[-3rem]  md:ml-14 lg:ml-0 transform lg:scale-75 md:scale-50   hidden md:block ">
                         <Slider {...settings}>
                             {dataHome?.map(({ title, imgMiniatura, authorUsername, createdAt, content }, idx) => {
                                 return (
@@ -178,12 +171,12 @@ const Navigation = ({ show, setShow }) => {
                     </div>
 
                     {/* div del boton rojo para nuevas peticiones */}
-                    <div className=" hidden md:block">
+                    <div className=" hidden md:block  transform  md:scale-75 lg:scale-100">
 
                         <div onClick={() => {
                             setLoading(true)
                             router.push("/peticiones/nueva-peticion")
-                        }} className="text-white md:text-xs lg:text-base flex bg-redBottomPeticion hover:bg-red-500 rounded-2xl py-0.5 pl-0.5 md:pr-2  lg:pr-3 md:space-x-1 lg:space-x-2 items-center cursor-pointer ">
+                        }} className="text-white font-display cursor-pointer flex items-center bg-redBottomPeticion hover:bg-red-500 rounded-2xl py-0.5 pl-0.5  md:pr-2 lg:pr-3 md:space-x-1 lg:space-x-2 w-max md:text-xs lg:text-base ">
                             <img
                                 src="/Plusicon.png"
                             />
@@ -195,8 +188,8 @@ const Navigation = ({ show, setShow }) => {
             </div>
 
             <div className="hidden md:block">
-                <div className="flex justify-between bg-blue-800 py-1 max-w-screen-lg mx-auto inset-x-0 text-white md:place-items-center">
-                    <ul className="flex  xl:max-w-screen-lg font-body py-1 justify-start itemes-center pl-5">
+                <div className="flex justify-between  bg-blue-800 py-1 max-w-screen-lg mx-auto inset-x-0 text-white md:place-items-center">
+                    <ul className="flex   xl:max-w-screen-lg font-body py-1 justify-start itemes-center pl-5">
                         {mainMenu.map(({ title, route, menu }, idx) => {
                             return (
                                 <ItemNav key={idx} refe={hoverRef} title={title} menu={menu} route={route} />
@@ -223,7 +216,7 @@ const ItemNav = ({ title, menu, refe, route }) => {
     const [hoverRef, isHovered] = useHover()
     return (
         <Link href={route} replace={true} >
-            <li ref={hoverRef} className="h-full cursor-pointer mr-9">
+            <li ref={hoverRef} className="h-full cursor-pointer md:mr-4 lg:mr-9 ">
                 <h2 ref={refe} className="text-sm  flex items-center gap-1 font-semibold subpixel-antialiased uppercase ">
                     {title}
                     {menu ? (
@@ -241,44 +234,43 @@ const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt, content }) =
 
     return (
         <>
-            <div className=" *bg-blue-200  w-full h-14 flex truncate ">
+            <div className="  h-14 flex flex-col truncate md:mr-1 lg:mr-3 ">
+                <div className="flex  h-10 truncate ">
+                    <div>
+                        <div className=" truncate w-40 font-display   ">
+                            {title}
+                        </div>
 
-                <div className=" h-14 ">
-                    <img
-                        src={`${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura.i320}`}
-                        alt={title}
-                        height={"80px"}
-                        width={"100px"}
-                        className="rounded-md"
-                    />
-                </div>
-
-                <div className=" flex flex-col *justify-center pl-2  w-48">
-
-                    <div className=" truncate w-48 font-semibold   ">
-                        {title}
-                    </div>
-                    <div className=" truncate w-48 h-5 font-normal  text-sm truncate">
-                        {/*     {content} */}
-                        <Markup noHtml={true} content={content} />
-                    </div>
-
-                    <div className="flex justify-between">
-
-                        <span className="text-xs">
-                            {authorUsername ? authorUsername : "Anonimo"}
-                        </span>
-
-                        <div className="flex items-center text-xs space-x-1 ">
-                            <UserVews />
-                            <span className="truncate w-16" >
-
-                                {createdAt}
-                            </span>
+                        <div className=" truncate w-40 h-5 font-display  text-sm ">
+                            <Markup noHtml={true} content={content} />
                         </div>
                     </div>
+
+                    <div className="md:w-26 ">
+                        <img
+                            src={`${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura.i320}`}
+                            alt={title}
+                            height={"80px"}
+                            width={"80px"}
+                            className="rounded-md"
+                        />
+                    </div>
                 </div>
 
+                <div className="flex justify-between">
+
+                    <span className="text-xs font-display">
+                        {authorUsername ? authorUsername : "Anonimo"}
+                    </span>
+
+                    <div className="flex items-center text-xs space-x-1 ">
+                        <UserVews />
+                        <span className="truncate w-16 font-display" >
+
+                            {createdAt}
+                        </span>
+                    </div>
+                </div>
             </div>
         </>
     )
@@ -287,11 +279,11 @@ const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt, content }) =
 const OpcionesMenu = ({ SignOutClick }) => {
     return (
         <>
-            <div className="flex flex-col bg-gray-100 rounded-md px-3 py-1  divide-y-1">
-                <div className="pb-1">
+            <div className="flex flex-col bg-gray-100 rounded-md px-3 py-1  divide-y-1 md:scale-50 lg:scale-90">
+                <div className="pb-1 font-display">
                     <button onClick={() => SignOutClick()}> Logout </button>
                 </div>
-                <div className="pt-1">
+                <div className="pt-1 font-display">
 
                     <button>Configurar</button>
                 </div>

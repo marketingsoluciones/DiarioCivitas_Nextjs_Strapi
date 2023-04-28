@@ -14,8 +14,8 @@ export const UserConected = () => {
           className="h-5 w-5"
         />
 
-        <div className="ml-1">
-          <div className="truncate w-20">
+        <div className="mx-0.5">
+          <div className={`truncate ${user?"w-18":"w-max pr-0.5"} md:font-normal md:text-xs`}>
             {!user ? "Login" : Capitalize(user.displayName)}
           </div>
 
@@ -23,7 +23,7 @@ export const UserConected = () => {
           {!user ? "Login" : "Logout"}
         </div> */}
         </div>
-        <div className={`${user ? "block" : "hidden"}`}>
+        <div className={`${user ? "block mr-0.5" : "hidden"}`}>
           <ArrowIcon />
         </div>
       </div>
