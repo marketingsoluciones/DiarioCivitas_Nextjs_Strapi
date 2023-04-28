@@ -20,7 +20,7 @@ const LoaderImage = ({ src, width, quality }) => {
 
 const Category = (props) => {
   const [news, setNews] = useState([]);
-  const {query} = useRouter()
+  const { query } = useRouter()
   const category = query.category
 
   useEffect(() => {
@@ -147,7 +147,7 @@ export const NewsList = ({ noticia }) => {
 
       <div className="col-span-3 flex flex-col gap-2">
         <Title titulo={noticia?.title} slug={noticia?.slug} size="lg" />
-        <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+        <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
         {/* <div className="font-body text-xs">
                     <Markup content={`${noticia?.content?.slice(0, 400)}...`} noHtml />
                 </div> */}
@@ -178,7 +178,7 @@ const CategorySecondary = ({ news: noticias, category }) => {
       </div>
       <div className="w-full grid grid-cols-1 gap-12 p-6">
         {news?.slice(4)?.map((item, idx) => (
-            <NewsList key={idx} noticia={item} />
+          <NewsList key={idx} noticia={item} />
         ))}
       </div>
       <Pagination />
@@ -261,7 +261,7 @@ const BlockPrincipal = ({ noticia }) => {
           {noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}
         </h3>
         <Title titulo={noticia?.title} slug={noticia?.slug} size="2xl" />
-        <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+        <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
       </div>
       <style jsx>
         {`
@@ -322,7 +322,7 @@ const BlockTwoNews = ({ noticias }) => {
           width={"auto"}
           className="rounded-lg"
         />
-        <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+        <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
         <Title titulo={noticia?.title} slug={noticia?.slug} />
       </div>
     );
@@ -355,7 +355,7 @@ const NewsBlock = ({ noticias }) => {
           {noticia?.postcategorias && noticia?.postcategorias[0]?.categorie}
         </h3>
         <div className="pt-2">
-          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+          <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
           <Title titulo={noticia?.title} slug={noticia?.slug} size="md" />
         </div>
       </div>
@@ -394,7 +394,7 @@ const BlockInlineX4 = ({ noticias, color }) => {
         />
 
         <div className="pt-2">
-          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+          <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
           <Title size={"sm"} slug={noticia?.slug} titulo={noticia?.title} />
         </div>
       </div>
@@ -430,7 +430,7 @@ const Block3ColsAds = ({ noticias, color }) => {
         </div>
         <div className="md:col-span-3 flex flex-col gap-1">
           <Title titulo={noticia?.title} size="lg" />
-          <AutorLine author={noticia?.autorName} date={noticia?.createdAt} />
+          <AutorLine author={noticia?.authorUsername} date={noticia?.createdAt} />
           {/* <div className="text-xs font-body mt-3">
                     <Markup content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ab odio consectetur! Asperiores pariatur ut, neque cupiditate temporibus sequi, architecto omnis, perferendis autem repellat rem incidunt!" noHtml/>
                 </div> */}
