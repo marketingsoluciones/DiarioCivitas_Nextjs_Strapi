@@ -248,7 +248,7 @@ const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt, content }) =
 
                     <div className="md:w-26 ">
                         <img
-                            src={`${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura.i320}`}
+                            src={`${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura?.i320}`}
                             alt={title}
                             height={"80px"}
                             width={"80px"}
