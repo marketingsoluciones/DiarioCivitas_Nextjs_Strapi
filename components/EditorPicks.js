@@ -26,7 +26,7 @@ export const News = ({ noticia }) => {
             <style jsx>
                 {`
             .card-image {
-                background-image: url("${`${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura?.i320}`}");
+                background-image: url("${imgMiniatura?.i320 && `${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura?.i320}`}");
                 background-position: center top;
                 background-size: cover;
                 overflow:hidden
