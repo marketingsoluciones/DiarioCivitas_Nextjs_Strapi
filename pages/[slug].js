@@ -330,9 +330,16 @@ const RelatedArticles = () => {
         Noticias Relacionadas
       </h3>
       <div className="grid md:grid-cols-3 gap-6">
-        {news?.map((item, idx) => (
-          <News key={idx} noticia={item} />
-        ))}
+        {news?.map((item, idx) => {
+          const { imgMiniatura } = item
+          if (!imgMiniatura) {
+
+          } else {
+            return (
+              <News key={idx} noticia={item} />
+            )
+          }
+        })}
       </div>
     </div>
   );

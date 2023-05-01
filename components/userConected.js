@@ -7,7 +7,7 @@ export const UserConected = () => {
   return (
     <>
       {/*  <UserForm /> */}
-      <div className="flex items-center justify-content-center justify-center">
+      <div className="flex items-center justify-content-center justify-center rounded-lg border-solid border-gray-600 border-1 px-[5px] py-[2px] cursor-pointer ">
 
         <img
           src="/account-circle.png"
@@ -15,7 +15,7 @@ export const UserConected = () => {
         />
 
         <div className="mx-0.5">
-          <div className={`truncate ${user?"w-18":"w-max pr-0.5"} md:font-normal md:text-xs`}>
+          <div className={`truncate ${user?"w-18":"w-max pr-0.5"} text-xs`}>
             {!user ? "Login" : Capitalize(user.displayName)}
           </div>
 

@@ -1,5 +1,5 @@
 import { LoadingContextProvider, SidebarContextProvider, AuthContextProvider } from "../context";
-import { FlechaIcon, MenuIcono, UserVews } from "./icons.js";
+import { FlechaIcon, MenuIcono, UserVews,FirmasIcon } from "./icons.js";
 import { UserConected } from "./userConected.js";
 import { useEffect, useState } from "react";
 import { useAuthentication } from "../utils/Authentication.js";
@@ -10,6 +10,8 @@ import Search from "./Search.js";
 import router from 'next/router'
 import Slider from "react-slick";
 import Image from "next/image";
+import { DataGridToolbar } from "./header/MenuHeader";
+import { BtnPeticion } from "./buttons/ButtonPeticion";
 
 /* import "slick-carousel/slick/slick-theme.css"; */
 
@@ -27,7 +29,6 @@ const Navigation = ({ show, setShow }) => {
         arrows: false,
         infinite: true,
         autoplay: true,
-        spaceBetween: 0,
         speed: 900,
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -99,47 +100,12 @@ const Navigation = ({ show, setShow }) => {
         <header>
             <div className="bg-white relative max-w-screen-lg w-full mx-auto inset-x-0 flex flex-col justify-start realtive pl-2">
                 {/* primera fila del header */}
-                <div className={` flex md:w-screen lg:w-full items-center justify-between ${user ? "md:space-x-*" : "md:space-x-10 lg:space-x-40"} mt-1`}>
-
-                    <div className="hidden md:block md:w-2/4* transform md:scale-90    " >
-                        <label className="md:text-xs lg:text-base  text-redTextoEncabezado font-display mr-1" >Ultima hora</label>
-                        <label className="md:text-xs lg:text-base  font-display md:truncate">El gobierno aprueba una ley Especial</label>
-                    </div>
-
-                    <div className="hidden md:block  transform md:scale-75 lg:scale-100  ">
-                        <div className="flex gap-2 justify-center items-center justify-content-center  ">
-
-                            <Search />
-                            <Link href={"https://cms.diariocivitas.com"}>
-
-                                <a target="_blank">
-                                    <div className=" hover:border-gray-400 border-gray-600 cursor-pointer border-1 rounded-lg py-0.5 px-1 flex items-center justify-content-center w-full* " >
-                                        <img className="h-5 w-5" src="/-publica.png" />
-                                        <span className="text-xs pl-0.5 font-display">Publicar articulo</span>
-                                    </div>
-                                </a>
-                            </Link>
-
-                            <div className=" flex items-center cursor-pointer border-1 rounded-md py-0.5 px-1 border-gray-600 hover:border-gray-400"
-                                onClick={() => {
-                                    setLoading(true)
-                                    router.push("/suscripcion/hazte-Socio")
-                                }}
-                            >
-                                <img className="h-5 w-5" src="/business-card.png" />
-                                <span className="text-xs pl-0.5 font-semibold md:font-normal">Hazte Socio/a</span>
-
-                            </div>
-
-                            <div onClick={() => handleClick()} className=" border-gray-600 hover:border-gray-400 border-1 rounded-lg p-0.5 pt-1.5* mr-2 h-10*  cursor-pointer font-semibold text-xs w-full* ">
-                                <UserConected />
-                            </div>
-                        </div>
-                    </div>
+                <div className={` *flex *md:w-screen *lg:w-full *items-center *justify-between ${user ? "md:space-x-*" : "md:space-x-10* lg:space-x-40*"} mt-1`}>
+                    <DataGridToolbar setMenu={setMenu} menu={menu} />
                 </div>
 
                 {/* menu desplegable para las opciones del usuario */}
-                <div className={`${menu ? "hidden" : "block absolute md:right-7 lg:right-2 md:top-3 lg:top-8 z-30"} `}>
+                <div className={`${menu ? "hidden" : "block absolute md:right-7 lg:right-2 md:top-3 lg:top-8 z-[100]"} `}>
                     <OpcionesMenu SignOutClick={onChange} />
                 </div>
 
@@ -152,12 +118,12 @@ const Navigation = ({ show, setShow }) => {
                     </span>
 
                     {/* Logo */}
-                    <span className="overflow-visible w-3/5 md:w-1/4 lg:w-1/4  mb-3 md:mb-0 lg:mr-36 ">
+                    <span className="overflow-visible w-1/2 *md:w-1/4 *lg:w-1/4  mb-3 md:mb-0 lg:mr-36 ">
                         <img alt="Logo civitas.com" src="/logo.png" className="sm:w-1/2*  *object-contain hover:scale-105 transition transform duration-800 cursor-pointer" onClick={() => router.push("/")} />
                     </span>
 
                     {/* div donde esta el carrucel  */}
-                    <div className="lg:w-1/2 md:w-3/5 md:mr-[-6rem] lg:mr-[-3rem]  md:ml-14 lg:ml-0 transform lg:scale-75 md:scale-50   hidden md:block ">
+                    <div className="lg:w-1/2* lg:w-1/3 md:w-3/5 md:mr-[-6rem]* lg:mr-[-3rem]*  md:ml-14 lg:ml-0 transform *lg:scale-75 *md:scale-50   hidden md:block ">
                         <Slider {...settings}>
                             {dataHome?.map(({ title, imgMiniatura, authorUsername, createdAt, content }, idx) => {
                                 return (
@@ -171,17 +137,12 @@ const Navigation = ({ show, setShow }) => {
                     </div>
 
                     {/* div del boton rojo para nuevas peticiones */}
-                    <div className=" hidden md:block  transform  md:scale-75 lg:scale-100">
 
-                        <div onClick={() => {
-                            setLoading(true)
-                            router.push("/peticiones/nueva-peticion")
-                        }} className="text-white font-display cursor-pointer flex items-center bg-redBottomPeticion hover:bg-red-500 rounded-2xl py-0.5 pl-0.5  md:pr-2 lg:pr-3 md:space-x-1 lg:space-x-2 w-max md:text-xs lg:text-base ">
-                            <img
-                                src="/Plusicon.png"
-                            />
-                            <span>Nueva petición</span>
-                        </div>
+                    <div onClick={() => {
+                        setLoading(true)
+                        router.push("/peticiones/nueva-peticion")
+                    }} className=" hidden md:block  scale-75  cursor-pointer" >
+                        <BtnPeticion />
                     </div>
                 </div>
 
@@ -234,41 +195,39 @@ const Carrusel = ({ title, imgMiniatura, authorUsername, createdAt, content }) =
 
     return (
         <>
-            <div className="  h-14 flex flex-col truncate md:mr-1 lg:mr-3 ">
-                <div className="flex  h-10 truncate ">
-                    <div>
-                        <div className=" truncate w-40 font-display   ">
+            <div className="flex flex-col gap-px  shrink-0 w-[159px]  ">
+                <div className="flex flex-row gap-[5px] items-start* *justify-start shrink-0 w-[159px] relative">
+                    <div className="flex flex-col gap-[5px]* items-start* justify-start shrink-0">
+                        <div className="text-sm  text-left relative w-[100px] h-4 flex items-center justify-start truncate" >
                             {title}
                         </div>
-
-                        <div className=" truncate w-40 h-5 font-display  text-sm ">
-                            <Markup noHtml={true} content={content} />
+                        <div className="text-justified relative* w-[110px] h-5 text-sm flex* items-center justify-[undefined] truncate">
+                            <span className="text-2-span*">
+                                <Markup noHtml={true} content={content} />
+                            </span>
                         </div>
                     </div>
 
-                    <div className="md:w-26 ">
-                        <img
-                            src={`${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura?.i320}`}
-                            alt={title}
-                            height={"80px"}
-                            width={"80px"}
-                            className="rounded-md"
-                        />
-                    </div>
+                    <img
+                        className="shrink-0 w-[43px] h-[29px] relative overflow-hidden rounded-md"
+                        src={`${imgMiniatura?.i320 && `${process.env.NEXT_PUBLIC_API_URL_new}${imgMiniatura?.i320}`}`}
+                    />
+
                 </div>
 
-                <div className="flex justify-between">
+                <div className="shrink-0* w-[159px] h-3 relative truncate flex justify-between ">
 
-                    <span className="text-xs font-display">
-                        {authorUsername ? authorUsername : "Anonimo"}
-                    </span>
+                    <div
+                        className="text-xs text-justified absolute*  w-[60px] h-3 flex items-center truncate">
+                        {authorUsername}
+                    </div>
 
-                    <div className="flex items-center text-xs space-x-1 ">
-                        <UserVews />
-                        <span className="truncate w-16 font-display" >
+                    <div className="flex flex-row w-[60px]">
+                       <FirmasIcon/>
 
+                        <div className="text-sm flex items-center text-ellipsis ">
                             {createdAt}
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -282,10 +241,6 @@ const OpcionesMenu = ({ SignOutClick }) => {
             <div className="flex flex-col bg-gray-100 rounded-md px-3 py-1  divide-y-1 md:scale-50 lg:scale-90">
                 <div className="pb-1 font-display">
                     <button onClick={() => SignOutClick()}> Logout </button>
-                </div>
-                <div className="pt-1 font-display">
-
-                    <button>Configurar</button>
                 </div>
             </div>
         </>
