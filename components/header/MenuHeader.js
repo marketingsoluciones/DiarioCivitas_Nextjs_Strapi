@@ -2,7 +2,7 @@
 //import "./DataGridToolbar.css";
 import { useState } from "react";
 import { AuthContextProvider } from "../../context";
-import { ButtonBorder } from "../buttons/buttonBorder";
+import { ButtonBorder } from "../buttons/ButtonBorder";
 import { UserLoginIcon, SocioIcon, PublicarIcon } from "../icons";
 import { UserConected } from "../userConected";
 import Search from "../Search";
