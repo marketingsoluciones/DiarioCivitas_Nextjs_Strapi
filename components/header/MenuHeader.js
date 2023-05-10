@@ -36,7 +36,7 @@ export const DataGridToolbar = ({ setMenu, menu }) => {
       <div className="flex justify-between  itemes-center  " >
 
         <div className="  " >
-          <span className="md:text-xs lg:text-sm  text-redTextoEncabezado font-display mr-1" >Ultima hora</span>
+          <span className="md:text-xs lg:text-sm  text-blue-600 font-display mr-1" >Ultima hora</span>
           <span className="md:text-xs lg:text-sm  font-display md:truncate">El gobierno aprueba una ley Especial</span>
         </div>
 
