@@ -36,7 +36,7 @@ const Post = ({ PostData }) => {
   };
 
   const LoaderImage = ({ src }) => {
-    //const domain = process.env.NEXT_PUBLIC_API_URL;
+    if (src && (src.startsWith('http://') || src.startsWith('https://'))) return src;
     const domain = process.env.NEXT_PUBLIC_API_URL_new;
     return `${domain}${src}`;
   };
