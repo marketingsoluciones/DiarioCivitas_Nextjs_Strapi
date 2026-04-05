@@ -183,14 +183,8 @@ export const getStaticProps = async ({ params }) => {
               i640
               i320
             }
-            categories{
-              _id
-              title
-            }
-            subCategories{
-              _id
-              title
-            }
+            categories
+            subCategories
           }
         }`,
       variables: {
@@ -215,36 +209,35 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export async function getStaticPaths() {
-  const { total } = await fetchApi({
-    query: queries.getAllPost,
-    variables: {
-      limit: 1,
-      development: "diariocivitas"
-    }
-  })
-  let resp = []
-  for (let i = 0; i < total - 4500; i = i + 100) {
-    const data = await fetchApi({
+  try {
+    const result = await fetchApi({
       query: queries.getAllPost,
       variables: {
-        skip: i,
-        limit: 100,
+        limit: 1,
         development: "diariocivitas"
       }
-    })
-    resp.push(...data.results)
+    });
+    const total = result?.total ?? 0;
+    let resp = [];
+    for (let i = 0; i < total - 4500; i = i + 100) {
+      const data = await fetchApi({
+        query: queries.getAllPost,
+        variables: {
+          skip: i,
+          limit: 100,
+          development: "diariocivitas"
+        }
+      });
+      if (data?.results) resp.push(...data.results);
+    }
+    const paths = resp?.map((item) => ({
+      params: { slug: item?.slug },
+    }));
+    return { paths, fallback: "blocking" };
+  } catch (e) {
+    console.error("getStaticPaths error:", e.message);
+    return { paths: [], fallback: "blocking" };
   }
-  const paths = resp?.map((item) => {
-    return {
-      params: {
-        slug: item?.slug,
-      },
-    };
-  })
-  return {
-    paths: paths,
-    fallback: "blocking",
-  };
 }
 
 export const SocialMediaIcons = ({ title, url }) => {
@@ -344,3 +337,4 @@ const RelatedArticles = () => {
     </div>
   );
 };
+
