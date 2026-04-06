@@ -1,3 +1,4 @@
+SHA: 90d80dba1673e8a9e2340b5b7f26814781036783
 import React, { useEffect } from "react";
 import GridNews from "../components/GridNews.js";
 import PopularPost from "../components/home/PopularPost.js";
@@ -46,19 +47,19 @@ const Home = (props) => {
         <div className="hidden md:grid grid-cols-2 gap-4 -mt-10">
           <CategoryBlock
             title={"Murcia"}
-            lastPost={props.lastPost.filter(elem => elem.title == "locales murcia")[0]?.post}
+            lastPost={props.lastPost?.filter(elem => elem.title == "#Murcia")[0]?.post}
           />
           <CategoryBlock
             title={"Puerto Lumbreras"}
-            lastPost={props.lastPost.filter(elem => elem.title == "locales puerto lumbreras")[0]?.post}
+            lastPost={props.lastPost?.filter(elem => elem.title == "#PuertoLumbreras")[0]?.post}
           />
           <CategoryBlock
             title={"Lorca"}
-            lastPost={props.lastPost.filter(elem => elem.title == "locales lorca")[0]?.post}
+            lastPost={props.lastPost?.filter(elem => elem.title == "#Lorca")[0]?.post}
           />
           <CategoryBlock
             title={"Pulpí"}
-            lastPost={props.lastPost.filter(elem => elem.title == "pulpí")[0]?.post}
+            lastPost={props.lastPost?.filter(elem => elem.title == "#Pulpí")[0]?.post}
           />
         </div>
       </section>
@@ -101,3 +102,4 @@ export async function getServerSideProps() {
     };
   }
 }
+
