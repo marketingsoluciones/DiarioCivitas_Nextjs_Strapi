@@ -106,7 +106,8 @@ export const Title = ({
 const PrincipalNew = ({ noticia, className }) => {
   const LoaderImage = ({ src, width, quality }) => {
     const domain = process.env.NEXT_PUBLIC_API_URL_new;
-    return `${domain}${src}`;
+    if (src && (src.startsWith('http://') || src.startsWith('https://'))) return src;
+        return `${domain}${src}`;
   };
   return (
     <>
@@ -159,7 +160,8 @@ const PrincipalNew = ({ noticia, className }) => {
 const SecondaryNews = ({ noticia, className }) => {
   const LoaderImage = ({ src }) => {
     const domain = process.env.NEXT_PUBLIC_API_URL_new;
-    return `${domain}${src}`;
+    if (src && (src.startsWith('http://') || src.startsWith('https://'))) return src;
+        return `${domain}${src}`;
   };
   return (
     <>
@@ -197,7 +199,8 @@ const SecondaryNews = ({ noticia, className }) => {
 const SliderNews = ({ noticia, className }) => {
   const LoaderImage = ({ src, width, quality }) => {
     const domain = process.env.NEXT_PUBLIC_API_URL_new;
-    return `${domain}${src}`;
+    if (src && (src.startsWith('http://') || src.startsWith('https://'))) return src;
+        return `${domain}${src}`;
   };
   return (
     <>
@@ -247,3 +250,4 @@ const SliderNews = ({ noticia, className }) => {
     </>
   );
 };
+
