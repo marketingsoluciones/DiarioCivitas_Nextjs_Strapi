@@ -46,13 +46,15 @@ const api = {
     return await instance.get(`/toppostcategories/slug/${slug}`)
   },
 
-  Forecast: async (location) => {
-    return await axios.get('https://api.m3o.com/v1/weather/Forecast', {
+  // Open-Meteo — gratuito, sin API key. Coordenadas fijas para Murcia.
+  // Para otras ciudades: buscar lat/lon en https://open-meteo.com/en/docs
+  Forecast: async () => {
+    return await axios.get('https://api.open-meteo.com/v1/forecast', {
       params: {
-        location: location
-      },
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_MICRO}`
+        latitude: 37.9922,
+        longitude: -1.1307,
+        current_weather: true,
+        timezone: 'Europe/Madrid',
       }
     })
   }
