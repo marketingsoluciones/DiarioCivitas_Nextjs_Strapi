@@ -11,7 +11,7 @@ const GridNews = memo(({ lastPost }) => {
         const state = [
             { category: "Actualidad", news: posts.filter(elem => elem.title == "#Actualidad")[0]?.post },
             { category: "Deportes", news: posts.filter(elem => elem.title == "#Deporte")[0]?.post },
-            { category: "Politica", news: posts.filter(elem => elem.title == "#España")[0]?.post },
+            { category: "España", news: posts.filter(elem => elem.title == "#España")[0]?.post },
             { category: "Sucesos", news: posts.filter(elem => elem.title == "#Sucesos")[0]?.post }
         ]
         setCategories(state)

@@ -91,8 +91,8 @@ const Post = ({ PostData }) => {
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup
                   content={PostData?.content
-                    ?.replace(/src=\"https:\/\/diariocivitas\.com\/uploads\//g, "src=\"https://api.diariocivitas.com/uploads/")
-                    ?.replace(/src=\"\/uploads\//g, "src=\"https://api.diariocivitas.com/uploads/")}
+                    ?.replace(/src=\"https?:\/\/(?:api\.diariocivitas\.com|diariocivitas\.com|api\.bodasdehoy\.com)\/uploads\//g, "src=\"https://api2.eventosorganizador.com/uploads/")
+                    ?.replace(/src=\"\/uploads\//g, "src=\"https://api2.eventosorganizador.com/uploads/")}
                   containerTagName="article"
                   allowAttributes={true}
                   allowElements={true}
@@ -136,15 +136,17 @@ const Post = ({ PostData }) => {
             <Suscribed />
             <SocialLinks />
             <div>
-              <Image
-                alt="ads"
-                src={"/ads.png"}
-                objectFit={"contain"}
-                objectPosition={"center"}
-                width={"100vw"}
-                height={"100vw"}
-                layout={"responsive"}
-              />
+              <a href="https://eventosorganizador.com" target="_blank" rel="noopener noreferrer">
+                <Image
+                  alt="Gestiona tus eventos con EventosOrganizador"
+                  src={"/ads.png"}
+                  objectFit={"contain"}
+                  objectPosition={"center"}
+                  width={"100vw"}
+                  height={"100vw"}
+                  layout={"responsive"}
+                />
+              </a>
             </div>
           </aside>
         </section>
