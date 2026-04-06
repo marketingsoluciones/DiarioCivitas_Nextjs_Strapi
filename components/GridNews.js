@@ -57,6 +57,7 @@ const CardView = ({ noticia }) => {
     return (
         <div className="w-full h-full bg-white shadow rounded overflow-hidden border border-gray-100">
             <Image
+                unoptimized
                 loader={LoaderImage}
                 src={`${noticia?.imgMiniatura?.i640 || '/favicon.ico'}`}
                 alt={noticia?.title}
