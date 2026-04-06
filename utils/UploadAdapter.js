@@ -33,7 +33,7 @@ export class UploadAdapter {
         
         const {
           data: { data },
-        } = await api.GraphQL(fd);
+        } = await api.graphql(fd);
         return Object.values(data)[0];
       }
       

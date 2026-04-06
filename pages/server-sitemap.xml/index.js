@@ -1,4 +1,4 @@
-import { api } from '../../api'
+import { fetchApi } from '../../utils/Fetching'
 import { getServerSideSitemap } from 'next-sitemap'
 
 export const getServerSideProps = async (ctx) => {

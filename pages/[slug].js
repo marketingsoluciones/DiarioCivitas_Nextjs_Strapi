@@ -91,8 +91,8 @@ const Post = ({ PostData }) => {
               <div className="md:col-span-7 text-justify font-body text-sm leading-relaxed overflow-hidden">
                 <Markup
                   content={PostData?.content
-                    ?.replace(/src=\"https:\/\/diarioCivitas.com\/uploads\//g, "src=\"https://api.diarioCivitas.com/uploads/")
-                    ?.replace(/src=\"\/uploads\//g, "src=\"https://api.diarioCivitas.com/uploads/")}
+                    ?.replace(/src=\"https:\/\/diariocivitas\.com\/uploads\//g, "src=\"https://api.diariocivitas.com/uploads/")
+                    ?.replace(/src=\"\/uploads\//g, "src=\"https://api.diariocivitas.com/uploads/")}
                   containerTagName="article"
                   allowAttributes={true}
                   allowElements={true}
