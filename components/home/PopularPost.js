@@ -34,7 +34,8 @@ const Post = ({ noticia }) => {
     <div className="grid grid-cols-3 items-center justify-start">
       <span className="w-16 h-16 rounded-full relative overflow-hidden">
         <Image
-          loader={LoaderImage}
+          unoptimized
+                loader={LoaderImage}
           src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
