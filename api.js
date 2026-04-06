@@ -11,12 +11,11 @@ const api = {
     if (sessionCivitas) {
       tokenFinal = Cookies.get("idToken")
     }
-    return await instanceNew.post("/graphql", data, {
-      headers: {
-        Authorization: `Bearer ${tokenFinal}`,
-        Development: "diariocivitas"
-      }
-    })
+    const headers = { Development: "diariocivitas" }
+    if (tokenFinal) {
+      headers.Authorization = `Bearer ${tokenFinal}`
+    }
+    return await instanceNew.post("/graphql", data, { headers })
   },
 
   FetchAllNews: async (params) => {
@@ -60,3 +59,4 @@ const api = {
 }
 
 export { api };
+
