@@ -27,7 +27,9 @@
     "react-transition-group": "^4.4.2",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "^3.3.1",
-    "yup": "^1.1.0"
+    "yup": "^1.1.0",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8"
   },
   "scripts": {
     "dev": "next dev",
@@ -36,8 +38,6 @@
     "postbuild": "cross-env next-sitemap --config next-sitemap.js "
   },
   "devDependencies": {
-    "@storybook/addon-links": "^7.0.7",
-    "autoprefixer": "^10.2.5",
-    "postcss": "^8.2.12"
+    "@storybook/addon-links": "^7.0.7"
   }
 }

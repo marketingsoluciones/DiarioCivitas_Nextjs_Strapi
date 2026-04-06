@@ -1,4 +1,3 @@
-SHA: 90d80dba1673e8a9e2340b5b7f26814781036783
 import React, { useEffect } from "react";
 import GridNews from "../components/GridNews.js";
 import PopularPost from "../components/home/PopularPost.js";
