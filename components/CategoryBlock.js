@@ -7,7 +7,7 @@ const CategoryBlock = ({ lastPost, title }) => {
     const [news, setNews] = useState([])
 
     useEffect(() => {
-        setNews(lastPost)
+        setNews(lastPost || [])
     }, [lastPost])
     const colors = {
         murcia: "bg-gradient-to-r from-red-500 to-pink-500",
@@ -19,7 +19,7 @@ const CategoryBlock = ({ lastPost, title }) => {
         <div className="font-display flex flex-col gap-4 border-t-2 border-gray-200 pt-10 ">
             <h2 className={`font-semibold text-lg tracking-wider uppercase ${colors[title.toLowerCase()]} p-2 pl-5 text-white`}>{title}</h2>
             <div className="grid grid-cols-2 gap-4">
-                <BlockNews noticia={news[0]} />
+                <BlockNews noticia={news?.[0]} />
                 <div className="grid grid-cols-1 grid-rows-4">
                     {news?.slice(1, 5)?.map((item, idx) => (
                         <ListNews key={idx} noticia={item} />
@@ -33,8 +33,8 @@ const CategoryBlock = ({ lastPost, title }) => {
 export default CategoryBlock
 
 const BlockNews = ({ noticia }) => {
-    const LoaderImage = ({ src, width, quality }) => {
-        //const domain = process.env.NEXT_PUBLIC_API_URL
+    const LoaderImage = ({ src }) => {
+        if (src && (src.startsWith('http://') || src.startsWith('https://'))) return src;
         const domain = process.env.NEXT_PUBLIC_API_URL_new;
         return `${domain}${src}`
     }
@@ -44,7 +44,7 @@ const BlockNews = ({ noticia }) => {
             <div className="block relative h-full w-full bg-black rounded overflow-hidden image-card text-white">
                 <Image
                     loader={LoaderImage}
-                    src={`${noticia?.imgMiniatura?.i320}`}
+                    src={`${noticia?.imgMiniatura?.i320 || '/favicon.ico'}`}
                     alt={noticia?.title}
                     objectFit={"cover"}
                     objectPosition={"left"}
@@ -81,4 +81,3 @@ const ListNews = ({ noticia }) => {
         </div>
     )
 }
-
