@@ -7,14 +7,15 @@ const GridNews = memo(({ lastPost }) => {
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
+        const posts = lastPost || []
         const state = [
-            { category: "Actualidad", news: lastPost.filter(elem => elem.title == "actualidad")[0]?.post },
-            { category: "Deportes", news: lastPost.filter(elem => elem.title == "deportes")[0]?.post },
-            { category: "Politica", news: lastPost.filter(elem => elem.title == "política")[0]?.post },
-            { category: "Sucesos", news: lastPost.filter(elem => elem.title == "sucesos")[0]?.post }
+            { category: "Actualidad", news: posts.filter(elem => elem.title == "actualidad")[0]?.post },
+            { category: "Deportes", news: posts.filter(elem => elem.title == "deportes")[0]?.post },
+            { category: "Politica", news: posts.filter(elem => elem.title == "política")[0]?.post },
+            { category: "Sucesos", news: posts.filter(elem => elem.title == "sucesos")[0]?.post }
         ]
         setCategories(state)
-    }, [])
+    }, [lastPost])
     return (
         <div className="md:col-span-2 w-full flex flex-col gap-4 border-t-2 pt-2 border-gray-200">
             <div className="w-full flex justify-between items-center md:flex-row flex-col ">
@@ -48,8 +49,8 @@ export default GridNews
 
 
 const CardView = ({ noticia }) => {
-    const LoaderImage = ({ src, width, quality }) => {
-        //const domain = process.env.NEXT_PUBLIC_API_URL
+    const LoaderImage = ({ src }) => {
+        if (src && (src.startsWith('http://') || src.startsWith('https://'))) return src;
         const domain = process.env.NEXT_PUBLIC_API_URL_new;
         return `${domain}${src}`
     }
@@ -57,7 +58,7 @@ const CardView = ({ noticia }) => {
         <div className="w-full h-full bg-white shadow rounded overflow-hidden border border-gray-100">
             <Image
                 loader={LoaderImage}
-                src={`${noticia?.imgMiniatura?.i640}`}
+                src={`${noticia?.imgMiniatura?.i640 || '/favicon.ico'}`}
                 alt={noticia?.title}
                 objectFit={"cover"}
                 objectPosition={"center"}
@@ -84,4 +85,3 @@ const NewsByCategory = ({ category }) => {
         </div>
     )
 }
-
