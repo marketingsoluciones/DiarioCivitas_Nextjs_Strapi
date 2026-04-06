@@ -43,7 +43,8 @@ const BlockNews = ({ noticia }) => {
         <>
             <div className="block relative h-full w-full bg-black rounded overflow-hidden image-card text-white">
                 <Image
-                    loader={LoaderImage}
+                    unoptimized
+                loader={LoaderImage}
                     src={`${noticia?.imgMiniatura?.i320 || '/favicon.ico'}`}
                     alt={noticia?.title}
                     objectFit={"cover"}
