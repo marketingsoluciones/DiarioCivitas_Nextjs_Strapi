@@ -32,7 +32,7 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "next build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "postbuild": "cross-env next-sitemap --config next-sitemap.js "
   },
   "devDependencies": {
