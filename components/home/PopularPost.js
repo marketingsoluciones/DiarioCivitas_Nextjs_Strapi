@@ -27,7 +27,8 @@ const Post = ({ noticia }) => {
   const LoaderImage = ({ src, width, quality }) => {
     //const domain = process.env.NEXT_PUBLIC_API_URL;
     const domain = process.env.NEXT_PUBLIC_API_URL_new;
-    return `${domain}${src}`;
+    if (src && (src.startsWith('http://') || src.startsWith('https://'))) return src;
+        return `${domain}${src}`;
   };
   return (
     <div className="grid grid-cols-3 items-center justify-start">
@@ -52,3 +53,4 @@ const Post = ({ noticia }) => {
     </div>
   );
 };
+
