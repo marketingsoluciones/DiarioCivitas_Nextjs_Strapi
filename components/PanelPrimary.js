@@ -115,7 +115,8 @@ const PrincipalNew = ({ noticia, className }) => {
         className={`... w-full rounded p-4 relative flex items-end overflow-hidden cursor-pointer hover:opacity-95 transition ${className}`}
       >
         <Image
-          loader={LoaderImage}
+          unoptimized
+            loader={LoaderImage}
           src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
@@ -169,6 +170,7 @@ const SecondaryNews = ({ noticia, className }) => {
         {/* <div className="h-20 w-auto overflow-hidden rounded relative"> */}
         <div className="h-auto w-auto overflow-hidden rounded relative">
           <Image
+            unoptimized
             loader={LoaderImage}
             src={`${noticia?.imgMiniatura?.i640}`}
             alt={noticia?.title}
@@ -209,7 +211,8 @@ const SliderNews = ({ noticia, className }) => {
         className={`... w-full p-4 relative items-end overflow-hidden cursor-pointer hover:opacity-95 transition grid ${className}`}
       >
         <Image
-          loader={LoaderImage}
+          unoptimized
+            loader={LoaderImage}
           src={`${noticia?.imgMiniatura?.i640}`}
           alt={noticia?.title}
           objectFit={"cover"}
