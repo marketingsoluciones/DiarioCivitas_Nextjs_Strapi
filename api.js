@@ -4,6 +4,27 @@ import Cookies from 'js-cookie';
 let instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
 let instanceNew = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL_new });
 
+// Las respuestas del backend traen URLs de imágenes con el host interno
+// `api3-mcp-graphql.eventosorganizador.com`, que NO resuelve públicamente (DNS) → las
+// imágenes daban HTTP 000. El host público api-mcp.eventosorganizador.com sirve los MISMOS
+// uploads (200). Reescribimos el host en todas las respuestas como workaround hasta que el
+// backend devuelva las URLs con el host público.
+const rewriteImageHost = (res) => {
+  try {
+    if (res && res.data) {
+      const raw = JSON.stringify(res.data);
+      if (raw.includes('api3-mcp-graphql.eventosorganizador.com')) {
+        res.data = JSON.parse(
+          raw.replace(/api3-mcp-graphql\.eventosorganizador\.com/g, 'api-mcp.eventosorganizador.com'),
+        );
+      }
+    }
+  } catch (_) { /* respuesta no JSON-serializable: dejar intacta */ }
+  return res;
+};
+instance.interceptors.response.use(rewriteImageHost);
+instanceNew.interceptors.response.use(rewriteImageHost);
+
 const api = {
   graphql: async (data) => {
     const sessionCivitas = Cookies.get("sessionCivitas")
