@@ -227,11 +227,18 @@ export const getServerSideProps = async ({ params }) => {
     })
     return {
       props: {
-        category: params?.category, news: results
+        category: params?.category, news: results || []
       }
     };
   } catch (error) {
     console.log(1008, error);
+    // No dejar caer la página: si getServerSideProps no retorna props, Next devuelve
+    // 500. Render con lista vacía → la categoría muestra su estado "sin noticias".
+    return {
+      props: {
+        category: params?.category || null, news: []
+      }
+    };
   }
 };
 

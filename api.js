@@ -9,14 +9,16 @@ let instanceNew = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL_new })
 // imágenes daban HTTP 000. El host público api-mcp.eventosorganizador.com sirve los MISMOS
 // uploads (200). Reescribimos el host en todas las respuestas como workaround hasta que el
 // backend devuelva las URLs con el host público.
+// Hosts internos que el backend devuelve en las URLs de uploads pero que NO resuelven
+// públicamente (api3-mcp-graphql, api3-bd). api-mcp.eventosorganizador.com sí sirve los
+// mismos /uploads (200). Reescribimos cualquiera de ellos al host público.
+const DEAD_IMG_HOSTS = /(api3-mcp-graphql|api3-bd)\.eventosorganizador\.com/g;
 const rewriteImageHost = (res) => {
   try {
     if (res && res.data) {
       const raw = JSON.stringify(res.data);
-      if (raw.includes('api3-mcp-graphql.eventosorganizador.com')) {
-        res.data = JSON.parse(
-          raw.replace(/api3-mcp-graphql\.eventosorganizador\.com/g, 'api-mcp.eventosorganizador.com'),
-        );
+      if (DEAD_IMG_HOSTS.test(raw)) {
+        res.data = JSON.parse(raw.replace(DEAD_IMG_HOSTS, 'api-mcp.eventosorganizador.com'));
       }
     }
   } catch (_) { /* respuesta no JSON-serializable: dejar intacta */ }
